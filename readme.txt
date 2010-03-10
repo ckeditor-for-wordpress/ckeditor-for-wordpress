@@ -1,4 +1,4 @@
-=== CKEditor For Wordpress ===
+﻿=== CKEditor For Wordpress ===
 Contributors: wiktor, Dean Lee
 Tags: post, CKEditor, FCKEditor, editor, WYSIWYG, RTE, rich text editor
 Requires at least: 2.0
@@ -34,10 +34,6 @@ Features:
 * Integration plugin for <a href="http://wordpress.org/extend/plugins/gd-star-rating/">GD Star Rating</a>
 * Integration plugin for <a href="http://wordpress.org/extend/plugins/nextgen-gallery/">NextGEN Gallery</a>
 * Integrated with WordPress media buttons
-* Integration plugin for Viper's Video Quicktags
-* Intergation plugin for Wp-Polls
-* Integration plugin for GD Star Rating
-* Integration plugin for NextGEN Gallery
 * Configurable output formatting
 * Manage and insert smileys into your post
 * Customizable toolbar buttons
