@@ -15,11 +15,11 @@ text being edited on it looks as similar as possible to the results users have w
 It brings to the web common editing features found on desktop editing applications like Microsoft Word and OpenOffice.
 
 CKEditor is compatible with most internet browsers and operating systems, including:
- - Internet Explorer 6+
- - Firefox 2+
- - Safari 3+
- - Google Chrome
- - Opera 9.5+:
+* Internet Explorer 6+
+* Firefox 2+
+* Safari 3+
+* Google Chrome
+* Opera 9.5+:
 
 Live demo is available at <a href="http://wordpress.ckeditor.com/">http://wordpress.ckeditor.com/</a>.
 
