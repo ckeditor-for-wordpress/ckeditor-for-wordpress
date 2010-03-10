@@ -25,10 +25,10 @@ Live demo is available at <a href="http://wordpress.ckeditor.com/">http://wordpr
 
 Features:
 
-* Replace the default wordpress editor with CKEditor
+* Replace the default WordPress editor with CKEditor
 * Post comment with CKEditor to provide styled and colorful comments (Optional)
 * Build-in file manager and upload manager, also supports <a href="http://ckfinder.com">CKFinder</a> – an AJAX file browser
-* Build-in Wordpress "read more" Button
+* Build-in WordPress "read more" Button
 * Integration plugin for <a href="http://wordpress.org/extend/plugins/vipers-video-quicktags/">Viper's Video Quicktags</a>
 * Intergation plugin for <a href="http://wordpress.org/extend/plugins/wp-polls/">Wp-Polls</a>
 * Integration plugin for <a href="http://wordpress.org/extend/plugins/gd-star-rating/">GD Star Rating</a>
