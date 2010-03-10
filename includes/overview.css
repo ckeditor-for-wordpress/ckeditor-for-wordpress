@@ -1,0 +1,28 @@
+.ckeditor_error{color:red}
+.ckeditor_ok{color:green}
+table.compat_logos td.logos
+{
+	width: 32px;
+	height: 36px;
+	border: solid 4px #ffffff;
+	border-bottom: none;
+	border-collapse: separate;
+	background-image: url(../images/compat_logos.jpg);
+	background-repeat: no-repeat;
+	text-indent: -1000px;
+	overflow: hidden;
+	padding:0;
+}
+.ckeditor_links td{height:30px;background-repeat:no-repeat;padding-left: 20px;}
+.ckeditor_links td.help{background: url(../images/help.png) 0 7px no-repeat;}
+.ckeditor_links td.conf{background: url(../images/configuration.png) 0 7px no-repeat;}
+.ckeditor_links td.plug{background: url(../images/plugin.png) 0 7px  no-repeat;}
+.ckeditor_links td.excl{background: url(../images/exclamation.png) 0 7px  no-repeat;}
+.ckeditor_links td.docs{background: url(../images/documentation.png) 0 7px  no-repeat;}
+.ckeditor_links td.cke{background: url(../images/ckeditor_ico16.png) 1px 8px  no-repeat;}
+table.compat_logos td.ie{background-position: 0px top;}
+table.compat_logos td.firefox{background-position: -32px top;}
+table.compat_logos td.safari{background-position: -64px top;}
+table.compat_logos td.opera{background-position: -96px top;}
+table.compat_logos td.chrome{background-position: -128px top;}
+table.compat_logos td.camino{background-position: -160px top;}

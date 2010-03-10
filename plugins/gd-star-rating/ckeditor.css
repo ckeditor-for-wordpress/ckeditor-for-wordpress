@@ -1,0 +1,11 @@
+fieldset { margin-bottom: 5px; }
+
+p { margin-top: 0; margin-bottom: 5px; }
+
+td.gdsrleft { text-align: left; }
+
+td.gdsrright { text-align: right; }
+
+td.gdsrright, td.gdsrleft, td.gdsrreg { vertical-align: top; height: 20px; padding: 1px; }
+
+.panel_wrapper { height: 360px; }
