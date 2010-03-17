@@ -3,7 +3,7 @@
 Plugin Name: CKEditor for WordPress
 Plugin URI: http://wordpress.ckeditor.com/
 Description: Replaces the default WordPress editor with <a href="http://ckeditor.com/"> CKEditor</a>
-Version: 1.0 Beta
+Version: 1.0 Beta2
 Author: CKSource, originally created by Dean Lee
 Author URI: http://cksource.com/
 */
