@@ -1,6 +1,6 @@
 ﻿=== CKEditor For WordPress ===
 Contributors: wiktor, Dean Lee
-Tags: post, CKEditor, FCKeditor, editor, WYSIWYG, RTE, rich text editor
+Tags: post, wysiwyg, CKEditor, FCKeditor, editor, rich text, rte, rich text editor
 Requires at least: 2.0
 Tested up to: 2.9.2
 
@@ -55,6 +55,10 @@ Features:
 3. Built-in file manager
 
 == Changelog ==
+
+= V1.0 Beta2 - 17.03.2010 =
+
+* Fixed compatibility with PHP4 and with disabled short tags.
 
 = V1.0 Beta - 10.03.2010 =
 

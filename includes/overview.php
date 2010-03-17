@@ -173,7 +173,7 @@ function ckeditor_overview_compatibility() {
 		</tr>
 	</table>
 	</div>
-<?
+<?php
 }
 
 /**
@@ -196,7 +196,7 @@ function ckeditor_overview_configuration() {
 		</tr>
 	</table>
 	</div>
-<?
+<?php
 }
 function ckeditor_reset_settings() {
 	?>
@@ -211,7 +211,7 @@ function ckeditor_reset_settings() {
 		</p>
 	</form>
 	</div>
-	<?
+	<?php
 }
 
 /**
@@ -235,7 +235,7 @@ function ckeditor_overview_help() {
 		</tr>
 	</table>
 	</div>
-	<?
+	<?php
 }
 
 add_meta_box('dashboard_overview_configuration', __('CKEditor Information', 'ckeditor_wordpress'), 'ckeditor_overview_configuration', 'ckeditor_overview', 'left', 'core');

@@ -498,7 +498,7 @@ class ckeditor_wordpress {
 		include('includes/file_editor.php');
 	}
 
-	public function generate_js_options($is_comment){
+	function generate_js_options($is_comment){
 		$options=$this->options;
 		$settings=array();
 		if ($options['upload']['browser'] == 'builtin') {
