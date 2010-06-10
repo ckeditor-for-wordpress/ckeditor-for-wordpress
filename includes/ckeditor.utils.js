@@ -24,7 +24,7 @@ jQuery(document).ready(function () {
 	CKEDITOR.on( 'instanceReady', function( ev )
 	{
 		var dtd = CKEDITOR.dtd;
-		for ( var e in CKEDITOR.tools.extend( {}, dtd.$block, dtd.$listItem, dtd.$tableContent ) )
+		for ( var e in CKEDITOR.tools.extend( {}, dtd.$nonBodyContent, dtd.$block, dtd.$listItem, dtd.$tableContent ) )
 		{
 			ev.editor.dataProcessor.writer.setRules( e, ckeditorSettings.outputFormat);
 		}
@@ -38,7 +38,7 @@ jQuery(document).ready(function () {
 			});
 	});
 
-	if(ckeditorSettings.autostart){
+	if(ckeditorSettings.autostart && typeof(qtrans_use) == 'undefined'){
 		ckeditorOn();
 	} else {
 		jQuery('#edButtonHTML').addClass('active');
@@ -67,7 +67,7 @@ jQuery(document).ready(function () {
 			}
 			autosaveOld();
 		}
-		if(typeof(window.switchEditors) != 'undefined'){
+		if(typeof(window.switchEditors) != 'undefined') {
 			window.switchEditors.go = function(id, mode) {
 				if ('tinymce' == mode) {
 					ckeditorOn();
@@ -75,6 +75,64 @@ jQuery(document).ready(function () {
 					ckeditorOff();
 				}
 			}
+		}
+		/**
+		 * qTranslate support
+		 */
+		if(typeof(qtrans_use) == 'function') {
+			ckeditorSettings.textarea_id = 'qtrans_textarea_content';
+			window.tinyMCE = (function () { 
+				var tinyMCE = {
+					get : function (id) {
+						var instant = {
+							isHidden : function () {
+								if(typeof(CKEDITOR.instances[ckeditorSettings.textarea_id]) != 'undefined'){
+									return false;
+								} else {
+									return true;
+								}
+							},
+							execCommand : function (command, int, val) {
+								if(command == 'mceSetContent') {
+									CKEDITOR.instances[ckeditorSettings.textarea_id].setData(val);
+								}
+							},
+							onSaveContent : {
+									add : function (func) {
+										window.tinymceosc = func;
+									} 
+							},
+							getContentAreaContainer : function () {
+								return {
+									offsetHeight : CKEDITOR.instances[ckeditorSettings.textarea_id].config.height
+								}
+							},
+							hide : function () {
+								ckeditorOff();
+							},
+							show : function () {
+								ckeditorOn();
+							}
+						}
+						return instant; 
+					},
+					execCommand : function (command, int, val) {
+						if(command == 'mceAddControl'){
+							ckeditorSettings.textarea_id = val;
+							if(ckeditorSettings.autostart) {
+								ckeditorOn();
+							}
+						}
+					},
+					triggerSave : function(param) {
+						CKEDITOR.instances[ckeditorSettings.textarea_id].updateElement();
+						qtrans_save(CKEDITOR.instances[ckeditorSettings.textarea_id].getData());
+					}
+					
+				}
+				
+				return tinyMCE;
+			})(); 
 		}
 	}
 });

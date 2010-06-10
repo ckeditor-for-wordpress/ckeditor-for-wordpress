@@ -46,11 +46,6 @@
 		<h3><?php _e('Output Formatting', 'ckeditor_wordpress') ?></h3>
 		<table class="form-table">
 			<tr valign="top">
-				<th scope="row"><?php _e('Built-in spell checker', 'ckeditor_wordpress')?></th>
-				<td><?php echo $this->checkbox('advancved', 'native_spell_checker', 'Enable the built-in spell checker while typing natively available in the browser.');?>
-				<div class="description">(<?php _e('currently Firefox and Safari only', 'ckeditor_wordpress');?>)</div></td></tr>
-			</tr>
-			<tr valign="top">
 				<th scope="row"><?php _e('Output formatting', 'ckeditor_wordpress')?><br /><span class="description">(<?php _e('Writer rules', 'ckeditor_wordpress'); ?>)</span></th>
 				<td>
 					<?php echo $this->checkbox('advanced', 'p_indent', 'indent the element contents.');?><br />
@@ -63,6 +58,18 @@
 		</table>
 		<h3><?php _e('Advanced Options', 'ckeditor_wordpress') ?></h3>
 		<table class="form-table">
+			<tr valign="top">
+				<th scope="row"><?php _e('Spell checker', 'ckeditor_wordpress')?><br /></th>
+				<td>
+					<?php echo $this->checkbox('advanced', 'scayt_autoStartup', 'SCAYT auto startup.');?><br />
+					<div class="description"><?php _e('If enabled, turns on SCAYT (Spell Check As You Type) automatically after loading the editor.', 'ckeditor_wordpress'); ?></div>
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row"><?php _e('Built-in spell checker', 'ckeditor_wordpress')?></th>
+				<td><?php echo $this->checkbox('advancved', 'native_spell_checker', 'Enable the built-in spell checker while typing natively available in the browser.');?>
+				<div class="description">(<?php _e('currently Firefox and Safari only', 'ckeditor_wordpress');?>)</div></td></tr>
+			</tr>
 			<tr valign="top">
 				<th scope="row"><?php _e('Load method', 'ckeditor_wordpress') ?></th>
 				<td>

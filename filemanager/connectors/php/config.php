@@ -124,8 +124,8 @@ $Config['AllowedExtensions']['Images']	= explode(',', $ckeditor_wordpress->optio
 $Config['DeniedExtensions']['Images']	= array() ;
 $Config['FileTypesPath']['Images']		= $Config['UserFilesPath'] . 'image/' ;
 $Config['FileTypesAbsolutePath']['Images']= ($Config['UserFilesAbsolutePath'] == '') ? '' : $Config['UserFilesAbsolutePath'].'image/' ;
-$Config['QuickUploadPath']['Images']		= $Config['FileTypesPath']['Image'] ;
-$Config['QuickUploadAbsolutePath']['Images']= $Config['FileTypesAbsolutePath']['Image'] ;
+$Config['QuickUploadPath']['Images']		= $Config['FileTypesPath']['Images'] ;
+$Config['QuickUploadAbsolutePath']['Images']= $Config['FileTypesAbsolutePath']['Images'] ;
 
 $Config['AllowedExtensions']['Flash']	= explode(',', $ckeditor_wordpress->options['upload']['flash_allowed_ext']) ;
 $Config['DeniedExtensions']['Flash']	= array() ;

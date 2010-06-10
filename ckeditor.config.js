@@ -41,5 +41,5 @@ CKEDITOR.editorConfig = function(config) {
 
 	// mediaembed plugin
 	// config.extraPlugins += (config.extraPlugins ? ',mediaembed' : 'mediaembed' );
-	// CKEDITOR.plugins.addExternal('mediaembed', ckeditorVariables.pluginPath + 'plugins/mediaembed/');
+	// CKEDITOR.plugins.addExternal('mediaembed', ckeditorSettings.pluginPath + 'plugins/mediaembed/');
 };

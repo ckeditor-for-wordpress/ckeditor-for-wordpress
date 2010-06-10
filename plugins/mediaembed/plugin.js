@@ -4,7 +4,7 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 */
 
 /**
- * @file Plugin for inserting Drupal embeded media
+ * @file Plugin for inserting embeded media
  */
 ( function() {
   CKEDITOR.plugins.add( 'mediaembed',
@@ -26,21 +26,21 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
       var me = this;
       CKEDITOR.dialog.add( 'MediaEmbedDialog', function( editor ) {
         return {
-          title : Drupal.t('Embed Media Dialog'),
+          title : 'Embed Media Dialog',
           minWidth : 400,
           minHeight : 200,
           contents : [
             {
               id : 'mediaTab',
-              label : Drupal.t('Embed media code'),
-              title : Drupal.t('Embed media code'),
+              label : 'Embed media code',
+              title : 'Embed media code',
               elements :
               [
                 {
                   id : 'embed',
                   type : 'textarea',
                   rows : 9,
-                  label : Drupal.t('Paste embed code here')
+                  label : 'Paste embed code here'
                 }
               ]
             }

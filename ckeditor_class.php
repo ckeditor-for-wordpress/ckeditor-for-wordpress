@@ -1,6 +1,6 @@
 <?php
 class ckeditor_wordpress {
-	var $version = '1.0 Beta2';
+	var $version = '1.0';
 	var $default_options = array();
 	var $options = array();
 	var $ckeditor_path = "";
@@ -68,6 +68,7 @@ class ckeditor_wordpress {
 				'load_method' => 'ckeditor.js',
 				'load_timeout' => 0,
 				'native_spell_checker' => 't',
+				'scayt_autoStartup' => 'f',
 				'p_indent' => 't',
 				'p_break_before_open' => 't',
 				'p_break_after_open' => 'f',
@@ -367,6 +368,7 @@ class ckeditor_wordpress {
 		if (!empty($_POST['submit_update'])) {
 			$new_options=$_POST['options'];
 			$new_options['advanced']['native_spell_checker'] = (isset($_POST['options']['advanced']['native_spell_checker'])?'t':'f');
+			$new_options['advanced']['scayt_autoStartup'] = (isset($_POST['options']['advanced']['scayt_autoStartup'])?'t':'f');
 			$new_options['advanced']['p_indent'] = (isset($_POST['options']['advanced']['p_indent'])?'t':'f');
 			$new_options['advanced']['p_break_before_open'] = (isset($_POST['options']['advanced']['p_break_before_open'])?'t':'f');
 			$new_options['advanced']['p_break_after_open'] = (isset($_POST['options']['advanced']['p_break_after_open'])?'t':'f');
@@ -448,6 +450,17 @@ class ckeditor_wordpress {
 		wp_enqueue_script('ckeditor', $this->ckeditor_path . $this->options['advanced']['load_method']);
 		wp_enqueue_script('ckeditor.utils', $this->plugin_path . 'includes/ckeditor.utils.js', array('ckeditor', 'jquery'));
 		$this->generate_js_options(true);
+		$this->add_wpcompat_styles();
+	}
+
+	function add_wpcompat_styles()
+	{
+		?>
+<style type="text/css">
+#content table.cke_editor { margin:0; }
+#content table.cke_editor tr td { padding:0;border:0; }
+</style>
+		<?
 	}
 
 	function update_options($new_options, $error){
@@ -504,18 +517,22 @@ class ckeditor_wordpress {
 		if ($options['upload']['browser'] == 'builtin') {
 			$ck_browser_url = $this->plugin_path .'filemanager/browser/default/browser.html?Connector=../../connectors/php/connector.php';
 			$ck_upload_url = $this->plugin_path .'filemanager/connectors/php/upload.php';
+			$settings['filebrowserBrowseUrl'] = $ck_browser_url;
+			$settings['filebrowserImageBrowseUrl'] = $ck_browser_url . '&type=Images';
+			$settings['filebrowserFlashBrowseUrl'] = $ck_browser_url . '&type=Flash';
+			$settings['filebrowserUploadUrl'] = $ck_upload_url;
+			$settings['filebrowserImageUploadUrl'] = $ck_upload_url . '?type=Images';
+			$settings['filebrowserFlashUploadUrl'] = $ck_upload_url . '?type=Flash';
 		}
 		else if ($options['upload']['browser'] == 'ckfinder') {
 			$ck_browser_url = $this->plugin_path .'ckfinder/ckfinder.html';
 			$ck_upload_url = $this->plugin_path .'ckfinder/core/connector/php/connector.php?command=QuickUpload';
-		}
-		if (isset($ck_upload_url) && isset($ck_browser_url)) {
 			$settings['filebrowserBrowseUrl'] = $ck_browser_url;
-			$settings['filebrowserImageBrowseUrl'] = $ck_browser_url . '?Type=Images';
-			$settings['filebrowserFlashBrowseUrl'] = $ck_browser_url . '?Type=Flash';
-			$settings['filebrowserUploadUrl'] = $ck_upload_url;
-			$settings['filebrowserImageUploadUrl'] = $ck_upload_url . '&Type=Images';
-			$settings['filebrowserFlashUploadUrl'] = $ck_upload_url . '&Type=Flash';
+			$settings['filebrowserImageBrowseUrl'] = $ck_browser_url . '?type=Images';
+			$settings['filebrowserFlashBrowseUrl'] = $ck_browser_url . '?type=Flash';
+			$settings['filebrowserUploadUrl'] = $ck_upload_url . '&type=Files';
+			$settings['filebrowserImageUploadUrl'] = $ck_upload_url . '&type=Images';
+			$settings['filebrowserFlashUploadUrl'] = $ck_upload_url . '&type=Flash';
 		}
 
 		if ($options['appearance']['uicolor'] == 'custom' && !empty($options['appearance']['uicolor_user'])) {
@@ -523,8 +540,9 @@ class ckeditor_wordpress {
 		}
 		$settings['height']=($is_comment ? $options['appearance']['comment_editor_height'] : $options['appearance']['post_editor_height']).'px';
 		$settings['skin']=$options['appearance']['skin'];
+		$settings['scayt_autoStartup']=$options['advanced']['scayt_autoStartup'] == 't' ? true : false;
 		$settings['toolbar']=($is_comment ? $options['appearance']['comment_toolbar'] : $options['appearance']['post_toolbar']);
-		$settings['templates_files'] = $this->plugin_path.'ckeditor.templates.js';
+		$settings['templates_files'][] = $this->plugin_path.'ckeditor.templates.js';
 		$output=array(
 			'textarea_id' => ($is_comment ? 'comment' : 'content'),
 			'pluginPath' => $this->plugin_path,
