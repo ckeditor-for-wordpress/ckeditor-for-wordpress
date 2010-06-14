@@ -460,7 +460,7 @@ class ckeditor_wordpress {
 #content table.cke_editor { margin:0; }
 #content table.cke_editor tr td { padding:0;border:0; }
 </style>
-		<?
+		<?php
 	}
 
 	function update_options($new_options, $error){

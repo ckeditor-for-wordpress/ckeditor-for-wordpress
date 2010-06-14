@@ -57,6 +57,10 @@ Features:
 
 == Changelog ==
 
+= V1.0.1 - 14.06.2010 =
+
+* Fixed usage of short tag causing parse error
+
 = V1.0 - 11.06.2010 =
 
 * Updated CKEditor to 3.3.1
