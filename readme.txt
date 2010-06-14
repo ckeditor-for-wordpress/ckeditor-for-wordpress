@@ -59,8 +59,9 @@ Features:
 
 = V1.0.1 - 14.06.2010 =
 
-* Fixed usage of short tag causing parse error
+* Fixed usage of PHP short tag causing parse error
 * Fixed "Read more" button
+* Fixed issues when working with the qTranslate extension (unable to save edited content)
 
 = V1.0 - 11.06.2010 =
 

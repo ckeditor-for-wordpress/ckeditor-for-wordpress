@@ -492,9 +492,14 @@ class ckeditor_wordpress {
 
 	function file_editor(){
 		$files=$this->get_writable_files();
+		if(isset($_POST['file']) && !isset($files[$_POST['file']])) {
+			echo '<div class="error"><p>' . __('Invalid file!') . '</p></div>';
+			return;
+		}
 		if(isset($_POST['file'])) {
 			$file=$_POST['file'];
-		} else {
+		}
+		else {
 			$keys=array_keys($files);
 			$file=$keys[0];
 			unset($keys);

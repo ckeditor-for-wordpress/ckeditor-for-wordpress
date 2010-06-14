@@ -81,6 +81,9 @@ jQuery(document).ready(function () {
 		 */
 		if(typeof(qtrans_use) == 'function') {
 			ckeditorSettings.textarea_id = 'qtrans_textarea_content';
+			ckeditorSettings.configuration['on'].getData = function (evt) {
+				qtrans_save(evt.data.dataValue);
+			}
 			window.tinyMCE = (function () { 
 				var tinyMCE = {
 					get : function (id) {
@@ -121,12 +124,13 @@ jQuery(document).ready(function () {
 							ckeditorSettings.textarea_id = val;
 							if(ckeditorSettings.autostart) {
 								ckeditorOn();
+							} else {
+								document.getElementById('qtrans_textarea_content').removeAttribute('style');
 							}
 						}
 					},
 					triggerSave : function(param) {
 						CKEDITOR.instances[ckeditorSettings.textarea_id].updateElement();
-						qtrans_save(CKEDITOR.instances[ckeditorSettings.textarea_id].getData());
 					}
 					
 				}
