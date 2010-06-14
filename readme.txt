@@ -62,6 +62,7 @@ Features:
 * Fixed usage of PHP short tag causing parse error
 * Fixed "Read more" button
 * Fixed issues when working with the qTranslate extension (unable to save edited content)
+* Fixed issues with saving configuration files when using file editor
 
 = V1.0 - 11.06.2010 =
 

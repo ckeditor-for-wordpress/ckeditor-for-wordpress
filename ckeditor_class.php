@@ -504,12 +504,13 @@ class ckeditor_wordpress {
 			$file=$keys[0];
 			unset($keys);
 		}
-		$fp=fopen($files[$file], 'r+');
 		if(isset($_POST['newcontent'])){
+			$fp=fopen($files[$file], 'w');
 			$content = stripslashes($_POST['newcontent']);
 			fwrite($fp, stripslashes($_POST['newcontent']));
 			echo '<div class="updated"><p>' . __('Configuration updated!') . '</p></div>';
 		} else {
+			$fp=fopen($files[$file], 'r');
 			$content = fread($fp, filesize($files[$file]));
 		}
 		fclose($fp);
