@@ -60,6 +60,7 @@ Features:
 = V1.0.1 - 14.06.2010 =
 
 * Fixed usage of short tag causing parse error
+* Fixed "Read more" button
 
 = V1.0 - 11.06.2010 =
 

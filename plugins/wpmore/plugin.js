@@ -70,6 +70,10 @@ CKEDITOR.plugins.add( 'wpmore',
       // Create the fake element that will be inserted into the document.
       // The trick is declaring it as an <hr>, so it will behave like a
       // block element (and in effect it behaves much like an <hr>).
+      if ( !CKEDITOR.dom.comment.prototype.getAttribute ) {
+        CKEDITOR.dom.comment.prototype.getAttribute = function() { return ''; };
+        CKEDITOR.dom.comment.prototype.attributes = { align : '' };
+      }
       var fakeElement = editor.createFakeElement( new CKEDITOR.dom.comment( text ), 'cke_wordpress_' + text, 'hr' );
 
       // This is the trick part. We can't use editor.insertElement()
@@ -117,6 +121,10 @@ CKEDITOR.plugins.add( 'wpmore',
       {
         comment : function( value )
         {
+          if ( !CKEDITOR.htmlParser.comment.prototype.getAttribute ) {
+            CKEDITOR.htmlParser.comment.prototype.getAttribute = function() { return ''; };
+            CKEDITOR.htmlParser.comment.prototype.attributes = { align : '' };
+          }
           if ( value == 'more' )
             return editor.createFakeParserElement( new CKEDITOR.htmlParser.comment( value ), 'cke_wordpress_' + value, 'hr' );
 
