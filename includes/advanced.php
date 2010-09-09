@@ -67,7 +67,7 @@
 			</tr>
 			<tr valign="top">
 				<th scope="row"><?php _e('Built-in spell checker', 'ckeditor_wordpress')?></th>
-				<td><?php echo $this->checkbox('advancved', 'native_spell_checker', 'Enable the built-in spell checker while typing natively available in the browser.');?>
+				<td><?php echo $this->checkbox('advanced', 'native_spell_checker', 'Enable the built-in spell checker while typing natively available in the browser.');?>
 				<div class="description">(<?php _e('currently Firefox and Safari only', 'ckeditor_wordpress');?>)</div></td></tr>
 			</tr>
 			<tr valign="top">

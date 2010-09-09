@@ -449,6 +449,8 @@ class ckeditor_wordpress {
 
 		wp_enqueue_script('ckeditor', $this->ckeditor_path . $this->options['advanced']['load_method']);
 		wp_enqueue_script('ckeditor.utils', $this->plugin_path . 'includes/ckeditor.utils.js', array('ckeditor', 'jquery'));
+		wp_deregister_script('comment-reply');
+		wp_register_script('comment-reply', $this->plugin_path . 'includes/ckeditor.comment-reply.js', array('ckeditor','ckeditor.utils'), "20100901");
 		$this->generate_js_options(true);
 		$this->add_wpcompat_styles();
 	}
