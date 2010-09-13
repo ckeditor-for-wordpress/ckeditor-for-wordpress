@@ -32,6 +32,7 @@ CKEDITOR.editorConfig = function(config) {
 			['Bold','Italic','Underline','Strike','-','Subscript','Superscript'],
 			['NumberedList','BulletedList','-','Outdent','Indent','Blockquote'],
 			['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
+			['BidiLtr','BidiRtl'],
 			['Link','Unlink','Anchor'],
 			'/',
 			['Format','Font','FontSize'],
