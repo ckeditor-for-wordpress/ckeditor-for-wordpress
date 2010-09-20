@@ -424,7 +424,23 @@ class ckeditor_wordpress {
 		//add_action('admin_print_footer_scripts', 'codepress_footer_js');
 		//wp_enqueue_script('codepress');
 	}
-
+	
+	function is_plugin_active( $plugin_name )
+	{
+		
+		$options = get_option('active_plugins');
+		
+		foreach ( $options AS $option ){
+			
+			if ( strpos( $option, $plugin_name ) !== FALSE ){
+				return true;
+			}
+		}
+		
+		return false;
+		
+	}
+	
 	function add_post_js()
 	{
 		if (has_filter('admin_print_footer_scripts','wp_tiny_mce') === false) { return; }
@@ -436,6 +452,13 @@ class ckeditor_wordpress {
 
 		wp_enqueue_script('ckeditor', $this->ckeditor_path . $this->options['advanced']['load_method']);
 		wp_enqueue_script('ckeditor.utils', $this->plugin_path . 'includes/ckeditor.utils.js', array('ckeditor', 'jquery'));
+		
+		if ( $this->is_plugin_active( "qtrans" ) ){
+			wp_enqueue_script('ckeditor_qtrans.utils', $this->plugin_path . 'includes/ckeditor_qtrans.utils.js', array('ckeditor', 'ckeditor.utils', 'jquery'));
+		}
+		else {
+			wp_enqueue_script('ckeditor_noqtrans.utils', $this->plugin_path . 'includes/ckeditor_noqtrans.utils.js', array('ckeditor', 'ckeditor.utils', 'jquery'));
+		}
 
 		remove_filter('admin_print_footer_scripts','wp_tiny_mce',25);
 		$this->generate_js_options(false);
