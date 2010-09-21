@@ -80,6 +80,9 @@ jQuery(document).ready(function () {
 
 			ckeditorSettings.textarea_id = 'qtrans_textarea_content';
 			ckeditorSettings.configuration['on'].getData = function (evt) {
+				evt.data.dataValue = evt.data.dataValue.replace(/(^<\/p>)|(<p>$)/g, '');
+				evt.data.dataValue = evt.data.dataValue.replace(/^<p>(\s|\n|\r)*<p>/g, '<p>');
+				evt.data.dataValue = evt.data.dataValue.replace(/<\/p>(\s|\n|\r)*<\/p>(\s|\n|\r)*$/g, '<\/p>');
 				qtrans_save(evt.data.dataValue);
 			}
 			window.tinyMCE = (function () { 
