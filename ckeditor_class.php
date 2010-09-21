@@ -449,16 +449,9 @@ class ckeditor_wordpress {
 			//echo '<script type="text/javascript">jQuery(document).ready(function () { jQuery(\'#quicktags\').show(); });</script>';
 			return;
 		}
-
+		
 		wp_enqueue_script('ckeditor', $this->ckeditor_path . $this->options['advanced']['load_method']);
 		wp_enqueue_script('ckeditor.utils', $this->plugin_path . 'includes/ckeditor.utils.js', array('ckeditor', 'jquery'));
-		
-		if ( $this->is_plugin_active( "qtrans" ) ){
-			wp_enqueue_script('ckeditor_qtrans.utils', $this->plugin_path . 'includes/ckeditor_qtrans.utils.js', array('ckeditor', 'ckeditor.utils', 'jquery'));
-		}
-		else {
-			wp_enqueue_script('ckeditor_noqtrans.utils', $this->plugin_path . 'includes/ckeditor_noqtrans.utils.js', array('ckeditor', 'ckeditor.utils', 'jquery'));
-		}
 
 		remove_filter('admin_print_footer_scripts','wp_tiny_mce',25);
 		$this->generate_js_options(false);
@@ -578,6 +571,7 @@ class ckeditor_wordpress {
 			'textarea_id' => ($is_comment ? 'comment' : 'content'),
 			'pluginPath' => $this->plugin_path,
 			'autostart' => ($options['appearance']['default_state']=='t' || $is_comment ?true:false),
+			'qtransEnabled' => ($this->is_plugin_active( "qtrans" ) ? true : false),
 			'outputFormat' => array(
 				'indent' => ($options['advanced']['p_indent']=='t' ? true : false),
 				'breakBeforeOpen' => ($options['advanced']['p_break_before_open']=='t' ? true : false),
@@ -612,6 +606,7 @@ class ckeditor_wordpress {
 				$settings['stylesCombo_stylesSet'] = 'wordpress:'.$this->plugin_path.'ckeditor.styles.js';
 				break;
 		}
+		
 		$output['configuration']=$settings;
 		$output['configuration']['customConfig'] = $this->plugin_path . 'ckeditor.config.js';
 		if(!$is_comment){
