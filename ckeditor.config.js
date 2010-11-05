@@ -20,7 +20,7 @@ CKEDITOR.editorConfig = function(config) {
 	// List of all buttons is here: http://docs.cksource.com/ckeditor_api/symbols/CKEDITOR.config.html#.toolbar_Full
 
 	// WordPress basic toolbar
-	config.toolbar_WordpressBasic = [ [ 'Bold', 'Italic', '-', 'NumberedList','BulletedList', '-', 'Link', 'Unlink', 'Image' ] ];
+	config.toolbar_WordpressBasic = [ [ 'Bold', 'Italic', '-', 'Link', 'Unlink', '-', 'Blockquote' ] ];
 
 	// WordPress full toolbar
 	config.toolbar_WordpressFull = [
