@@ -3,7 +3,7 @@ Contributors: wiktor, Dean Lee
 Tags: post, wysiwyg, CKEditor, FCKeditor, editor, rich text, rte, rich text editor
 Requires at least: 2.0
 Tested up to: 3.0.1
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 
 This plugin replaces the default WordPress editor with <a href="http://ckeditor.com/">CKEditor</a>.
 
@@ -56,6 +56,11 @@ Features:
 3. Built-in file manager
 
 == Changelog ==
+
+= V1.0.3 - 05.11.2010 =
+
+ * Updated CKEditor to version 3.4.2
+ * Corrected the default set of buttons in that are available in comments
 
 = V1.0.2 - 21.09.2010 =
 

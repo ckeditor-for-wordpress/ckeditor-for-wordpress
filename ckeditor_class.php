@@ -1,6 +1,6 @@
 <?php
 class ckeditor_wordpress {
-	var $version = '1.0.2';
+	var $version = '1.0.3';
 	var $default_options = array();
 	var $options = array();
 	var $ckeditor_path = "";
