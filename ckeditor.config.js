@@ -15,6 +15,7 @@ CKEDITOR.editorConfig = function(config) {
 	// Protect PHP code tags (<?...?>) so CKEditor will not break them when
 	// switching from Source to WYSIWYG.
 	config.protectedSource.push(/<\?[\s\S]*?\?>/g);
+        config.protectedSource.push(/\[[A-Za-z0-9\s\:\=\"\'\\\/]*\]/g);
 
 	// Define toolbars, you can remove or add buttons.
 	// List of all buttons is here: http://docs.cksource.com/ckeditor_api/symbols/CKEDITOR.config.html#.toolbar_Full
@@ -37,7 +38,7 @@ CKEDITOR.editorConfig = function(config) {
 			'/',
 			['Format','Font','FontSize'],
 			['TextColor','BGColor'],
-			['Maximize', 'ShowBlocks'],['MediaEmbed']
+			['Maximize', 'ShowBlocks'],['MediaEmbed'],['Iframe']
 		 ];
 
 	// mediaembed plugin
