@@ -1,4 +1,5 @@
 <?php
+
 /*
 Plugin Name: CKEditor for WordPress
 Plugin URI: http://wordpress.ckeditor.com/
