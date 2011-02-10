@@ -1,6 +1,6 @@
 <?php
 class ckeditor_wordpress {
-	var $version = '1.0.4';
+	var $version = '1.0.5';
 	var $default_options = array();
 	var $options = array();
 	var $ckeditor_path = "";
@@ -424,23 +424,23 @@ class ckeditor_wordpress {
 		//add_action('admin_print_footer_scripts', 'codepress_footer_js');
 		//wp_enqueue_script('codepress');
 	}
-	
+
 	function is_plugin_active( $plugin_name )
 	{
-		
+
 		$options = get_option('active_plugins');
-		
+
 		foreach ( $options AS $option ){
-			
+
 			if ( strpos( $option, $plugin_name ) !== FALSE ){
 				return true;
 			}
 		}
-		
+
 		return false;
-		
+
 	}
-	
+
 	function add_post_js()
 	{
 		if (has_filter('admin_print_footer_scripts','wp_tiny_mce') === false) { return; }
@@ -449,7 +449,7 @@ class ckeditor_wordpress {
 			//echo '<script type="text/javascript">jQuery(document).ready(function () { jQuery(\'#quicktags\').show(); });</script>';
 			return;
 		}
-		
+
 		wp_enqueue_script('ckeditor', $this->ckeditor_path . $this->options['advanced']['load_method']);
 		wp_enqueue_script('ckeditor.utils', $this->plugin_path . 'includes/ckeditor.utils.js', array('ckeditor', 'jquery'));
 
@@ -606,7 +606,7 @@ class ckeditor_wordpress {
 				$settings['stylesCombo_stylesSet'] = 'wordpress:'.$this->plugin_path.'ckeditor.styles.js';
 				break;
 		}
-		
+
 		$output['configuration']=$settings;
 		$output['configuration']['customConfig'] = $this->plugin_path . 'ckeditor.config.js';
 		if(!$is_comment){
