@@ -225,7 +225,7 @@ function ckeditor_overview_help() {
 	<table class="form-table ckeditor_links">
 		<tr valign="top">
 			<td class="cke"><a href="http://ckeditor.com"><?php _e('CKEditor Site', 'ckeditor_wordpress');?></a></td>
-			<td class="help"><a href="http://docs.cksource.com/FCKeditor_2.x/Users_Guide/Quick_Reference"><?php _e('User Guide', 'ckeditor_wordpress');?></a></td>
+			<td class="help"><a href="http://docs.cksource.com/CKEditor_3.x/Users_Guide"><?php _e('User Guide', 'ckeditor_wordpress');?></a></td>
 			<td class="plug"><a href="http://wordpress.org/extend/plugins/ckeditor-for-wordpress/"><?php _e('Plugin Site', 'ckeditor_wordpress');?></a></td>
 		</tr>
 		<tr valign="top">
