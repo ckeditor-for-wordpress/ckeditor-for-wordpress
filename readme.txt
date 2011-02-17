@@ -56,6 +56,9 @@ Features:
 3. Built-in file manager
 
 == Changelog ==
+= V1.0.6 - 17.02.2011 =
+
+ * Updated CKEditor to version 3.5.2
 
 = V1.0.5 - 10.02.2011 =
 
