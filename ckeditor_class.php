@@ -706,7 +706,30 @@ class ckeditor_wordpress {
 
 	function ckeditor_vvqbuttons($buttons) {
 		if (class_exists('VipersVideoQuicktags')) {
-			$buttons[]=array('VVQYoutube', 'VVQGoogleVideo', 'VVQDailyMotion','VVQVimeo','VVQVeoh', 'VVQViddler', 'VVQMetacafe', 'VVQBlipTV', 'VVQFlickrVideo', 'VVQSpike', 'VVQMySpace', 'VVQFLV', 'VVQQuicktime', 'VVQVideoFile');
+                        $vvqsettings = (array) get_option('vvq_options');
+                        $vvqbuttons = array(
+                                'youtube' => 'VVQYoutube',
+                                'googlevideo' => 'VVQGoogleVideo',
+                                'dailymotion' => 'VVQDailyMotion',
+                                'vimeo' => 'VVQVimeo',
+                                'veoh' => 'VVQVeoh',
+                                'viddler' => 'VVQViddler',
+                                'metacafe' => 'VVQMetacafe',
+                                'bliptv' => 'VVQBlipTV',
+                                'flickrvideo' => 'VVQFlickrVideo',
+                                'spike' => 'VVQSpike',
+                                'myspace' => 'VVQMySpace',
+                                'flv' => 'VVQFLV',
+                                'quicktime' => 'VVQQuicktime',
+                                'videofile' => 'VVQVideoFile'
+                        );
+                        $vvqtoolbar = array();
+                        foreach ($vvqsettings as $name => $val){
+                                if (isset($val["button"]) && $val["button"] == 1 && isset($vvqbuttons[$name])){
+                                        $vvqtoolbar[] = $vvqbuttons[$name];
+                            }
+                        }
+			$buttons[]=$vvqtoolbar;
 		}
 		return $buttons;
 	}
