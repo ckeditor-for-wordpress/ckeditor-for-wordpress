@@ -1,9 +1,9 @@
-=== CKEditor For WordPress ===
+﻿=== CKEditor For WordPress ===
 Contributors: wiktor, michal_cksource, Dean Lee
 Tags: post, wysiwyg, CKEditor, FCKeditor, editor, rich text, rte, rich text editor
 Requires at least: 2.0
-Tested up to: 3.1
-Stable tag: 1.0.6
+Tested up to: 3.1.1
+Stable tag: 1.0.7
 
 This plugin replaces the default WordPress editor with <a href="http://ckeditor.com/">CKEditor</a>.
 
@@ -56,6 +56,15 @@ Features:
 3. Built-in file manager
 
 == Changelog ==
+
+
+
+= V1.0.7 - 08.04.2011 =
+
+ * Updated CKEditor to version 3.5.3
+ * Viper’s Video Quicktags – show buttons only from enabled options
+ * Successfully tested with wordpress 3.1
+
 
 = V1.0.7 DEV - 17.03.2011 =
 
