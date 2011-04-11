@@ -71,6 +71,11 @@
 				<div class="description">(<?php _e('currently Firefox and Safari only', 'ckeditor_wordpress');?>)</div></td></tr>
 			</tr>
 			<tr valign="top">
+				<th scope="row"><?php _e('HTML entities', 'ckeditor_wordpress')?></th>
+				<td><?php echo $this->checkbox('advanced', 'entities', 'Using HTML entities in the output.');?>
+				<div class="description">(<?php _e('Convert all applicable characters to HTML entities', 'ckeditor_wordpress');?>)</div></td></tr>
+			</tr>
+			<tr valign="top">
 				<th scope="row"><?php _e('Load method', 'ckeditor_wordpress') ?></th>
 				<td>
 					<select name="options[advanced][load_method]">

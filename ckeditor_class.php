@@ -69,6 +69,7 @@ class ckeditor_wordpress {
 				'load_timeout' => 0,
 				'native_spell_checker' => 't',
 				'scayt_autoStartup' => 'f',
+                                'entities' => 't',
 				'p_indent' => 't',
 				'p_break_before_open' => 't',
 				'p_break_after_open' => 'f',
@@ -82,6 +83,9 @@ class ckeditor_wordpress {
 			$options = $this->default_options;
 		}
 		$this->options = $options;
+                if (!isset($this->options['advanced']['entities'])){
+                    $this->options['advanced']['entities'] = 't';
+                }
 		$path = str_replace(ABSPATH, '', trim($this->options['upload']['user_file_path']));
 		$dir = ABSPATH . $path;
 		if ( $dir == ABSPATH ) { //the option was empty
@@ -374,6 +378,7 @@ class ckeditor_wordpress {
 			$new_options['advanced']['p_break_after_open'] = (isset($_POST['options']['advanced']['p_break_after_open'])?'t':'f');
 			$new_options['advanced']['p_break_before_close'] = (isset($_POST['options']['advanced']['p_break_before_close'])?'t':'f');
 			$new_options['advanced']['p_break_after_close'] = (isset($_POST['options']['advanced']['p_break_after_close'])?'t':'f');
+                        $new_options['advanced']['entities'] = (isset($_POST['options']['advanced']['entities'])?'t':'f');
 
 			/* validation */
 			$massage = array();
@@ -565,6 +570,9 @@ class ckeditor_wordpress {
 		$settings['height']=($is_comment ? $options['appearance']['comment_editor_height'] : $options['appearance']['post_editor_height']).'px';
 		$settings['skin']=$options['appearance']['skin'];
 		$settings['scayt_autoStartup']=$options['advanced']['scayt_autoStartup'] == 't' ? true : false;
+                $settings['entities']=$options['advanced']['entities'] == 't' ? true : false;
+                $settings['entities_greek']=$settings['entities'];
+                $settings['entities_latin']=$settings['entities'];
 		$settings['toolbar']=($is_comment ? $options['appearance']['comment_toolbar'] : $options['appearance']['post_toolbar']);
 		$settings['templates_files'][] = $this->plugin_path.'ckeditor.templates.js';
 		$output=array(
