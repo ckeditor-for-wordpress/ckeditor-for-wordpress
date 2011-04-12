@@ -172,18 +172,6 @@ class ckeditor_wordpress {
 		return false;
 	}
 
-	function deactivate()
-	{
-		//global $current_user;
-		//update_user_option($current_user->id, 'rich_editing', 'true', true);
-	}
-
-	function activate()
-	{
-		//global $current_user;
-		//update_user_option($current_user->id, 'rich_editing', 'false', true);
-	}
-
 	function checkbox($section, $var, $text, $onClick = '') {
 		return '<label id="lbl_' . $var . '"><input type="checkbox" id="' . $var . '" name="options[' . $section . '][' . $var . ']"' .
 		($onClick != '' ? ' onClick="' . $onClick .'" ' : '') .
