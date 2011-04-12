@@ -46,8 +46,9 @@ Features:
 == Installation ==
 
 1. Upload this plugin to the `/wp-content/plugins/` directory.
-1. Activate the plugin through the 'Plugins' menu in WordPress.
-1. To install CKFinder, please read ckfinder/readme.txt.
+2. Activate the plugin through the 'Plugins' menu in WordPress.
+3. Check your account profile settings and uncheck option "Disable the visual editor when writing" if checked.
+4. To install CKFinder, please read ckfinder/readme.txt.
 
 == Screenshots ==
 
