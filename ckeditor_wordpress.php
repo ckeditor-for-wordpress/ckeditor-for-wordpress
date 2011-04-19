@@ -12,6 +12,7 @@ Author URI: http://cksource.com/
 add_action('init', 'ckeditor_init');
 
 function ckeditor_init(){
+   global $ckeditor_wordpress;
    require_once 'ckeditor_class.php';
 
    if(is_admin()){
