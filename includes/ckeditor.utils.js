@@ -142,8 +142,7 @@ jQuery(document).ready(function () {
 		
 	}
 	else {
-	
-		if(ckeditorSettings.autostart){
+		if(ckeditorSettings.autostart && getUserSetting('editor') == 'tinymce'){
 			ckeditorOn();
 		}
 	
