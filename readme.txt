@@ -58,6 +58,10 @@ Features:
 
 == Changelog ==
 
+= V1.0.8 - 10.05.2011 =
+
+ * Updated CKEditor to version 3.6
+ * Fix error when calling  getUserSetting function in ckeditor.utils.js
 
 
 = V1.0.7 - 08.04.2011 =

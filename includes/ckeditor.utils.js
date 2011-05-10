@@ -70,9 +70,9 @@ jQuery(document).ready(function () {
 			}
 		}
 	}
-	
+
 	if ( ckeditorSettings.qtransEnabled ){
-		
+
 		jQuery('#edButtonHTML').addClass('active');
 		jQuery('#edButtonPreview').removeClass('active');
 
@@ -85,7 +85,7 @@ jQuery(document).ready(function () {
 				evt.data.dataValue = evt.data.dataValue.replace(/<\/p>(\s|\n|\r)*<\/p>(\s|\n|\r)*$/g, '<\/p>');
 				qtrans_save(evt.data.dataValue);
 			}
-			window.tinyMCE = (function () { 
+			window.tinyMCE = (function () {
 				var tinyMCE = {
 					get : function (id) {
 						var instant = {
@@ -104,7 +104,7 @@ jQuery(document).ready(function () {
 							onSaveContent : {
 									add : function (func) {
 										window.tinymceosc = func;
-									} 
+									}
 							},
 							getContentAreaContainer : function () {
 								return {
@@ -118,7 +118,7 @@ jQuery(document).ready(function () {
 								ckeditorOn();
 							}
 						}
-						return instant; 
+						return instant;
 					},
 					execCommand : function (command, int, val) {
 						if(command == 'mceAddControl'){
@@ -133,21 +133,21 @@ jQuery(document).ready(function () {
 					triggerSave : function(param) {
 						CKEDITOR.instances[ckeditorSettings.textarea_id].updateElement();
 					}
-					
+
 				}
-				
+
 				return tinyMCE;
-			})(); 
+			})();
 		}
-		
+
 	}
 	else {
-		if(ckeditorSettings.autostart && getUserSetting('editor') == 'tinymce'){
+		if(ckeditorSettings.autostart /*&& getUserSetting('editor') == 'tinymce'*/){
 			ckeditorOn();
 		}
-	
+
 	}
-	
+
 });
 
 function ckeditorOn() {
