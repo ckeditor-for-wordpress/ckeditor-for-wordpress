@@ -613,7 +613,7 @@ class ckeditor_wordpress {
 			$output['additionalButtons'] = array();
 		}
 
-		echo "<script type='text/javascript'>\n/* <![CDATA[ */\nvar ckeditorSettings = " . $this->jsEncode($output) . "\n/* ]]> */\n</script>";
+		echo "<script type='text/javascript'>\n/* <![CDATA[ */\nwindow.CKEDITOR_BASEPATH = \"". $this->ckeditor_path ."\";\nvar ckeditorSettings = " . $this->jsEncode($output) . "\n/* ]]> */\n</script>";
 	}
 
 	/**
