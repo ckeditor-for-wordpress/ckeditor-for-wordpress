@@ -142,7 +142,7 @@ jQuery(document).ready(function () {
 
 	}
 	else {
-		if(ckeditorSettings.autostart /*&& getUserSetting('editor') == 'tinymce'*/){
+		if(ckeditorSettings.autostart && (typeof getUserSetting == 'undefined' || getUserSetting('editor') == 'tinymce')){
 			ckeditorOn();
 		}
 
