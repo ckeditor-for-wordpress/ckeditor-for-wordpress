@@ -26,7 +26,7 @@ class add_ckeditor_button {
 		$this->path = CKEDITOR_PLUGIN_URL . 'plugins/nggallery/';
 
 		// init process for button control
-		add_action('init', array (&$this, 'addbuttons') );
+		$this->addbuttons();
 	}
 
 	/**
