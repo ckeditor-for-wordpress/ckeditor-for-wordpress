@@ -1,5 +1,5 @@
 === CKEditor For WordPress ===
-Contributors: wiktor, michal_cksource, Dean Lee
+Contributors: wiktor, michal_cksource, dczepierga, Dean Lee
 Tags: post, wysiwyg, CKEditor, FCKeditor, editor, rich text, rte, rich text editor
 Requires at least: 2.0
 Tested up to: 3.2
@@ -62,6 +62,7 @@ Features:
 
  * Add compatibility to Wordpress 3.2
  * Updated CKEditor to version 3.6.1
+
 
 = V1.0.8 - 10.05.2011 =
 
