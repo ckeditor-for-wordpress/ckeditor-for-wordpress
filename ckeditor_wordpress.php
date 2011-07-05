@@ -14,13 +14,13 @@ add_action('init', 'ckeditor_init');
 function ckeditor_init(){
    global $ckeditor_wordpress;
    require_once 'ckeditor_class.php';
-
+   
    if(is_admin()){
       add_action('admin_menu', array(&$ckeditor_wordpress, 'add_option_page'));
       add_action('admin_head', array(&$ckeditor_wordpress, 'add_admin_head'));
       add_action('personal_options_update', array(&$ckeditor_wordpress, 'user_personalopts_update'));
-
       add_action('admin_print_scripts', array(&$ckeditor_wordpress, 'add_post_js'));
+      add_action('admin_print_footer_scripts', array(&$ckeditor_wordpress, 'remove_tinymce'));
    }
 
    add_action('wp_print_scripts', array(&$ckeditor_wordpress, 'add_comment_js'));

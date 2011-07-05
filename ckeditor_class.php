@@ -433,21 +433,30 @@ class ckeditor_wordpress {
 		return false;
 
 	}
+        
+        function remove_tinymce(){
+            if (has_action('admin_print_footer_scripts','wp_tiny_mce')){
+                remove_action('admin_print_footer_scripts','wp_tiny_mce', 25);
+            }
+        }
 
 	function add_post_js()
 	{
-		if (has_filter('admin_print_footer_scripts','wp_tiny_mce') === false) { return; }
-		if (!user_can_richedit()){
-			wp_enqueue_script('quicktags');
-			//echo '<script type="text/javascript">jQuery(document).ready(function () { jQuery(\'#quicktags\').show(); });</script>';
-			return;
-		}
+		if (has_filter('admin_print_footer_scripts','wp_tiny_mce') || has_filter('before_wp_tiny_mce', 'wp_print_editor_js') || has_filter('after_wp_tiny_mce', 'wp_preload_dialogs')) {
+                        if (!user_can_richedit()){
+                                wp_enqueue_script('quicktags');
+                                //echo '<script type="text/javascript">jQuery(document).ready(function () { jQuery(\'#quicktags\').show(); });</script>';
+                                return;
+                        }
+                        wp_enqueue_script('editor');
+                        wp_enqueue_script('ckeditor', $this->ckeditor_path . $this->options['advanced']['load_method']);
+                        wp_enqueue_script('ckeditor.utils', $this->plugin_path . 'includes/ckeditor.utils.js', array('ckeditor', 'jquery'));
 
-		wp_enqueue_script('ckeditor', $this->ckeditor_path . $this->options['advanced']['load_method']);
-		wp_enqueue_script('ckeditor.utils', $this->plugin_path . 'includes/ckeditor.utils.js', array('ckeditor', 'jquery'));
-
-		remove_filter('admin_print_footer_scripts','wp_tiny_mce',25);
-		$this->generate_js_options(false);
+                        remove_filter('admin_print_footer_scripts','wp_tiny_mce',25);
+                        remove_filter('before_wp_tiny_mce', 'wp_print_editor_js');
+                        remove_filter('after_wp_tiny_mce', 'wp_preload_dialogs');
+                        $this->generate_js_options(false);
+                }
 	}
 
 	function add_comment_js()

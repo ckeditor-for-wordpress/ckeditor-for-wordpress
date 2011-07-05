@@ -159,6 +159,12 @@ function ckeditorOn() {
 			jQuery('#edButtonPreview').addClass('active');
 			jQuery('#edButtonHTML').removeClass('active');
 		}
+                else if(ckeditorSettings.textarea_id == 'comment') {
+                        var labelObj = jQuery('#'+ckeditorSettings.textarea_id).prev('label');
+                        if (labelObj){
+                            labelObj.hide();
+                        }
+                }
 	}
 }
 
