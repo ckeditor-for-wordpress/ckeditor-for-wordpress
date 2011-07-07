@@ -266,7 +266,7 @@ class ckeditor_wordpress {
 				return '<span class="ckeditor_error">'.__('Installed, invalid config.php detected. Did you copy ckfinder_config.php?', 'ckeditor_wordpress').'</span>';
 			}
 			if ($this->options['upload']['browser'] != 'ckfinder') {
-				return '<span class="ckeditor_error">'.__('Installed, not enabled.', 'ckeditor_wordpress').'</span>';
+				return '<span class="ckeditor_ok">'.__('Installed, not enabled.', 'ckeditor_wordpress').'</span>';
 			}
 			return '<span class="ckeditor_ok">'.__('Installed', 'ckeditor_wordpress').'</span>';
 		}
