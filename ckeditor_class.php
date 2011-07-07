@@ -198,6 +198,11 @@ class ckeditor_wordpress {
 	{
 		wp_enqueue_style( 'ckeditor_admin', $this->plugin_path.'includes/overview.css', false, $this->version, 'screen' );
 	}
+        
+        function print_admin_upload_styles()
+        {
+		wp_enqueue_style( 'ckeditor_admin', $this->plugin_path.'includes/upload.css', false, $this->version, 'screen' );
+        }
 
 	function add_option_page()
 	{
@@ -216,8 +221,9 @@ class ckeditor_wordpress {
 		add_action('admin_print_scripts-'.$basic_page, array(&$this, 'basic_settings_js'));
 
 		add_submenu_page('ckeditor_settings', __('CKEditor Advanced Settings'), __('Advanced Settings'), 'administrator', 'ckeditor_advanced_options', array(&$this, 'advanced_options'));
-		add_submenu_page('ckeditor_settings', __('CKEditor Upload Settings'), __('Upload Options'), 'administrator', 'ckeditor_upload_options', array(&$this, 'upload_options'));
-
+		$upload_page = add_submenu_page('ckeditor_settings', __('CKEditor Upload Settings'), __('Upload Options'), 'administrator', 'ckeditor_upload_options', array(&$this, 'upload_options'));
+                add_action('admin_print_styles-'.$upload_page, array(&$this, 'print_admin_upload_styles') );
+                
 		if (count($this->get_writable_files())>0){
 			$file_editor_page = add_submenu_page('ckeditor_settings', __('CKEditor File Editor'), __('File Editor'), 'administrator', 'ckeditor_file_editor', array(&$this, 'file_editor'));
 			add_action('admin_print_scripts-'.$file_editor_page, array(&$this, 'file_editor_js'));
@@ -323,6 +329,10 @@ class ckeditor_wordpress {
 				}
 
 				if ($new_options['upload']['browser'] == 'ckfinder') {
+                                        $checkCKFinder = $this->ckfinder_status();
+                                        if (!strpos($checkCKFinder, "ckeditor_ok")){
+                                            $message['upload_browser'] = $checkCKFinder;
+                                        }
 					if(empty($new_options['ckfinder']['file_max_size'])){
 						$message['ckfinder_file_max_size'] = __('This field is required.', 'ckeditor_wordpress');
 					}elseif (!preg_match('/^\d+[MKG]?$/i', trim($new_options['ckfinder']['file_max_size']))) {

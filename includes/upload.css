@@ -1,0 +1,3 @@
+.ckeditor_error, .error{color:red}
+.ckeditor_ok{color:green}
+.instruction_box{border: 1px solid #666; font-style: italic; padding: 10px;}
