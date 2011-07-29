@@ -17,7 +17,7 @@
 		if (jQuery("#edit-uicolor").val() == "custom" && typeof(color) != "undefined") {
 			jQuery('#edit-uicolor-user').val(color);
 		}
-	}
+	};
 
 	function ckeditor_uicolor_show() {
 		jQuery('#edit-uicolor-textarea').show();

@@ -5,9 +5,9 @@ addComment = {
 
 		if ( ! comm || ! respond || ! cancel || ! parent )
 			return;
-
+		
 		ckeditorOff();
-
+		
 		t.respondId = respondId;
 		postId = postId || false;
 
@@ -29,22 +29,22 @@ addComment = {
 
 			if ( ! temp || ! respond )
 				return;
-
+			
 			ckeditorOff();
-
+			
 			t.I('comment_parent').value = '0';
 			temp.parentNode.insertBefore(respond, temp);
 			temp.parentNode.removeChild(temp);
 			this.style.display = 'none';
 			this.onclick = null;
-
+			
 			ckeditorOn();
-
+			
 			return false;
-		};
-
+		}
+		
 		ckeditorOn();
-
+		
 		try { t.I('comment').focus(); }
 		catch(e) {}
 
@@ -54,4 +54,4 @@ addComment = {
 	I : function(e) {
 		return document.getElementById(e);
 	}
-};
+}

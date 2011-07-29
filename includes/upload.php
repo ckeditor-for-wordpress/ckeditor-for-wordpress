@@ -12,7 +12,7 @@
 						<option value="builtin"<?php echo ($this->options['upload']['browser'] == 'builtin'?' selected="selected"':'') ?>><?php _e('Built-in (old)', 'ckeditor_wordpress'); ?></option>
 						<option value="ckfinder"<?php echo ($this->options['upload']['browser'] == 'ckfinder'?' selected="selected"':'') ?>>CKFinder</option>
 					</select>
-					<?php if(isset($message['upload_browser'])): ?><br/><span class="error"><?php echo $message['upload_browser'] ?></span><?php endif; ?>
+                                        <?php if(isset($message['upload_browser'])): ?><br/><span class="error"><?php echo $message['upload_browser'] ?></span><?php endif; ?>
 				</td>
 			</tr>
 			<tr valign="top">
@@ -46,19 +46,19 @@
 		</table>
 
 		<h3><?php _e('CKFinder Options', 'ckeditor_wordpress') ?></h3>
-		<?php
-		$checkCKFinder = $this->ckfinder_status();
-		if (!strpos($checkCKFinder, "ckeditor_ok")){?>
-				<div class="instruction_box">
-						<b><?php _e('CKFinder status: ', 'ckeditor_wordpress'); ?></b><?php echo $checkCKFinder; ?><br/><br/>
-						<b><?php _e('Installation instruction:' , 'ckeditor_wordpress');?></b><br/>
-						<?php _e('1. Download CKFinder for PHP: ', 'ckeditor_wordpress');?>
-						<a href="http://ckfinder.com/download" target="_blank">http://ckfinder.com/download</a><br/>
-						<?php _e('2. Unpack contents of the "ckfinder" folder to ', 'ckeditor_wordpress');?>
-						"wp-content/plugins/ckeditor-for-wordpress/ckfinder/" directory<br/>
-						<?php _e('3. Rename ckfinder_config.php to config.php(overwrite default config.php distributed with CKFinder)', 'ckeditor_wordpress');?>
-				</div>
-		<?php } ?>
+                <?php
+                    $checkCKFinder = $this->ckfinder_status();
+                    if (!strpos($checkCKFinder, "ckeditor_ok")){?>
+                        <div class="instruction_box">
+                            <b><?php _e('CKFinder status: ', 'ckeditor_wordpress'); ?></b><?php echo $checkCKFinder; ?><br/><br/>
+                            <b><?php _e('Installation instruction:' , 'ckeditor_wordpress');?></b><br/>
+                            <?php _e('1. Download CKFinder for PHP: ', 'ckeditor_wordpress');?>
+                            <a href="http://ckfinder.com/download" target="_blank">http://ckfinder.com/download</a><br/>
+                            <?php _e('2. Unpack contents of the "ckfinder" folder to ', 'ckeditor_wordpress');?>
+                            "wp-content/plugins/ckeditor-for-wordpress/ckfinder/" directory<br/>
+                            <?php _e('3. Rename ckfinder_config.php to config.php(overwrite default config.php distributed with CKFinder)', 'ckeditor_wordpress');?>
+                        </div>
+                    <?php } ?>
 		<table class="form-table">
 			<tr valign="top">
 				<th scope="row"><?php _e('CKFinder access', 'ckeditor_wordpress') ?></th>
