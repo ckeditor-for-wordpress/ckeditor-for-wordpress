@@ -69,7 +69,7 @@ class ckeditor_wordpress {
 				'load_timeout' => 0,
 				'native_spell_checker' => 't',
 				'scayt_autoStartup' => 'f',
-                                'entities' => 't',
+																'entities' => 't',
 				'p_indent' => 't',
 				'p_break_before_open' => 't',
 				'p_break_after_open' => 'f',
@@ -83,9 +83,9 @@ class ckeditor_wordpress {
 			$options = $this->default_options;
 		}
 		$this->options = $options;
-                if (!isset($this->options['advanced']['entities'])){
-                    $this->options['advanced']['entities'] = 't';
-                }
+								if (!isset($this->options['advanced']['entities'])){
+										$this->options['advanced']['entities'] = 't';
+								}
 		$path = str_replace(ABSPATH, '', trim($this->options['upload']['user_file_path']));
 		$dir = ABSPATH . $path;
 		if ( $dir == ABSPATH ) { //the option was empty
@@ -198,12 +198,11 @@ class ckeditor_wordpress {
 	{
 		wp_enqueue_style( 'ckeditor_admin', $this->plugin_path.'includes/overview.css', false, $this->version, 'screen' );
 	}
-        
-        function print_admin_upload_styles()
-        {
-		wp_enqueue_style( 'ckeditor_admin', $this->plugin_path.'includes/upload.css', false, $this->version, 'screen' );
-        }
 
+	function print_admin_upload_styles()
+	{
+		wp_enqueue_style( 'ckeditor_admin', $this->plugin_path.'includes/upload.css', false, $this->version, 'screen' );
+	}
 	function add_option_page()
 	{
 		add_menu_page(__('CKEditor Settings'), 'CKEditor', 'administrator', 'ckeditor_settings', array (&$this, 'plugin_overview'), $this->plugin_path.'images/menuicon.gif');
@@ -222,8 +221,8 @@ class ckeditor_wordpress {
 
 		add_submenu_page('ckeditor_settings', __('CKEditor Advanced Settings'), __('Advanced Settings'), 'administrator', 'ckeditor_advanced_options', array(&$this, 'advanced_options'));
 		$upload_page = add_submenu_page('ckeditor_settings', __('CKEditor Upload Settings'), __('Upload Options'), 'administrator', 'ckeditor_upload_options', array(&$this, 'upload_options'));
-                add_action('admin_print_styles-'.$upload_page, array(&$this, 'print_admin_upload_styles') );
-                
+		add_action('admin_print_styles-'.$upload_page, array(&$this, 'print_admin_upload_styles') );
+
 		if (count($this->get_writable_files())>0){
 			$file_editor_page = add_submenu_page('ckeditor_settings', __('CKEditor File Editor'), __('File Editor'), 'administrator', 'ckeditor_file_editor', array(&$this, 'file_editor'));
 			add_action('admin_print_scripts-'.$file_editor_page, array(&$this, 'file_editor_js'));
@@ -329,10 +328,10 @@ class ckeditor_wordpress {
 				}
 
 				if ($new_options['upload']['browser'] == 'ckfinder') {
-                                        $checkCKFinder = $this->ckfinder_status();
-                                        if (!strpos($checkCKFinder, "ckeditor_ok")){
-                                            $message['upload_browser'] = $checkCKFinder;
-                                        }
+					$checkCKFinder = $this->ckfinder_status();
+					if (!strpos($checkCKFinder, "ckeditor_ok")){
+						$message['upload_browser'] = $checkCKFinder;
+					}
 					if(empty($new_options['ckfinder']['file_max_size'])){
 						$message['ckfinder_file_max_size'] = __('This field is required.', 'ckeditor_wordpress');
 					}elseif (!preg_match('/^\d+[MKG]?$/i', trim($new_options['ckfinder']['file_max_size']))) {
@@ -376,7 +375,7 @@ class ckeditor_wordpress {
 			$new_options['advanced']['p_break_after_open'] = (isset($_POST['options']['advanced']['p_break_after_open'])?'t':'f');
 			$new_options['advanced']['p_break_before_close'] = (isset($_POST['options']['advanced']['p_break_before_close'])?'t':'f');
 			$new_options['advanced']['p_break_after_close'] = (isset($_POST['options']['advanced']['p_break_after_close'])?'t':'f');
-                        $new_options['advanced']['entities'] = (isset($_POST['options']['advanced']['entities'])?'t':'f');
+												$new_options['advanced']['entities'] = (isset($_POST['options']['advanced']['entities'])?'t':'f');
 
 			/* validation */
 			$massage = array();
@@ -430,11 +429,8 @@ class ckeditor_wordpress {
 
 	function is_plugin_active( $plugin_name )
 	{
-
 		$options = get_option('active_plugins');
-
 		foreach ( $options AS $option ){
-
 			if ( strpos( $option, $plugin_name ) !== FALSE ){
 				return true;
 			}
@@ -443,31 +439,31 @@ class ckeditor_wordpress {
 		return false;
 
 	}
-        
-        function remove_tinymce(){
-            if (has_action('admin_print_footer_scripts','wp_tiny_mce')){
-                remove_action('admin_print_footer_scripts','wp_tiny_mce', 25);
-            }
-        }
 
-	function add_post_js()
-	{
-		if (has_filter('admin_print_footer_scripts','wp_tiny_mce') || has_filter('before_wp_tiny_mce', 'wp_print_editor_js') || has_filter('after_wp_tiny_mce', 'wp_preload_dialogs')) {
-                        if (!user_can_richedit()){
-                                wp_enqueue_script('quicktags');
-                                //echo '<script type="text/javascript">jQuery(document).ready(function () { jQuery(\'#quicktags\').show(); });</script>';
-                                return;
-                        }
-                        wp_enqueue_script('editor');
-                        wp_enqueue_script('ckeditor', $this->ckeditor_path . $this->options['advanced']['load_method']);
-                        wp_enqueue_script('ckeditor.utils', $this->plugin_path . 'includes/ckeditor.utils.js', array('ckeditor', 'jquery'));
+				function remove_tinymce(){
+						if (has_action('admin_print_footer_scripts','wp_tiny_mce')){
+								remove_action('admin_print_footer_scripts','wp_tiny_mce', 25);
+						}
+				}
 
-                        remove_filter('admin_print_footer_scripts','wp_tiny_mce',25);
-                        remove_filter('before_wp_tiny_mce', 'wp_print_editor_js');
-                        remove_filter('after_wp_tiny_mce', 'wp_preload_dialogs');
-                        $this->generate_js_options(false);
-                }
+function add_post_js()
+{
+	if (has_filter('admin_print_footer_scripts','wp_tiny_mce') || has_filter('before_wp_tiny_mce', 'wp_print_editor_js') || has_filter('after_wp_tiny_mce', 'wp_preload_dialogs')) {
+		if (!user_can_richedit()){
+				wp_enqueue_script('quicktags');
+				//echo '<script type="text/javascript">jQuery(document).ready(function () { jQuery(\'#quicktags\').show(); });</script>';
+				return;
+		}
+		wp_enqueue_script('editor');
+		wp_enqueue_script('ckeditor', $this->ckeditor_path . $this->options['advanced']['load_method']);
+		wp_enqueue_script('ckeditor.utils', $this->plugin_path . 'includes/ckeditor.utils.js', array('ckeditor', 'jquery'));
+
+		remove_filter('admin_print_footer_scripts','wp_tiny_mce',25);
+		remove_filter('before_wp_tiny_mce', 'wp_print_editor_js');
+		remove_filter('after_wp_tiny_mce', 'wp_preload_dialogs');
+		$this->generate_js_options(false);
 	}
+}
 
 	function add_comment_js()
 	{
@@ -548,6 +544,7 @@ class ckeditor_wordpress {
 	}
 
 	function generate_js_options($is_comment){
+
 		$options=$this->options;
 		$settings=array();
 		if ($options['upload']['browser'] == 'builtin') {
@@ -577,9 +574,9 @@ class ckeditor_wordpress {
 		$settings['height']=($is_comment ? $options['appearance']['comment_editor_height'] : $options['appearance']['post_editor_height']).'px';
 		$settings['skin']=$options['appearance']['skin'];
 		$settings['scayt_autoStartup']=$options['advanced']['scayt_autoStartup'] == 't' ? true : false;
-                $settings['entities']=$options['advanced']['entities'] == 't' ? true : false;
-                $settings['entities_greek']=$settings['entities'];
-                $settings['entities_latin']=$settings['entities'];
+								$settings['entities']=$options['advanced']['entities'] == 't' ? true : false;
+								$settings['entities_greek']=$settings['entities'];
+								$settings['entities_latin']=$settings['entities'];
 		$settings['toolbar']=($is_comment ? $options['appearance']['comment_toolbar'] : $options['appearance']['post_toolbar']);
 		$settings['templates_files'][] = $this->plugin_path.'ckeditor.templates.js';
 		$output=array(
@@ -712,6 +709,31 @@ class ckeditor_wordpress {
 		return $buttons;
 	}
 
+	function ckeditor_wpgallery_plugin($plugins) {
+		$plugins['wpgallery']=$this->plugin_path.'plugins/wpgallery/';
+		return $plugins;
+	}
+
+	//filter to change data for wpeditrimage plugin before insert/update in database
+	function ckeditor_insert_post_data_filter( $data , $postarr = null )
+	{
+		//change amp; to  empty character . This is to create & character before entities like gt; and lt;
+		$content = $data['post_content'];
+		$content = str_replace('amp;' , '', $content);
+		$content = stripslashes($content);
+		//change " character in caption string for &quot;
+		$pattern = '/caption="(.+)"\]/';
+		preg_match_all($pattern, $content,$matches);
+		if (isset($matches[1]))
+		{
+			$content = str_replace($matches[1], str_replace('"', '&quot;', $matches[1]), $content);
+		}
+		//save data
+		$content = addslashes($content);
+		$data['post_content'] = $content;
+		return $data;
+	}
+
 	function ckeditor_externalvvq_plugin($plugins) {
 		if (class_exists('VipersVideoQuicktags')) {
 			$plugins['vvq']=$this->plugin_path.'plugins/vvq/';
@@ -721,29 +743,29 @@ class ckeditor_wordpress {
 
 	function ckeditor_vvqbuttons($buttons) {
 		if (class_exists('VipersVideoQuicktags')) {
-                        $vvqsettings = (array) get_option('vvq_options');
-                        $vvqbuttons = array(
-                                'youtube' => 'VVQYoutube',
-                                'googlevideo' => 'VVQGoogleVideo',
-                                'dailymotion' => 'VVQDailyMotion',
-                                'vimeo' => 'VVQVimeo',
-                                'veoh' => 'VVQVeoh',
-                                'viddler' => 'VVQViddler',
-                                'metacafe' => 'VVQMetacafe',
-                                'bliptv' => 'VVQBlipTV',
-                                'flickrvideo' => 'VVQFlickrVideo',
-                                'spike' => 'VVQSpike',
-                                'myspace' => 'VVQMySpace',
-                                'flv' => 'VVQFLV',
-                                'quicktime' => 'VVQQuicktime',
-                                'videofile' => 'VVQVideoFile'
-                        );
-                        $vvqtoolbar = array();
-                        foreach ($vvqsettings as $name => $val){
-                                if (isset($val["button"]) && $val["button"] == 1 && isset($vvqbuttons[$name])){
-                                        $vvqtoolbar[] = $vvqbuttons[$name];
-                            }
-                        }
+												$vvqsettings = (array) get_option('vvq_options');
+												$vvqbuttons = array(
+																'youtube' => 'VVQYoutube',
+																'googlevideo' => 'VVQGoogleVideo',
+																'dailymotion' => 'VVQDailyMotion',
+																'vimeo' => 'VVQVimeo',
+																'veoh' => 'VVQVeoh',
+																'viddler' => 'VVQViddler',
+																'metacafe' => 'VVQMetacafe',
+																'bliptv' => 'VVQBlipTV',
+																'flickrvideo' => 'VVQFlickrVideo',
+																'spike' => 'VVQSpike',
+																'myspace' => 'VVQMySpace',
+																'flv' => 'VVQFLV',
+																'quicktime' => 'VVQQuicktime',
+																'videofile' => 'VVQVideoFile'
+												);
+												$vvqtoolbar = array();
+												foreach ($vvqsettings as $name => $val){
+																if (isset($val["button"]) && $val["button"] == 1 && isset($vvqbuttons[$name])){
+																				$vvqtoolbar[] = $vvqbuttons[$name];
+														}
+												}
 			$buttons[]=$vvqtoolbar;
 		}
 		return $buttons;
