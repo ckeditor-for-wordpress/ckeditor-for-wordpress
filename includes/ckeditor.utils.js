@@ -3,9 +3,6 @@ Copyright (c) 2003-2010, CKSource - Frederico Knabben. All rights reserved.
 For licensing, see LICENSE.html or http://ckeditor.com/license
 */
 var	editorCKE = CKEDITOR.instances[ckeditorSettings.textarea_id];
-if (typeof console == 'undefined')
-	console = { log : function(){}, info : function(){}};
-
 jQuery(document).ready(function () {
 	ckeditorSettings.configuration['on'] = {
 		configLoaded : function ( evt ) {
