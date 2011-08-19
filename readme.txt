@@ -1,20 +1,20 @@
-=== CKEditor For WordPress ===
+﻿=== CKEditor For WordPress ===
 Contributors: wiktor, michal_cksource, dczepierga, Dean Lee
 Tags: post, wysiwyg, CKEditor, FCKeditor, editor, rich text, rte, rich text editor
 Requires at least: 2.0
 Tested up to: 3.2
-Stable tag: 1.0.9
+Stable tag: 3.6.1
 This plugin replaces the default WordPress editor with <a href="http://ckeditor.com/">CKEditor</a>.
 
 == Description ==
 
 This plugin replaces the default WordPress editor with <a href="http://ckeditor.com/">CKEditor</a>.
 
-CKEditor is a text editor to be used inside web pages. It's a WYSIWYG editor, which means that the
+<strong>CKEditor</strong> is a text editor to be used inside web pages. It's a WYSIWYG editor, which means that the
 text being edited on it looks as similar as possible to the results users have when publishing it.
 It brings to the web common editing features found on desktop editing applications like Microsoft Word and OpenOffice.
 
-CKEditor is compatible with most internet browsers and operating systems, including:
+<strong>CKEditor</strong> is compatible with most internet browsers and operating systems, including:
 <ul>
 <li>Internet Explorer 6+</li>
 <li>Firefox 2+</li>
@@ -57,6 +57,13 @@ Features:
 
 
 == Changelog ==
+
+= V3.6.1 - 19.08.2011 =
+
+ * Plugin naming conventions changed to match CKEditor version.
+ * Support for built-in WordPress file gallery added.
+ * Support for managing images via WordPress added.
+ * Shortcode support improved. 
 
 = V1.0.9 - 05.07.2011 =
 
