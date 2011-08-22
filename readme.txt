@@ -57,13 +57,16 @@ Features:
 
 
 == Changelog ==
+= V3.6.1.1-DEV   =
+
+ * Fix to work when "After the Deadline" plugin is installed.
 
 = V3.6.1 - 19.08.2011 =
 
  * Plugin naming conventions changed to match CKEditor version.
  * Support for built-in WordPress file gallery added.
  * Support for managing images via WordPress added.
- * Shortcode support improved. 
+ * Shortcode support improved.
 
 = V1.0.9 - 05.07.2011 =
 

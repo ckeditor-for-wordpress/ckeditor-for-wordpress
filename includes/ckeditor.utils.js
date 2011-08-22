@@ -321,9 +321,18 @@ function getTinyMCEObject()
 						}
 					}
 				}
+			},
+			addI18n : function(language, param){
+				return ;
 			}
 		};
 		return tinyMCE;
 	})();
 	return tinymce;
 }
+var tinyMCEPreInit =  {
+	mceInit : function(){
+		language : 'en';
+	}
+
+};
