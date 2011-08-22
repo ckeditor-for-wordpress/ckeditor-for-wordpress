@@ -57,7 +57,8 @@ Features:
 
 
 == Changelog ==
-= V3.6.1.1-DEV   =
+
+= V3.6.1.1 DEV - 22.08.2011 =
 
  * Fix to work when "After the Deadline" plugin is installed.
 
