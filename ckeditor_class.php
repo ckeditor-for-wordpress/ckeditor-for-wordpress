@@ -1,6 +1,6 @@
 <?php
 class ckeditor_wordpress {
-	var $version = '3.6.1';
+	var $version = '3.6.2';
 	var $default_options = array();
 	var $options = array();
 	var $ckeditor_path = "";
@@ -69,12 +69,17 @@ class ckeditor_wordpress {
 				'load_timeout' => 0,
 				'native_spell_checker' => 't',
 				'scayt_autoStartup' => 'f',
-																'entities' => 't',
+				'entities' => 't',
 				'p_indent' => 't',
 				'p_break_before_open' => 't',
 				'p_break_after_open' => 'f',
 				'p_break_before_close' => 'f',
 				'p_break_after_close' => 't',
+			),
+			'plugins' => array(
+					'autogrow' => 'f',
+					'tableresize' => 'f',
+					'wpgallery' => 't'
 			),
 		);
 		$options = get_option('ckeditor_wordpress');
@@ -83,9 +88,9 @@ class ckeditor_wordpress {
 			$options = $this->default_options;
 		}
 		$this->options = $options;
-								if (!isset($this->options['advanced']['entities'])){
-										$this->options['advanced']['entities'] = 't';
-								}
+		if (!isset($this->options['advanced']['entities'])){
+			$this->options['advanced']['entities'] = 't';
+		}
 		$path = str_replace(ABSPATH, '', trim($this->options['upload']['user_file_path']));
 		$dir = ABSPATH . $path;
 		if ( $dir == ABSPATH ) { //the option was empty
@@ -375,7 +380,20 @@ class ckeditor_wordpress {
 			$new_options['advanced']['p_break_after_open'] = (isset($_POST['options']['advanced']['p_break_after_open'])?'t':'f');
 			$new_options['advanced']['p_break_before_close'] = (isset($_POST['options']['advanced']['p_break_before_close'])?'t':'f');
 			$new_options['advanced']['p_break_after_close'] = (isset($_POST['options']['advanced']['p_break_after_close'])?'t':'f');
-												$new_options['advanced']['entities'] = (isset($_POST['options']['advanced']['entities'])?'t':'f');
+			$new_options['advanced']['entities'] = (isset($_POST['options']['advanced']['entities'])?'t':'f');
+			foreach ($this->options['plugins'] as $key => $val){
+				if (isset($_POST['options']['plugins'][$key])){
+					$new_options['plugins'][$key] = 't';
+					unset($_POST['options']['plugins'][$key]);
+				}
+				else {
+					$new_options['plugins'][$key] = 'f';
+				}
+			}
+			foreach ((array) $_POST['options']['plugins'] as $key => $val){
+				$new_options['plugins'][$key] = 't';
+			}
+			$new_options['plugins']['wpgallery'] = 't';
 
 			/* validation */
 			$massage = array();
@@ -624,11 +642,18 @@ function add_post_js()
 		if(!$is_comment){
 			$output['externalPlugins'] = apply_filters('ckeditor_external_plugins', array());
 			$output['additionalButtons'] = apply_filters('ckeditor_buttons', array());
+			foreach ((array) $options['plugins'] as $name => $val ){
+				if ($val == 't' && !isset($output['externalPlugins'][$name])){
+						$output['externalPlugins'][$name] = $this->plugin_path.'ckeditor/plugins/'.$name.'/';
+				}
+				else if ($val == 'f' && isset($output['externalPlugins'][$name])){
+						unset($output['externalPlugins'][$name]);
+				}
+			}
 		} else {
 			$output['externalPlugins'] = array();
 			$output['additionalButtons'] = array();
 		}
-
 		echo "<script type='text/javascript'>\n/* <![CDATA[ */\nwindow.CKEDITOR_BASEPATH = \"". $this->ckeditor_path ."\";\nvar ckeditorSettings = " . $this->jsEncode($output) . "\n/* ]]> */\n</script>";
 	}
 
@@ -714,7 +739,7 @@ function add_post_js()
 		return $plugins;
 	}
 
-	//filter to change data for wpeditrimage plugin before insert/update in database
+	//filter to change data for wpeditimage plugin before insert/update in database
 	function ckeditor_insert_post_data_filter( $data , $postarr = null )
 	{
 		//change amp; to  empty character . This is to create & character before entities like gt; and lt;
@@ -798,7 +823,7 @@ function add_post_js()
 		}
 		return $buttons;
 	}
-}
 
+}
 $ckeditor_wordpress = new ckeditor_wordpress();
 ?>

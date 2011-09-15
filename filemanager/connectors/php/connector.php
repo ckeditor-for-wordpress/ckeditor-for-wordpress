@@ -32,15 +32,23 @@ require('./commands.php') ;
 require('./phpcompat.php') ;
 
 if ( !$Config['Enabled'] )
-	SendError( 1, 'This connector is disabled. Please check the "editor/filemanager/connectors/php/config.php" file' ) ;
-
+{
+	//if someone try to load filemanager in browser and has no permission
+	if (!preg_match('/filemanager/', $_SERVER['REQUEST_URI']))
+	{
+		SendError( 1, 'This connector is disabled. Please check the "editor/filemanager/connectors/php/config.php" file' ) ;
+	}else
+	{
+		SendError( 666, 'This connector is disabled. Please check the "editor/filemanager/connectors/php/config.php" file' ) ;
+	}
+}
 DoResponse() ;
 
 function DoResponse()
 {
-    if (!isset($_GET)) {
-        global $_GET;
-    }
+		if (!isset($_GET)) {
+				global $_GET;
+		}
 	if ( !isset( $_GET['Command'] ) || !isset( $_GET['Type'] ) || !isset( $_GET['CurrentFolder'] ) )
 		return ;
 

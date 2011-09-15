@@ -2,7 +2,7 @@
 Copyright (c) 2003-2010, CKSource - Frederico Knabben. All rights reserved.
 For licensing, see LICENSE.html or http://ckeditor.com/license
 */
-var	editorCKE = CKEDITOR.instances[ckeditorSettings.textarea_id];
+var	editorCKE;
 jQuery(document).ready(function () {
 	ckeditorSettings.configuration['on'] = {
 		configLoaded : function ( evt ) {
@@ -36,8 +36,7 @@ jQuery(document).ready(function () {
 			{
 				indent: false
 			});
-
-		editorCKE = CKEDITOR.instances[ckeditorSettings.textarea_id];
+		editorCKE = CKEDITOR.instances['content'];
 	});
 
 	if(ckeditorSettings.textarea_id != 'comment'){
@@ -65,9 +64,9 @@ jQuery(document).ready(function () {
 		if(typeof(window.switchEditors) != 'undefined') {
 			window.switchEditors.go = function(id, mode) {
 				if ('tinymce' == mode) {
-					ckeditorOn();
+					ckeditorOn(id);
 				} else {
-					ckeditorOff();
+					ckeditorOff(id);
 					jQuery('.js .theEditor').attr('style', 'color: black;');
 				}
 			};
@@ -88,7 +87,8 @@ jQuery(document).ready(function () {
 			};
 			if ( jQuery('#'+ckeditorSettings.textarea_id).length && typeof CKEDITOR.instances[ckeditorSettings.textarea_id] == 'undefined' ) {
 				CKEDITOR.replace(ckeditorSettings.textarea_id, ckeditorSettings.configuration);
-				editorCKE = CKEDITOR.instances[ckeditorSettings.textarea_id];
+				//editorCKE = CKEDITOR.instances[ckeditorSettings.textarea_id];
+				editorCKE = CKEDITOR.instances['content'];
 			}
 
 			window.tinyMCE = getTinyMCEObject();
@@ -101,15 +101,18 @@ jQuery(document).ready(function () {
 	}
 
 	jQuery("#update-gallery").click(function(){
-		window.parent.editorCKE.setReadOnly(false);
-		window.parent.editorCKE.focus();
-	});
-	jQuery("#insert-gallery").click(function(){
-		window.parent.editorCKE.setReadOnly(false);
-		window.parent.editorCKE.focus();
+		updateCkeGallery();
 	});
 });
-function ckeditorOn() {
+function ckeditorOn(id) {
+	if (typeof(id) != 'undefined' && typeof(CKEDITOR.instances[id]) == 'undefined' )
+	{
+		setUserSetting( 'editor', 'tinymce' );
+		jQuery('#quicktags').hide();
+		jQuery('#edButtonPreview').addClass('active');
+		jQuery('#edButtonHTML').removeClass('active');
+		CKEDITOR.replace(id, ckeditorSettings.configuration);
+	}
 	if ( jQuery('#'+ckeditorSettings.textarea_id).length && (typeof(CKEDITOR.instances) == 'undefined' || typeof(CKEDITOR.instances[ckeditorSettings.textarea_id]) == 'undefined' ) && jQuery("#"+ckeditorSettings.textarea_id).parent().parent().attr('id') != 'quick-press') {
 		CKEDITOR.replace(ckeditorSettings.textarea_id, ckeditorSettings.configuration);
 		if(ckeditorSettings.textarea_id == 'content') {
@@ -127,7 +130,8 @@ function ckeditorOn() {
 	}
 }
 
-function ckeditorOff() {
+function ckeditorOff(id) {
+	if (typeof(id) != 'undefined') editorCKE = CKEDITOR.instances[id];
 	if(typeof(editorCKE) != 'undefined'){
 		editorCKE.destroy();
 		if(ckeditorSettings.textarea_id == 'content') {
@@ -148,11 +152,23 @@ function getTinyMCEObject()
 		var tinyMCE = {
 			get : function (id) {
 				var instant = {
-					isHidden : function (){return false;},
+					isHidden : function (){
+						editor = CKEDITOR.instances[id];
+						if(typeof(editor) != 'undefined')
+						{
+							return false;
+						}else{
+							return true;
+						}
+					},
 					isDirty : function (){return false;},
 					execCommand : function (command, integer, val) {
 						if(command == 'mceSetContent') {
 							editorCKE.setData(val);
+						}
+						if (command == 'mceInsertContent')
+						{
+							editorCKE.insertHtml(val);
 						}
 					},
 					onSaveContent : {
@@ -166,14 +182,16 @@ function getTinyMCEObject()
 						};
 					},
 					hide : function () {
-						ckeditorOff();
+						ckeditorOff(id);
 					},
 					show : function () {
-						ckeditorOn();
+						ckeditorOn(id);
 					},
 					save : function(){return;},
-					focus : function(){return;}
+					focus : function(){return;},
+					plugins: {}
 				};
+
 				return instant;
 			},
 			execCommand : function (command, integer, val) {
@@ -228,7 +246,6 @@ function getTinyMCEObject()
 							if (obj.length === 0)
 							{
 								obj = document.createElement("p");
-								//obj : nodeName = function(){ return 'p';};
 								return obj;
 							}
 							return obj[index];
@@ -237,35 +254,27 @@ function getTinyMCEObject()
 					},
 					dom :{
 						select : function(selector) {
-							//if (navigator.appName == "Opera" || navigator.appName == "Microsoft Internet Explorer")
-							if (CKEDITOR.env.ie || CKEDITOR.env.opera)
-							{
-								var images = jQuery('img', editorCKE.document.getBody().getHtml());
 
-								if (images.length === 0 || images[0].nodeName != "IMG")
+							//get CKEditor content
+							var obj = editorCKE.document.getBody().getHtml();
+							images =  editorCKE.document.getElementsByTag('img');
+							if ( typeof images.$ == 'undefined' || images.$.length == 0) return [];
+							for (var i in images.$)
+							{
+								if ( typeof images.$[i] != 'undefined' && ((CKEDITOR.env.ie && images.$[i].className == 'wpGallery, cke_wpgallery') || images.$[i].classList == 'wpGallery, cke_wpgallery'))
 								{
-									images = jQuery(editorCKE.document.getBody().getHtml() + ' img');
+									var element = new CKEDITOR.dom.element(images.$[i]);
+									index = i;
+									break;
 								}
-
-							}else
-							{
-								images = jQuery('img', editorCKE.document.getBody().getHtml());
 							}
-							var index = 0;
-							var found = false;
-							jQuery.each(images, function(key, value){
-								if (jQuery(value).hasClass('wpGallery, cke_wpgallery'))
-								{
-									index = key;
-									found = true;
-									return;
-								}
-							});
 							var results =[];
-							results[0] = images[index];
-							if (found)
+
+							if (typeof element != 'undefined')
 							{
-								return results;
+								results[0] = images.$[index];
+								return  results;
+
 							}else
 							{
 								return [];
@@ -280,37 +289,16 @@ function getTinyMCEObject()
 						{
 							//get CKEditor content
 							var obj = editorCKE.document.getBody().getHtml();
-							//patern to get gallery image tag from editor content
-							var pattern = /<img .* title=['|"](gallery.*("'|&quot;")).*>/i;
-							//replace " character to &quot; for display proper title hint in browser
-							value = value.replace(/"/g,'&quot;');
-							var match = pattern.exec(obj);
-							var re;
-							//if gallery tag is founded
-							if(match && match[1])
+							images =  editorCKE.document.getElementsByTag('img');
+							for (var i in images.$)
 							{
-								//remove unnecessary character from end of string (regex pattern gets one character to much)
-								match[1] = match[1].substring(0,match[1].length - 1);
-								re = new RegExp(match[1],"g");
-								obj = obj.replace(re,value);
-							}else
-							{
-								//special case if image gallery title is equal "gallery"
-								pattern = /<img .* title=['|"](gallery)['|"].*>/i;
-								match = pattern.exec(obj);
-								//if gallery tag is founded
-								if(match && match[1])
+								if ( typeof images.$[i] != 'undefined' && ((CKEDITOR.env.ie && images.$[i].className == 'wpGallery, cke_wpgallery') || images.$[i].classList == 'wpGallery, cke_wpgallery'))
 								{
-									//replace title for image gallery tak
-									re = /title=['|"]gallery['|"]/g;
-									obj = obj.replace(re,'title="'+value+'"');
-									//replace cke-data attribute
-									value = "["+value+"]";
-									re = /(\[gallery\])/g;
-									obj = obj.replace(re,value);
+									var element = new CKEDITOR.dom.element(images.$[i]);
+									element.setAttribute('title', value);
+									element.setAttribute('data-gallery', '['+value+']');
 								}
 							}
-							editorCKE.document.getBody().setHtml(obj);
 						},
 						decode : function(text) {return text;},
 						hasClass : function(element, name)
@@ -336,3 +324,9 @@ var tinyMCEPreInit =  {
 	}
 
 };
+//function to move cursor after fake gallery image. Turn on frame show
+function updateCkeGallery()
+{
+	jQuery("#add_image").unbind('click');
+	jQuery("#add_image").bind('click',function(){return true;});
+}

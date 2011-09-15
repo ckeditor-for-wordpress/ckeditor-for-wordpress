@@ -21,18 +21,18 @@
  *
  * Configuration file for the File Manager Connector for PHP.
  */
+
 $error_reporting = error_reporting();
 error_reporting($error_reporting & ~E_STRICT);
 
 require_once(dirname(__FILE__). '/../../../../../../wp-config.php');
 require_once(dirname(__FILE__). '/../../../ckeditor_class.php');
-$Config = array();
 
+$Config = array();
 // SECURITY: You must explicitly enable this "connector". (Set it to "true").
 // WARNING: don't just set "$Config['Enabled'] = true ;", you must be sure that only
 //		authenticated users can access this file or use some kind of session checking.
 $Config['Enabled'] = $ckeditor_wordpress->file_browser == 'builtin' && $ckeditor_wordpress->can_upload();
-
 
 // Path to user files relative to the document root.
 $Config['UserFilesPath'] = $ckeditor_wordpress->user_files_url;
@@ -84,12 +84,12 @@ $Config['HtmlExtensions'] = array("html", "htm", "xml", "xsd", "txt", "js") ;
 		Attention: The above 'FileTypesPath' must point to the same directory.
 		Attention: It must end with a slash: '/'
 
-	 - QuickUploadPath: the virtual folder relative to the document root where
+	- QuickUploadPath: the virtual folder relative to the document root where
 		these resources will be uploaded using the Upload tab in the resources
 		dialogs.
 		Attention: It must start and end with a slash: '/'
 
-	 - QuickUploadAbsolutePath: the physical path to the above folder. It must be
+	- QuickUploadAbsolutePath: the physical path to the above folder. It must be
 		an absolute path.
 		If it's an empty string then it will be autocalculated.
 		Useful if you are using a virtual directory, symbolic link or alias.
@@ -97,14 +97,14 @@ $Config['HtmlExtensions'] = array("html", "htm", "xml", "xsd", "txt", "js") ;
 		Attention: The above 'QuickUploadPath' must point to the same directory.
 		Attention: It must end with a slash: '/'
 
-	 	NOTE: by default, QuickUploadPath and QuickUploadAbsolutePath point to
-	 	"userfiles" directory to maintain backwards compatibility with older versions of FCKeditor.
-	 	This is fine, but you in some cases you will be not able to browse uploaded files using file browser.
-	 	Example: if you click on "image button", select "Upload" tab and send image
-	 	to the server, image will appear in FCKeditor correctly, but because it is placed
-	 	directly in /userfiles/ directory, you'll be not able to see it in built-in file browser.
-	 	The more expected behaviour would be to send images directly to "image" subfolder.
-	 	To achieve that, simply change
+		NOTE: by default, QuickUploadPath and QuickUploadAbsolutePath point to
+		"userfiles" directory to maintain backwards compatibility with older versions of FCKeditor.
+		This is fine, but you in some cases you will be not able to browse uploaded files using file browser.
+		Example: if you click on "image button", select "Upload" tab and send image
+		to the server, image will appear in FCKeditor correctly, but because it is placed
+		directly in /userfiles/ directory, you'll be not able to see it in built-in file browser.
+		The more expected behaviour would be to send images directly to "image" subfolder.
+		To achieve that, simply change
 			$Config['QuickUploadPath']['Image']			= $Config['UserFilesPath'] ;
 			$Config['QuickUploadAbsolutePath']['Image']	= $Config['UserFilesAbsolutePath'] ;
 		into:

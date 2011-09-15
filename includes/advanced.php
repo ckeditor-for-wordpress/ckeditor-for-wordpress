@@ -76,6 +76,28 @@
 				<div class="description">(<?php _e('Convert all applicable characters to HTML entities', 'ckeditor_wordpress');?>)</div></td></tr>
 			</tr>
 			<tr valign="top">
+				<th scope="row"><?php _e('Plugins', 'ckeditor_wordpress')?></th>
+				<td>
+																		<?php
+																				$plugins = apply_filters('ckeditor_external_plugins', array());
+																				$plugins = array_keys($plugins);
+																				$plugins[] = "autogrow";
+																				$plugins[] = "tableresize";
+																				sort($plugins);
+
+																				foreach ($plugins as $plugin){
+																						if ($plugin == "wpgallery" || $plugin == "wpeditimage") continue;
+																						if (!isset($this->options['plugins'][$plugin])){
+																								$this->options['plugins'][$plugin] = 't';
+																						}
+																						echo $this->checkbox('plugins', $plugin, ucfirst($plugin) . ' plugin') . '<br />';
+																				}
+																		?>
+
+																		<div class="description">(<?php _e('Choose the plugins which u want to load into CKEditor', 'ckeditor_wordpress');?>)</div>
+																</td>
+			</tr>
+			<tr valign="top">
 				<th scope="row"><?php _e('Load method', 'ckeditor_wordpress') ?></th>
 				<td>
 					<select name="options[advanced][load_method]">

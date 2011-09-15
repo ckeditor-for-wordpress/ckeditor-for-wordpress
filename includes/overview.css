@@ -4,10 +4,9 @@ table.compat_logos td.logos
 {
 	width: 32px;
 	height: 36px;
-	border: solid 4px #ffffff;
 	border-bottom: none;
 	border-collapse: separate;
-	background-image: url(../images/compat_logos.jpg);
+	background-image: url(../images/compat_logos.png);
 	background-repeat: no-repeat;
 	text-indent: -1000px;
 	overflow: hidden;

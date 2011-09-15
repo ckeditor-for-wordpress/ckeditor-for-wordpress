@@ -3,7 +3,7 @@ Contributors: wiktor, michal_cksource, dczepierga, Dean Lee
 Tags: post, wysiwyg, CKEditor, FCKeditor, editor, rich text, rte, rich text editor
 Requires at least: 2.0
 Tested up to: 3.2
-Stable tag: 3.6.1
+Stable tag: 3.6.2
 This plugin replaces the default WordPress editor with <a href="http://ckeditor.com/">CKEditor</a>.
 
 == Description ==
@@ -57,6 +57,14 @@ Features:
 
 
 == Changelog ==
+
+= V3.6.2 - 15.09.2011 =
+
+ * Updated CKEditor to version 3.6.2
+ * Fix error : CKEditor is in read only state after closing Wordpress gallery popup (iframe)
+ * Add support to "Custom fields template" plugin (http://wordpress.org/extend/plugins/custom-field-template/)
+ * Refactor of functions use in Wordpress gallery
+ * Add index.html files to directories to protect against directory listing
 
 = V3.6.1.1 DEV - 22.08.2011 =
 

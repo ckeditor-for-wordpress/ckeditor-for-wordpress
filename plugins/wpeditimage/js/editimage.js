@@ -316,7 +316,10 @@ wpImage = {
 		if ( t.width && t.preloadImg.width ) t.showSizeSet();
 		document.body.style.display = '';
 		//set focus on image title
-		f.img_title.focus();
+		if (document.getElementById('tab_basic').getAttribute('class') == 'current' )
+		{
+			f.img_title.focus();
+		}
 	},
 
 	remove : function() {

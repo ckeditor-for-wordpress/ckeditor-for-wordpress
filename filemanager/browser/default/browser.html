@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN"
-   "http://www.w3.org/TR/html4/frameset.dtd">
+	"http://www.w3.org/TR/html4/frameset.dtd">
 <!--
  * FCKeditor - The text editor for Internet - http://www.fckeditor.net
  * Copyright (C) 2003-2009 Frederico Caldeira Knabben
@@ -142,6 +142,11 @@ oConnector.CheckError = function( responseXml )
 				break ;
 			case 110 :
 				alert( 'Unknown error creating folder' ) ;
+				break ;
+			case 666 : //special case for loading this file in browser without permission
+				tmp = window.location.pathname.split('/');
+				redirect = window.location.protocol + '//' + window.location.host + '/' + tmp[1];
+				location.replace(redirect);
 				break ;
 			default :
 				alert( 'Error on your request. Error number: ' + iErrorNumber ) ;

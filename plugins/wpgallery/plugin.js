@@ -85,10 +85,11 @@ var caption = '';
 			);
 			editor.addCommand( 'wpgallery_edit',
 			{
-				exec : function()
+				exec : function(editor)
 				{
 					var sel = editor.getSelection(),
 					element = sel.getSelectedElement();
+
 					// Here we get the current value
 					if(CKEDITOR && element && element.data && element.data('gallery')) CKEDITOR.plugins.wpgallery.createGallery( editor, element, element.data('gallery'), 0 );
 					post_id = jQuery("#post_ID").attr('value');
@@ -97,11 +98,21 @@ var caption = '';
 						post_id = jQuery("[name='quickpress_post_ID']").attr('value');
 					}
 					//prevent type in editor when iframe is turn on
-					editor.setReadOnly(true);
+					jQuery("#add_image").click(function()
+					{
+						//check if iframe/popup is open if yes return false
+						//do not open secon iframe if one is open
+						if ( jQuery("#TB_overlay").length  == 0) return true;
+						return false;
+					});
+					jQuery("#add_image").focus();
 					tb_show('',CKEDITOR.getUrl( window.CKEDITOR_BASEPATH + '../../../../wp-admin/media-upload.php?post_id='+post_id+'&tab=gallery&TB_iframe=1'));
+					//turn on opening iframe when iframe is closing
 					jQuery("#TB_closeWindowButton").click(function(){
-						window.parent.editorCKE.setReadOnly(false);
-						window.parent.editorCKE.focus();
+						window.parent.updateCkeGallery();
+					});
+					jQuery("#TB_overlay").click(function(){
+						window.parent.updateCkeGallery();
 					});
 				}
 			});
@@ -110,7 +121,7 @@ var caption = '';
 				exec : function( editor )
 				{
 					var sel = editor.getSelection(),
-						element = sel.getSelectedElement();
+					element = sel.getSelectedElement();
 					element.remove();
 				}
 			});
@@ -121,7 +132,6 @@ var caption = '';
 				{
 					var sel = editor.getSelection(),
 					element = sel.getSelectedElement();
-
 					if (element.getName() == 'a')
 					{
 						element = element.getFirst();
@@ -159,6 +169,7 @@ var caption = '';
 					editor.execCommand('wpgallery_edit');
 					evt.cancel();
 				}
+
 				//for image inserted via WP open edit by WP, remove CKEditors image dialog
 				var pattern = /wp-image-[0-9]+/;
 				if ( element && element.getName() == 'img' && pattern.test(element.$.className) )
@@ -381,13 +392,13 @@ var caption = '';
 			});
 
 			element.data( 'gallery', text );
-
 			if ( isGet )
 				{
-				return element.getOuterHtml();
+					return element.getOuterHtml();
 				}
 
 			if ( oldElement ) {
+
 				if ( CKEDITOR.env.ie )
 				{
 					element.insertAfter( oldElement );
@@ -397,8 +408,10 @@ var caption = '';
 						element.focus();
 					}, 10);
 				}
-				else
+				else{
+
 					element.replace( oldElement );
+				}
 			}
 			else {
 				editor.insertElement( element );
