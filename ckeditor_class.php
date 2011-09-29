@@ -264,15 +264,15 @@ class ckeditor_wordpress {
 		else {
 			$contents = @file_get_contents($config_path);
 			if (!$contents) {
-				return '<span class="ckeditor_error">'.__('Installed, configuration file not readable or empty.', 'ckeditor_wordpress').'</span>';
+				return '<span class="ckeditor_error">'.__('CKFinder is installed, configuration file not readable or empty.', 'ckeditor_wordpress').'</span>';
 			}
 			if (strpos($contents, 'wp-config.php') === false) {
-				return '<span class="ckeditor_error">'.__('Installed, invalid config.php detected. Did you copy ckfinder_config.php?', 'ckeditor_wordpress').'</span>';
+				return '<span class="ckeditor_error">'.__('CKFinder is installed, but invalid config.php was detected. Rename ckfinder_config.php to config.php (overwriting the default config.php file distributed with CKFinder).', 'ckeditor_wordpress').'</span>';
 			}
 			if ($this->options['upload']['browser'] != 'ckfinder') {
-				return '<span class="ckeditor_ok">'.__('Installed, not enabled.', 'ckeditor_wordpress').'</span>';
+				return '<span class="ckeditor_ok">'.__('CKFinder is installed, not enabled.', 'ckeditor_wordpress').'</span>';
 			}
-			return '<span class="ckeditor_ok">'.__('Installed', 'ckeditor_wordpress').'</span>';
+			return '<span class="ckeditor_ok">'.__('CKFinder is installed', 'ckeditor_wordpress').'</span>';
 		}
 	}
 

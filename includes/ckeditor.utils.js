@@ -154,6 +154,7 @@ function getTinyMCEObject()
 				var instant = {
 					isHidden : function (){
 						editor = CKEDITOR.instances[id];
+						if (typeof editorCKE == 'undefined') editorCKE = editor;
 						if(typeof(editor) != 'undefined')
 						{
 							return false;

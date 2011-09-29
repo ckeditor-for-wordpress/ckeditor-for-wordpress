@@ -58,6 +58,11 @@ Features:
 
 == Changelog ==
 
+= V3.6.2.1 DEV - 29.09.2011 =
+
+ * Fix CKEdtior 3.6.2 Update and qTranslate incompatibility (http://wordpress.org/support/topic/plugin-ckeditor-for-wordpress-ckedtior-362-update-and-qtranslate-incompatibility)
+ * Change messages for CKFinder configuration
+
 = V3.6.2 - 15.09.2011 =
 
  * Updated CKEditor to version 3.6.2

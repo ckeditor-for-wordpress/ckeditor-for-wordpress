@@ -56,7 +56,7 @@
 						<a href="http://ckfinder.com/download" target="_blank">http://ckfinder.com/download</a><br/>
 						<?php _e('2. Unpack contents of the "ckfinder" folder to ', 'ckeditor_wordpress');?>
 						"wp-content/plugins/ckeditor-for-wordpress/ckfinder/" directory<br/>
-						<?php _e('3. Rename ckfinder_config.php to config.php(overwrite default config.php distributed with CKFinder)', 'ckeditor_wordpress');?>
+						<?php _e('3. Rename ckfinder_config.php to config.php (overwrite default config.php distributed with CKFinder.)', 'ckeditor_wordpress');?>
 				</div>
 		<?php } ?>
 		<table class="form-table">
