@@ -131,7 +131,13 @@ function ckeditorOn(id) {
 }
 
 function ckeditorOff(id) {
-	if (typeof(id) != 'undefined') editorCKE = CKEDITOR.instances[id];
+	if (typeof(id) != 'undefined')
+	{
+		editorCKE = CKEDITOR.instances[id];
+	}else
+	{
+		editorCKE = CKEDITOR.instances[ckeditorSettings.textarea_id];
+	}
 	if(typeof(editorCKE) != 'undefined'){
 		editorCKE.destroy();
 		if(ckeditorSettings.textarea_id == 'content') {
