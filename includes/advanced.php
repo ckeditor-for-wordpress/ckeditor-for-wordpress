@@ -2,6 +2,7 @@
 	<div id="icon-wp-ckeditor" class="icon32"><br /></div>
 	<h2><?php _e('CKEditor - Advanced Settings', 'ckeditor_wordpress') ?></h2>
 	<form method="post" id="ca_form">
+		<?php wp_nonce_field('ckeditor_create_nonce_advanced','csrf_ckeditor-for-wordpress'); ?>
 		<h3><?php _e('CSS Options', 'ckeditor_wordpress') ?></h3>
 		<table class="form-table">
 			<tr valign="top">

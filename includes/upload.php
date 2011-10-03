@@ -2,6 +2,7 @@
 	<div id="icon-wp-ckeditor" class="icon32"><br /></div>
 	<h2><?php _e('CKEditor - Upload Settings', 'ckeditor_wordpress') ?></h2>
 	<form method="post">
+		<?php wp_nonce_field('ckeditor_create_nonce_upload','csrf_ckeditor-for-wordpress'); ?>
 		<h3><?php _e('Upload Options', 'ckeditor_wordpress') ?></h3>
 		<table class="form-table">
 			<tr valign="top">

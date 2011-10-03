@@ -18,6 +18,7 @@
 	</form>
 	<?php endif; ?>
 	<form method="post" name="template" id="template">
+		<?php wp_nonce_field('ckeditor_create_nonce_file_editor','csrf_ckeditor-for-wordpress'); ?>
 		<input type="hidden" name="file" value="<?php echo $file ?>" />
 		<h3><?php _e('Browsing ', 'ckeditor_wordpress') ?>: <i><?php echo $file ?></i></h3>
 		<table class="form-table">

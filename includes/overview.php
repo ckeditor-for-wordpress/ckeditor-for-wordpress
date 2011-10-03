@@ -205,6 +205,7 @@ function ckeditor_reset_settings() {
 	<?php _e('Press the button below to reset CKEditor settings to default values.', 'ckeditor_wordpress'); ?>
 	</span>
 	<form method="post" style="margin-top:15px">
+		<?php wp_nonce_field('ckeditor_create_nonce_overview','csrf_ckeditor-for-wordpress'); ?>
 		<input type="hidden" name="reset" value="1" />
 		<p class="submit">
 			<input type="submit" value="Reset settings to defaults" name="submit_reset" class="button-secondary" id="default-reset" />

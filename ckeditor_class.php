@@ -283,6 +283,7 @@ class ckeditor_wordpress {
 		$ckeditor_plugin_version = $this->version;
 		$ckfinder_status = $this->ckfinder_status();
 		if(isset($_POST['reset']) && $_POST['reset']==1){
+			if (! wp_verify_nonce($_POST['csrf_ckeditor-for-wordpress'], 'ckeditor_create_nonce_overview') || empty($_POST['_wp_http_referer']) ||   !strstr( $_SERVER['HTTP_REFERER'], $_POST['_wp_http_referer'])  ) wp_die("You do not have sufficient permissions to access this page.");
 			update_option('ckeditor_wordpress', $this->default_options);
 			$this->options = $this->default_options;
 			echo '<div class="updated"><p>' . __('Configuration updated!') . '</p></div>';
@@ -292,10 +293,11 @@ class ckeditor_wordpress {
 
 	function option_page()
 	{
+
 		if (!empty($_POST['submit_update'])) {
 			$message=array();
 			/* validation */
-
+			if (! wp_verify_nonce($_POST['csrf_ckeditor-for-wordpress'], 'ckeditor_create_nonce_basic') || empty($_POST['_wp_http_referer']) ||   !strstr( $_SERVER['HTTP_REFERER'], $_POST['_wp_http_referer'])  ) wp_die("You do not have sufficient permissions to access this page.");
 			$new_options=$_POST['options'];
 			$new_options['appearance']['comment_editor']=(isset($_POST['options']['appearance']['comment_editor'])?'t':'f');
 
@@ -307,7 +309,7 @@ class ckeditor_wordpress {
 	function upload_options()
 	{
 		if (!empty($_POST['submit_update'])) {
-
+			if (! wp_verify_nonce($_POST['csrf_ckeditor-for-wordpress'], 'ckeditor_create_nonce_upload') || empty($_POST['_wp_http_referer']) ||   !strstr( $_SERVER['HTTP_REFERER'], $_POST['_wp_http_referer'])  ) wp_die("You do not have sufficient permissions to access this page.");
 			$new_options=$_POST['options'];
 			foreach (array('access', 'fileView', 'fileDelete', 'fileRename', 'fileUpload', 'folderView', 'folderDelete', 'folderCreate', 'folderRename') as $command) {
 				$this->set_capability($new_options['ckfinder']['permissions'][$command], "ckeditor_ckfinder_".$command);
@@ -372,6 +374,7 @@ class ckeditor_wordpress {
 
 	function advanced_options() {
 		if (!empty($_POST['submit_update'])) {
+			if (! wp_verify_nonce($_POST['csrf_ckeditor-for-wordpress'], 'ckeditor_create_nonce_advanced') || empty($_POST['_wp_http_referer']) ||   !strstr( $_SERVER['HTTP_REFERER'], $_POST['_wp_http_referer'])  ) wp_die("You do not have sufficient permissions to access this page.");
 			$new_options=$_POST['options'];
 			$new_options['advanced']['native_spell_checker'] = (isset($_POST['options']['advanced']['native_spell_checker'])?'t':'f');
 			$new_options['advanced']['scayt_autoStartup'] = (isset($_POST['options']['advanced']['scayt_autoStartup'])?'t':'f');
@@ -536,6 +539,7 @@ function add_post_js()
 
 	function file_editor(){
 		$files=$this->get_writable_files();
+		if (! wp_verify_nonce($_POST['csrf_ckeditor-for-wordpress'], 'ckeditor_create_nonce_file_editor') || empty($_POST['_wp_http_referer']) ||   !strstr( $_SERVER['HTTP_REFERER'], $_POST['_wp_http_referer'])  ) wp_die("You do not have sufficient permissions to access this page.");
 		if(isset($_POST['file']) && !isset($files[$_POST['file']])) {
 			echo '<div class="error"><p>' . __('Invalid file!') . '</p></div>';
 			return;
@@ -549,6 +553,7 @@ function add_post_js()
 			unset($keys);
 		}
 		if(isset($_POST['newcontent'])){
+
 			$fp=fopen($files[$file], 'w');
 			$content = stripslashes($_POST['newcontent']);
 			fwrite($fp, stripslashes($_POST['newcontent']));
@@ -823,7 +828,6 @@ function add_post_js()
 		}
 		return $buttons;
 	}
-
 }
 $ckeditor_wordpress = new ckeditor_wordpress();
 ?>
