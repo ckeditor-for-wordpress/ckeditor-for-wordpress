@@ -58,9 +58,9 @@ Features:
 
 == Changelog ==
 
-= V3.6.2.1 DEV - 03.10.2011 =
+= V3.6.2.1 DEV - 07.10.2011 =
 
- * Add security fix
+ * Add security fix (thx to Julio Potier from http://boiteaweb.fr)
  * Fix to Cannot reply to an existing comment (http://wordpress.org/support/topic/plugin-ckeditor-for-wordpress-v362-cannot-reply-to-an-existing-comment)
  * Fix CKEdtior 3.6.2 Update and qTranslate incompatibility (http://wordpress.org/support/topic/plugin-ckeditor-for-wordpress-ckedtior-362-update-and-qtranslate-incompatibility)
  * Change messages for CKFinder configuration
