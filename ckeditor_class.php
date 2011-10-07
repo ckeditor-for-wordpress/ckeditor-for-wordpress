@@ -539,7 +539,6 @@ function add_post_js()
 
 	function file_editor(){
 		$files=$this->get_writable_files();
-		if (! wp_verify_nonce($_POST['csrf_ckeditor-for-wordpress'], 'ckeditor_create_nonce_file_editor') || empty($_POST['_wp_http_referer']) ||   !strstr( $_SERVER['HTTP_REFERER'], $_POST['_wp_http_referer'])  ) wp_die("You do not have sufficient permissions to access this page.");
 		if(isset($_POST['file']) && !isset($files[$_POST['file']])) {
 			echo '<div class="error"><p>' . __('Invalid file!') . '</p></div>';
 			return;
@@ -553,7 +552,7 @@ function add_post_js()
 			unset($keys);
 		}
 		if(isset($_POST['newcontent'])){
-
+			if (! wp_verify_nonce($_POST['csrf_ckeditor-for-wordpress'], 'ckeditor_create_nonce_file_editor') || empty($_POST['_wp_http_referer']) ||   !strstr( $_SERVER['HTTP_REFERER'], $_POST['_wp_http_referer'])  ) wp_die("You do not have sufficient permissions to access this page.");
 			$fp=fopen($files[$file], 'w');
 			$content = stripslashes($_POST['newcontent']);
 			fwrite($fp, stripslashes($_POST['newcontent']));
