@@ -3,7 +3,7 @@ Contributors: wiktor, michal_cksource, dczepierga, Dean Lee
 Tags: post, wysiwyg, CKEditor, FCKeditor, editor, rich text, rte, rich text editor
 Requires at least: 2.0
 Tested up to: 3.2
-Stable tag: 3.6.2
+Stable tag: 3.6.2.1
 This plugin replaces the default WordPress editor with <a href="http://ckeditor.com/">CKEditor</a>.
 
 == Description ==
@@ -17,10 +17,10 @@ It brings to the web common editing features found on desktop editing applicatio
 <strong>CKEditor</strong> is compatible with most internet browsers and operating systems, including:
 <ul>
 <li>Internet Explorer 6+</li>
-<li>Firefox 2+</li>
-<li>Safari 3+</li>
+<li>Firefox 3.0+</li>
+<li>Safari</li>
 <li>Google Chrome</li>
-<li>Opera 9.5+</li>
+<li>Opera</li>
 </ul>
 
 Live demo is available at <a href="http://wordpress.ckeditor.com/">http://wordpress.ckeditor.com/</a>.
@@ -58,7 +58,7 @@ Features:
 
 == Changelog ==
 
-= V3.6.2.1 DEV - 07.10.2011 =
+= V3.6.2.1 - 14.10.2011 =
 
  * Add security fix (thx to Julio Potier from http://boiteaweb.fr)
  * Fix to Cannot reply to an existing comment (http://wordpress.org/support/topic/plugin-ckeditor-for-wordpress-v362-cannot-reply-to-an-existing-comment)
