@@ -3,7 +3,7 @@ Contributors: wiktor, michal_cksource, dczepierga, Dean Lee
 Tags: post, wysiwyg, CKEditor, FCKeditor, editor, rich text, rte, rich text editor
 Requires at least: 2.0
 Tested up to: 3.2
-Stable tag: 3.6.2.1
+Stable tag: 3.6.2.2
 This plugin replaces the default WordPress editor with <a href="http://ckeditor.com/">CKEditor</a>.
 
 == Description ==
@@ -55,8 +55,19 @@ Features:
 2. Leave comment through CKEditor
 3. Built-in file manager
 
-
 == Changelog ==
+
+= V3.6.2.2 - 29.11.2011 =
+
+ * Fix for form token secure when browser send no http_referer
+ * Fix for support qTranslate plugin (http://wordpress.org/support/topic/plugin-ckeditor-for-wordpress-cant-insert-image-or-another-html-tag-from-default-wordpress-media-uploader)
+ * Fix for plugin path (http://wordpress.org/support/topic/plugin_path-doesnt-use-wp_plugin_url)
+ * Fix for html markups in image caption.
+ * Fix for html entities in image caption
+ * Add support for language settings (http://wordpress.org/support/topic/ckeditor-language-same-as-configphp-lang)
+ * Fix for CSS default Wordpress theme (http://wordpress.org/support/topic/use-theme-css-should-work-fine-with-the-default-theme)
+ * Fix for JavaScript autosave.init call error (http://wordpress.org/support/topic/plugin-ckeditor-for-wordpress-ckeditor-for-wordpress-and-mailpress)
+ * Fix for unnecessary change html entities in text. Now it only occurs in shortcodes tags in  [] (http://wordpress.org/support/topic/plugin-ckeditor-for-wordpress-using-html-entities-in-the-output)
 
 = V3.6.2.1 - 14.10.2011 =
 

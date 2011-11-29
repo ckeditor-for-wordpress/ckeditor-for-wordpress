@@ -55,12 +55,7 @@ jQuery(document).ready(function () {
 		if(typeof(window.autosave) != 'undefined'){
 			autosaveOld = window.autosave;
 		}
-		window.autosave = function () {
-			if(typeof(CKEDITOR) != 'undefined' && typeof(editorCKE) != 'undefined'){
-				editorCKE.updateElement();
-			}
-			autosaveOld();
-		};
+
 		if(typeof(window.switchEditors) != 'undefined') {
 			window.switchEditors.go = function(id, mode) {
 				if ('tinymce' == mode) {
@@ -87,11 +82,10 @@ jQuery(document).ready(function () {
 			};
 			if ( jQuery('#'+ckeditorSettings.textarea_id).length && typeof CKEDITOR.instances[ckeditorSettings.textarea_id] == 'undefined' ) {
 				CKEDITOR.replace(ckeditorSettings.textarea_id, ckeditorSettings.configuration);
-				//editorCKE = CKEDITOR.instances[ckeditorSettings.textarea_id];
-				editorCKE = CKEDITOR.instances['content'];
+					editorCKE = CKEDITOR.instances[ckeditorSettings.textarea_id];
 			}
 
-			window.tinyMCE = getTinyMCEObject();
+			window.tinyMCE = tinymce =  getTinyMCEObject();
 		}
 	}
 	else {
@@ -103,6 +97,7 @@ jQuery(document).ready(function () {
 	jQuery("#update-gallery").click(function(){
 		updateCkeGallery();
 	});
+
 });
 function ckeditorOn(id) {
 	if (typeof(id) != 'undefined' && typeof(CKEDITOR.instances[id]) == 'undefined' )
@@ -112,9 +107,17 @@ function ckeditorOn(id) {
 		jQuery('#edButtonPreview').addClass('active');
 		jQuery('#edButtonHTML').removeClass('active');
 		CKEDITOR.replace(id, ckeditorSettings.configuration);
+		if (typeof ckeditorSettings.configuration['extraCss'] != 'undefined')
+		{
+			CKEDITOR.instances[id].addCss(ckeditorSettings.configuration['extraCss']);
+		}
 	}
 	if ( jQuery('#'+ckeditorSettings.textarea_id).length && (typeof(CKEDITOR.instances) == 'undefined' || typeof(CKEDITOR.instances[ckeditorSettings.textarea_id]) == 'undefined' ) && jQuery("#"+ckeditorSettings.textarea_id).parent().parent().attr('id') != 'quick-press') {
 		CKEDITOR.replace(ckeditorSettings.textarea_id, ckeditorSettings.configuration);
+		if (typeof ckeditorSettings.configuration['extraCss'] != 'undefined')
+		{
+			CKEDITOR.instances[ckeditorSettings.textarea_id].addCss(ckeditorSettings.configuration['extraCss']);
+		}
 		if(ckeditorSettings.textarea_id == 'content') {
 			setUserSetting( 'editor', 'tinymce' );
 			jQuery('#quicktags').hide();
@@ -212,7 +215,8 @@ function getTinyMCEObject()
 				}
 			},
 			triggerSave : function(param) {
-				editorCKE.updateElement();
+				if(typeof(CKEDITOR) != 'undefined' && typeof(editorCKE) != 'undefined')
+					editorCKE.updateElement();
 			},
 			activeEditor : {
 				isHidden : function (){return false;},
@@ -223,8 +227,26 @@ function getTinyMCEObject()
 				{
 					if (command == "mceInsertContent")
 					{
-							//setTimeout is required in IE8 when inserting Image gallery from an external modal dialog
-							setTimeout(function(){editorCKE.insertHtml(text);}, 0);
+						pattern = /(\[caption.+\])/ig;
+						if (pattern.test(text))
+						{
+							text = text.replace(/&gt;/g, '>');
+							text = text.replace(/&lt;/g, '<');
+							pattern = /(<[\w'"=\s]+>([\S\s]+)<\/\S+>)/ig;
+							text= text.replace(pattern, function(match, cont)
+							{
+								cont =  cont.replace(/<[\w'"=\s]+>([\S\s]+)<\/\S+>/ig, function(match, cont){
+									return cont;
+								});
+								return cont;
+							});
+							text = text.replace(/<br\/>|<br>|<br \>|<br \/ >|<br\/ >/i,'');
+							text = text.replace(/"/i,'&quot;');
+						}
+
+						//setTimeout is required in IE8 when inserting Image gallery from an external modal dialog
+						if (typeof editorCKE == 'undefined') editorCKE = CKEDITOR.instances[ckeditorSettings.textarea_id];
+						setTimeout(function(){editorCKE.insertHtml(text);}, 0);
 					}
 				},
 				selection : {

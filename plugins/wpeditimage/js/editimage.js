@@ -427,9 +427,18 @@ wpImage = {
 			parent = el.getParent();
 			if ( (id = f.img_classes.value.match( /wp-image-([0-9]{1,6})/ )) && id[1] )
 				cap_id = 'attachment_'+id[1];
-			el.setAttribute('data-cke-caption',' id="'+cap_id+'" align="'+t.align+'" width="'+f.width.value+'" caption="'+f.img_cap.value+'"');
-			//tmp = window.parent.CKEDITOR.tools.htmlEncode(f.img_cap.value);
-			//el.setAttribute('data-cke-caption',' id="'+cap_id+'" align="'+t.align+'" width="'+f.width.value+'" caption="'+tmp+'"');
+			//prevent insert HTML markup in image caption
+			pattern = /(<[\w'"=\s]+>([\S\s]+)<\/\S+>)/ig;
+			captionText = f.img_cap.value.replace(pattern, function(match, cont)
+			{
+					cont =  cont.replace(/<[\w'"=\s]+>([\S\s]+)<\/\S+>/ig, function(match, cont){
+					return cont;
+				});
+				return cont;
+			});
+			captionText = captionText.replace(/<br\/>|<br>|<br \>|<br \/ >|<br\/ >/i,'');
+			captionText = captionText.replace(/"/i,'&quot;');
+			el.setAttribute('data-cke-caption',' id="'+cap_id+'" align="'+t.align+'" width="'+f.width.value+'" caption="'+window.parent.CKEDITOR.tools.htmlEncode(captionText)+'"');
 			el.addClass('wp-caption');
 			el.addClass(t.align);
 		} else {

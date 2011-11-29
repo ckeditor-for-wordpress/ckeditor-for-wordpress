@@ -238,7 +238,6 @@ var caption = '';
 			var dataProcessor = editor.dataProcessor,
 				dataFilter = dataProcessor && dataProcessor.dataFilter,
 				htmlFilter = dataProcessor && dataProcessor.htmlFilter;
-//			var caption = '';
 			caption = '';
 			if ( dataFilter )
 			{
@@ -316,7 +315,6 @@ var caption = '';
 							//convert img with caption
 							if (element.attributes && element.attributes['data-cke-caption'])
 							{
-
 								//array of allowed attributes
 								var allowed_attributes = ['src', 'alt', 'title', 'width', 'height', 'class', 'style'];
 								text = element.attributes['data-cke-caption'];
@@ -346,11 +344,11 @@ var caption = '';
 						text= text.replace( /\[(.+)\]/g, function( match, cont )
 						{
 							cont = cont.replace(/&#39;/g,"'");
+							//change html entities to < and >
+							cont = cont.replace(/&lt;/g, '<');
+							cont = cont.replace(/&gt;/g, '>');
 							return '[' + cont.replace( /&amp;quot;|&quot;/g, '"' ) + ']';
 						});
-						//change html entities to < and >
-						text = text.replace(/&lt;/g, '<');
-						text = text.replace(/&gt;/g, '>');
 						return text;
 					}
 				});

@@ -4,7 +4,7 @@
 Plugin Name: CKEditor for WordPress
 Plugin URI: http://wordpress.ckeditor.com/
 Description: Replaces the default WordPress editor with <a href="http://ckeditor.com/"> CKEditor</a>
-Version: 3.6.2.1
+Version: 3.6.2.2
 Author: CKSource
 Author URI: http://cksource.com/
 */
@@ -27,6 +27,8 @@ function ckeditor_init(){
 	add_filter( 'ckeditor_external_plugins', array(&$ckeditor_wordpress, 'ckeditor_wpmore_plugin') );
 	add_filter( 'ckeditor_buttons', array(&$ckeditor_wordpress, 'ckeditor_wpmore_button') );
 	add_filter( 'ckeditor_external_plugins', array(&$ckeditor_wordpress, 'ckeditor_wpgallery_plugin') );
+	add_filter( 'ckeditor_load_lang_options', array(&$ckeditor_wordpress, 'ckeditor_load_lang_options') );
+
 	//add filter to change content before insert/update to database - needed for wpeditimage plugin
 	add_filter( 'wp_insert_post_data' , array(&$ckeditor_wordpress, 'ckeditor_insert_post_data_filter'));
 

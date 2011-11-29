@@ -1,6 +1,6 @@
 <?php
 class ckeditor_wordpress {
-	var $version = '3.6.2.1';
+	var $version = '3.6.2.2';
 	var $default_options = array();
 	var $options = array();
 	var $ckeditor_path = "";
@@ -15,9 +15,19 @@ class ckeditor_wordpress {
 	function __construct()
 	{
 		$siteurl = trailingslashit(get_option('siteurl'));
-		$this->plugin_path = $siteurl .'wp-content/plugins/' . basename(dirname(__FILE__)) .'/';
-		define('CKEDITOR_PLUGIN_URL', $this->plugin_path);
-		$this->ckeditor_path = $siteurl .'wp-content/plugins/' . basename(dirname(__FILE__)) .'/ckeditor/';
+		if (DEFINED('WP_PLUGIN_URL'))
+		{
+			$this->plugin_path =  WP_PLUGIN_URL . '/' . basename(dirname(__FILE__)) .'/';
+		}
+		else if (DEFINED('WP_PLUGIN_DIR')){
+			$this->plugin_path =  $siteurl .'/'. WP_PLUGIN_DIR . '/' . basename(dirname(__FILE__)) .'/';
+		}
+		else{
+			$this->plugin_path = $siteurl .'wp-content/plugins/' . basename(dirname(__FILE__)) .'/';
+		}
+
+		define('CKEDITOR_PLUGIN_URL', $this->plugin_path_url);
+		$this->ckeditor_path = $this->plugin_path .'ckeditor/';
 		$this->editable_files = array(
 			'ckeditor.config.js' => dirname(__FILE__).'/ckeditor.config.js',
 			'ckeditor.styles.js' => dirname(__FILE__).'/ckeditor.styles.js',
@@ -283,7 +293,7 @@ class ckeditor_wordpress {
 		$ckeditor_plugin_version = $this->version;
 		$ckfinder_status = $this->ckfinder_status();
 		if(isset($_POST['reset']) && $_POST['reset']==1){
-			if (! wp_verify_nonce($_POST['csrf_ckeditor-for-wordpress'], 'ckeditor_create_nonce_overview') || empty($_POST['_wp_http_referer']) ||   !strstr( $_SERVER['HTTP_REFERER'], $_POST['_wp_http_referer'])  ) wp_die("You do not have sufficient permissions to access this page.");
+			if (! wp_verify_nonce($_POST['csrf_ckeditor-for-wordpress'], 'ckeditor_create_nonce_overview') || empty($_POST['_wp_http_referer']) ||   ( isset($_SERVER['HTTP_REFERER']) && !strstr( $_SERVER['HTTP_REFERER'], $_POST['_wp_http_referer']) )  ) wp_die("You do not have sufficient permissions to access this page.");
 			update_option('ckeditor_wordpress', $this->default_options);
 			$this->options = $this->default_options;
 			echo '<div class="updated"><p>' . __('Configuration updated!') . '</p></div>';
@@ -297,7 +307,7 @@ class ckeditor_wordpress {
 		if (!empty($_POST['submit_update'])) {
 			$message=array();
 			/* validation */
-			if (! wp_verify_nonce($_POST['csrf_ckeditor-for-wordpress'], 'ckeditor_create_nonce_basic') || empty($_POST['_wp_http_referer']) ||   !strstr( $_SERVER['HTTP_REFERER'], $_POST['_wp_http_referer'])  ) wp_die("You do not have sufficient permissions to access this page.");
+			if (! wp_verify_nonce($_POST['csrf_ckeditor-for-wordpress'], 'ckeditor_create_nonce_basic') || empty($_POST['_wp_http_referer']) ||   ( isset($_SERVER['HTTP_REFERER']) && !strstr( $_SERVER['HTTP_REFERER'], $_POST['_wp_http_referer']) )  ) wp_die("You do not have sufficient permissions to access this page.");
 			$new_options=$_POST['options'];
 			$new_options['appearance']['comment_editor']=(isset($_POST['options']['appearance']['comment_editor'])?'t':'f');
 
@@ -309,7 +319,7 @@ class ckeditor_wordpress {
 	function upload_options()
 	{
 		if (!empty($_POST['submit_update'])) {
-			if (! wp_verify_nonce($_POST['csrf_ckeditor-for-wordpress'], 'ckeditor_create_nonce_upload') || empty($_POST['_wp_http_referer']) ||   !strstr( $_SERVER['HTTP_REFERER'], $_POST['_wp_http_referer'])  ) wp_die("You do not have sufficient permissions to access this page.");
+			if (! wp_verify_nonce($_POST['csrf_ckeditor-for-wordpress'], 'ckeditor_create_nonce_upload') || empty($_POST['_wp_http_referer']) ||   ( isset($_SERVER['HTTP_REFERER']) && !strstr( $_SERVER['HTTP_REFERER'], $_POST['_wp_http_referer']) )  ) wp_die("You do not have sufficient permissions to access this page.");
 			$new_options=$_POST['options'];
 			foreach (array('access', 'fileView', 'fileDelete', 'fileRename', 'fileUpload', 'folderView', 'folderDelete', 'folderCreate', 'folderRename') as $command) {
 				$this->set_capability($new_options['ckfinder']['permissions'][$command], "ckeditor_ckfinder_".$command);
@@ -374,7 +384,7 @@ class ckeditor_wordpress {
 
 	function advanced_options() {
 		if (!empty($_POST['submit_update'])) {
-			if (! wp_verify_nonce($_POST['csrf_ckeditor-for-wordpress'], 'ckeditor_create_nonce_advanced') || empty($_POST['_wp_http_referer']) ||   !strstr( $_SERVER['HTTP_REFERER'], $_POST['_wp_http_referer'])  ) wp_die("You do not have sufficient permissions to access this page.");
+			if (! wp_verify_nonce($_POST['csrf_ckeditor-for-wordpress'], 'ckeditor_create_nonce_advanced') || empty($_POST['_wp_http_referer']) ||   ( isset($_SERVER['HTTP_REFERER']) && !strstr( $_SERVER['HTTP_REFERER'], $_POST['_wp_http_referer']) )  ) wp_die("You do not have sufficient permissions to access this page.");
 			$new_options=$_POST['options'];
 			$new_options['advanced']['native_spell_checker'] = (isset($_POST['options']['advanced']['native_spell_checker'])?'t':'f');
 			$new_options['advanced']['scayt_autoStartup'] = (isset($_POST['options']['advanced']['scayt_autoStartup'])?'t':'f');
@@ -428,6 +438,19 @@ class ckeditor_wordpress {
 			/** load timeout **/
 			if (!preg_match('#^\d+$#', trim($new_options['advanced']['load_timeout']))) {
 				$massage['advanced_load_timeout'] = __('Enter valid load timeout in seconds.', 'ckeditor_wordpress');
+			}
+
+			/* language settings */
+			if (!preg_match('#^\d\d$#', trim($new_options['advanced']['language'])) && !preg_match('#^\d\d-\d\d$#', trim($new_options['advanced']['language']))) {
+				$massage['advanced_language'] = __('Enter a valid language.', 'ckeditor_wordpress');
+			}
+
+		if ( trim($new_options['advanced']['detect_language_auto']) != 't'  && trim($new_options['advanced']['detect_language_auto'] != 'f') ) {
+				$massage['advanced_detect_language_auto'] = __('Enter a valid auto detect language value.', 'ckeditor_wordpress');
+			}
+
+			if ( trim($new_options['advanced']['language_direction']) != 'default' && trim($new_options['advanced']['language_direction']) != 'ltr' && trim($new_options['advanced']['language_direction']) != 'rtl') {
+				$massage['advanced_language_direction'] = __('Enter a valid language direction value.', 'ckeditor_wordpress');
 			}
 
 			$this->options = $this->update_options($new_options, (empty($message)?false:true));
@@ -552,7 +575,7 @@ function add_post_js()
 			unset($keys);
 		}
 		if(isset($_POST['newcontent'])){
-			if (! wp_verify_nonce($_POST['csrf_ckeditor-for-wordpress'], 'ckeditor_create_nonce_file_editor') || empty($_POST['_wp_http_referer']) ||   !strstr( $_SERVER['HTTP_REFERER'], $_POST['_wp_http_referer'])  ) wp_die("You do not have sufficient permissions to access this page.");
+			if (! wp_verify_nonce($_POST['csrf_ckeditor-for-wordpress'], 'ckeditor_create_nonce_file_editor') || empty($_POST['_wp_http_referer']) ||   ( isset($_SERVER['HTTP_REFERER']) && !strstr( $_SERVER['HTTP_REFERER'], $_POST['_wp_http_referer']) )  ) wp_die("You do not have sufficient permissions to access this page.");
 			$fp=fopen($files[$file], 'w');
 			$content = stripslashes($_POST['newcontent']);
 			fwrite($fp, stripslashes($_POST['newcontent']));
@@ -619,6 +642,11 @@ function add_post_js()
 		switch($options['css']['mode']){
 			case 'theme':
 				$settings['contentsCss'][] = get_stylesheet_uri();
+				//fix for default Wordpress theme
+				if (preg_match('/twenty[\S]+/', get_stylesheet_uri()))
+				{
+						$settings['extraCss'] = 'body {background:#FFF; padding: 0 0.5em; }';
+				}
 				break;
 			case 'self':
 				foreach(explode(',',$options['css']['path']) as $css_path){
@@ -640,6 +668,28 @@ function add_post_js()
 				$settings['stylesCombo_stylesSet'] = 'wordpress:'.$this->plugin_path.'ckeditor.styles.js';
 				break;
 		}
+
+		if ($options['advanced']['detect_language_auto'] == 'f')
+		{
+			$settings['language'] = $options['advanced']['language'];
+		}
+
+	    if (isset($options['advanced']['language_direction'])) {
+        switch ($options['advanced']['language_direction']) {
+            case 'default':
+                if (is_rtl()) {
+                    $settings['contentsLangDirection'] = 'rtl';
+                }
+                break;
+            case 'ltr':
+                $settings['contentsLangDirection'] = 'ltr';
+                break;
+            case 'rtl':
+                $settings['contentsLangDirection'] = 'rtl';
+                break;
+        }
+    }
+
 
 		$output['configuration']=$settings;
 		$output['configuration']['customConfig'] = $this->plugin_path . 'ckeditor.config.js';
@@ -746,16 +796,20 @@ function add_post_js()
 	//filter to change data for wpeditimage plugin before insert/update in database
 	function ckeditor_insert_post_data_filter( $data , $postarr = null )
 	{
-		//change amp; to  empty character . This is to create & character before entities like gt; and lt;
 		$content = $data['post_content'];
-		$content = str_replace('amp;' , '', $content);
+		//change amp; to  empty character . This is to create & character before entities like gt; and lt;
+  	//$content = str_replace('amp;' , '', $content);
 		$content = stripslashes($content);
 		//change " character in caption string for &quot;
+		//change amp; to  empty character . This is to create & character before entities like gt; and lt; in caption string
 		$pattern = '/caption="(.+)"\]/';
 		preg_match_all($pattern, $content,$matches);
 		if (isset($matches[1]))
 		{
+
+			$content = str_replace($matches[1], str_replace('amp;', '', $matches[1]), $content);
 			$content = str_replace($matches[1], str_replace('"', '&quot;', $matches[1]), $content);
+
 		}
 		//save data
 		$content = addslashes($content);
@@ -826,6 +880,101 @@ function add_post_js()
 			$buttons[]=array('StarRating');
 		}
 		return $buttons;
+	}
+/**
+ * List of installed CKEditor languages
+ *
+ * @return array
+ */
+		function ckeditor_load_lang_options() {
+	    $arr = array();
+
+	  if (DEFINED('WP_PLUGIN_DIR'))
+		{
+			$lang_file =  WP_PLUGIN_DIR .'/'. basename(dirname(__FILE__)) .'/ckeditor/lang/_languages.js';
+		}
+		else{
+			 $lang_file = '../wp-content/plugins/ckeditor-for-wordpress/ckeditor/lang/_languages.js';
+		}
+			if (file_exists($lang_file))
+			{
+				$f = fopen($lang_file, 'r');
+				$file = fread($f, filesize($lang_file));
+				$tmp = explode('{', $file);
+				if (isset($tmp[2]))
+				{
+					$tmp = explode('}', $tmp[2]);
+				}
+				$langs = explode(',', $tmp[0]);
+				foreach ($langs AS $key => $lang)
+				{
+					preg_match("/(\w+-?\w+):'(\w+)'/i",$lang, $matches);
+					if (isset($matches[1]) && isset($matches[2]))
+						$arr[$matches[1]] = $matches[2];
+				}
+			}
+
+	    //oops, we have no information about languages, let's use those available in CKEditor 2.4.3
+	    if (empty($arr)) {
+	        $arr = array(
+	            'af' => 'Afrikaans',
+	            'ar' => 'Arabic',
+	            'bg' => 'Bulgarian',
+	            'bn' => 'Bengali/Bangla',
+	            'bs' => 'Bosnian',
+	            'ca' => 'Catalan',
+	            'cs' => 'Czech',
+	            'da' => 'Danish',
+	            'de' => 'German',
+	            'el' => 'Greek',
+	            'en' => 'English',
+	            'en-au' => 'English (Australia)',
+	            'en-ca' => 'English (Canadian)',
+	            'en-uk' => 'English (United Kingdom)',
+	            'eo' => 'Esperanto',
+	            'es' => 'Spanish',
+	            'et' => 'Estonian',
+	            'eu' => 'Basque',
+	            'fa' => 'Persian',
+	            'fi' => 'Finnish',
+	            'fo' => 'Faroese',
+	            'fr' => 'French',
+	            'gl' => 'Galician',
+	            'he' => 'Hebrew',
+	            'hi' => 'Hindi',
+	            'hr' => 'Croatian',
+	            'hu' => 'Hungarian',
+	            'it' => 'Italian',
+	            'ja' => 'Japanese',
+	            'km' => 'Khmer',
+	            'ko' => 'Korean',
+	            'lt' => 'Lithuanian',
+	            'lv' => 'Latvian',
+	            'mn' => 'Mongolian',
+	            'ms' => 'Malay',
+	            'nb' => 'Norwegian Bokmal',
+	            'nl' => 'Dutch',
+	            'no' => 'Norwegian',
+	            'pl' => 'Polish',
+	            'pt' => 'Portuguese (Portugal)',
+	            'pt-br' => 'Portuguese (Brazil)',
+	            'ro' => 'Romanian',
+	            'ru' => 'Russian',
+	            'sk' => 'Slovak',
+	            'sl' => 'Slovenian',
+	            'sr' => 'Serbian (Cyrillic)',
+	            'sr-latn' => 'Serbian (Latin)',
+	            'sv' => 'Swedish',
+	            'th' => 'Thai',
+	            'tr' => 'Turkish',
+	            'uk' => 'Ukrainian',
+	            'vi' => 'Vietnamese',
+	            'zh' => 'Chinese Traditional',
+	            'zh-cn' => 'Chinese Simplified',
+	        );
+	    }
+	    asort($arr);
+	    return $arr;
 	}
 }
 $ckeditor_wordpress = new ckeditor_wordpress();
