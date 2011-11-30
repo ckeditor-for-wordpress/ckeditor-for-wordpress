@@ -26,7 +26,7 @@ class ckeditor_wordpress {
 			$this->plugin_path = $siteurl .'wp-content/plugins/' . basename(dirname(__FILE__)) .'/';
 		}
 
-		define('CKEDITOR_PLUGIN_URL', $this->plugin_path_url);
+		define('CKEDITOR_PLUGIN_URL', $this->plugin_path);
 		$this->ckeditor_path = $this->plugin_path .'ckeditor/';
 		$this->editable_files = array(
 			'ckeditor.config.js' => dirname(__FILE__).'/ckeditor.config.js',

@@ -57,6 +57,10 @@ Features:
 
 == Changelog ==
 
+= V3.6.2.3 DEV - 30.11.2011 =
+
+ * Fix for problem with NextGEN Gallery plugin (http://wordpress.org/support/topic/plugin-ckeditor-for-wordpress-just-updated-to-ckeditor-3622-no-items-in-visual-editor)
+
 = V3.6.2.2 - 29.11.2011 =
 
  * Fix for form token secure when browser send no http_referer
