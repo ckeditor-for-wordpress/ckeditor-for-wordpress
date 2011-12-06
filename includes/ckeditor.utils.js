@@ -112,7 +112,7 @@ function ckeditorOn(id) {
 			CKEDITOR.instances[id].addCss(ckeditorSettings.configuration['extraCss']);
 		}
 	}
-	if ( jQuery('#'+ckeditorSettings.textarea_id).length && (typeof(CKEDITOR.instances) == 'undefined' || typeof(CKEDITOR.instances[ckeditorSettings.textarea_id]) == 'undefined' ) && jQuery("#"+ckeditorSettings.textarea_id).parent().parent().attr('id') != 'quick-press') {
+	if ( jQuery('textarea#'+ckeditorSettings.textarea_id).length && (typeof(CKEDITOR.instances) == 'undefined' || typeof(CKEDITOR.instances[ckeditorSettings.textarea_id]) == 'undefined' ) && jQuery("#"+ckeditorSettings.textarea_id).parent().parent().attr('id') != 'quick-press') {
 		CKEDITOR.replace(ckeditorSettings.textarea_id, ckeditorSettings.configuration);
 		if (typeof ckeditorSettings.configuration['extraCss'] != 'undefined')
 		{

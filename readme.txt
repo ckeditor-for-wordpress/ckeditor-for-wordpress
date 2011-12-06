@@ -57,6 +57,10 @@ Features:
 
 == Changelog ==
 
+= V3.6.2.4 DEV - 06.12.2011 =
+
+ * Fix problem with loading CKEditor inside element with id 'content' which is not textarea.
+
 = V3.6.2.3 - 01.12.2011 =
 
  * This version of CKEditor for WordPress was released due to some issues with upgrading the plugin to version 3.6.2.2. The problem is now fixed.
