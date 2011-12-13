@@ -23,7 +23,7 @@ function ckeditor_init(){
 			add_action('admin_print_footer_scripts', array(&$ckeditor_wordpress, 'remove_tinymce'));
 	}
 
-	add_action('wp_print_scripts', array(&$ckeditor_wordpress, 'add_comment_js'));
+	add_action( 'wp_print_scripts', array(&$ckeditor_wordpress, 'add_comment_js'));
 	add_filter( 'ckeditor_external_plugins', array(&$ckeditor_wordpress, 'ckeditor_wpmore_plugin') );
 	add_filter( 'ckeditor_buttons', array(&$ckeditor_wordpress, 'ckeditor_wpmore_button') );
 	add_filter( 'ckeditor_external_plugins', array(&$ckeditor_wordpress, 'ckeditor_wpgallery_plugin') );

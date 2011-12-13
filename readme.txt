@@ -57,8 +57,9 @@ Features:
 
 == Changelog ==
 
-= V3.6.2.4 DEV - 06.12.2011 =
+= V3.6.2.4 DEV - 13.12.2011 =
 
+ * Fix problems with upgrade and working correctly in new Wordpress 3.3 “Sonny”.
  * Fix problem with loading CKEditor inside element with id 'content' which is not textarea.
 
 = V3.6.2.3 - 01.12.2011 =
