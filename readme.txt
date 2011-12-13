@@ -1,9 +1,9 @@
 ﻿=== CKEditor For WordPress ===
 Contributors: wiktor, michal_cksource, dczepierga, Dean Lee
 Tags: post, wysiwyg, CKEditor, FCKeditor, editor, rich text, rte, rich text editor
-Requires at least: 2.0
-Tested up to: 3.2
-Stable tag: 3.6.2.3
+Requires at least: 3.2
+Tested up to: 3.3
+Stable tag: 3.6.2.4
 This plugin replaces the default WordPress editor with <a href="http://ckeditor.com/">CKEditor</a>.
 
 == Description ==
@@ -57,7 +57,7 @@ Features:
 
 == Changelog ==
 
-= V3.6.2.4 DEV - 13.12.2011 =
+= V3.6.2.4 - 13.12.2011 =
 
  * Fix problems with upgrade and working correctly in new Wordpress 3.3 “Sonny”.
  * Fix problem with loading CKEditor inside element with id 'content' which is not textarea.

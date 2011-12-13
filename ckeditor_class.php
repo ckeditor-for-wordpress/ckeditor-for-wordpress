@@ -3,7 +3,7 @@
 class ckeditor_wordpress {
 
     private static $instance;
-    public static $version = '3.6.2.3';
+    public static $version = '3.6.2.4';
     public static $default_options = array();
     public $options = array();
     public static $ckeditor_path = "";
