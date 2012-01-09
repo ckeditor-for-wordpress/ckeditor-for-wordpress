@@ -175,7 +175,7 @@ class ckeditor_wordpress {
         }
     }
 
-    private function can_upload() {
+    public function can_upload() {
         global $userdata;
         $user_level = intval($userdata->user_level);
         if ((function_exists('current_user_can') && current_user_can('upload_files')) || (isset($user_level) && $user_level >= 3)) {
