@@ -57,6 +57,10 @@ Features:
 
 == Changelog ==
 
+= V3.6.2.4 DEV - 09.01.2012 =
+
+ * Fix error: ckeditor_wordpress::can_upload() is private
+
 = V3.6.2.4 - 13.12.2011 =
 
  * Fix problems with upgrade and working correctly in new Wordpress 3.3 “Sonny”.
