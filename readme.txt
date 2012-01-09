@@ -57,8 +57,9 @@ Features:
 
 == Changelog ==
 
-= V3.6.2.4 DEV - 09.01.2012 =
+= V3.6.2 DEV - 09.01.2012 =
 
+ * Fix bug: CKEditor plugin, Uploading where admin is restricted to https
  * Fix error: ckeditor_wordpress::can_upload() is private
 
 = V3.6.2.4 - 13.12.2011 =
