@@ -682,7 +682,9 @@ class ckeditor_wordpress {
             $output['additionalButtons'] = apply_filters('ckeditor_buttons', array());
             foreach ((array) $options['plugins'] as $name => $val) {
                 if ($val == 't' && !isset($output['externalPlugins'][$name])) {
-                    $output['externalPlugins'][$name] = $this->plugin_path . 'ckeditor/plugins/' . $name . '/';
+                  // skip adding plugin when  NextGEN Gallery plugin is installed and user has not permissions to use it
+                  if ($name == 'nextgen' && (!current_user_can('NextGEN Use TinyMCE') ||  !get_user_option('rich_editing') == 'true') ) continue;
+                  $output['externalPlugins'][$name] = $this->plugin_path . 'ckeditor/plugins/' . $name . '/';
                 } else if ($val == 'f' && isset($output['externalPlugins'][$name])) {
                     unset($output['externalPlugins'][$name]);
                 }

@@ -57,8 +57,9 @@ Features:
 
 == Changelog ==
 
-= V3.6.2 DEV - 09.01.2012 =
+= V3.6.2.5 DEV - 13.01.2012 =
 
+ * Fix bug: Try to load nextgen plugin button when user has no permission to do this
  * Fix bug: CKEditor plugin, Uploading where admin is restricted to https
  * Fix error: ckeditor_wordpress::can_upload() is private
 
