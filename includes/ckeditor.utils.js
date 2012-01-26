@@ -447,6 +447,17 @@ var tinyMCEPreInit =  {
     }
 };
 
+var tinyMCEPopup = {
+        onInit : {
+            add : function() {return ;}
+        },
+        editor : {
+          windowManager : {
+            createInstance : function(id) {return; }
+          }
+        }
+    };
+
 //function to move cursor after fake gallery image. Turn on frame show
 function updateCkeGallery()
 {

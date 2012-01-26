@@ -18,13 +18,16 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>StarRating</title>
-	<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php echo get_option('blog_charset'); ?>" />
-	<script language="javascript" type="text/javascript" src="<?php echo get_option('siteurl') ?>/wp-includes/js/tinymce/utils/mctabs.js"></script>
-    <script language="javascript" type="text/javascript" src="<?php echo CKEDITOR_PLUGIN_URL ?>plugins/gd-star-rating/tinymce.js"></script>
-    <link rel="stylesheet" href="<?php echo get_option('siteurl') ?>/wp-includes/js/tinymce/themes/advanced/skins/wp_theme/dialog.css?ver=327-1235100-vvq6.2.14line3" />
-    <link rel="stylesheet" href="<?php echo CKEDITOR_PLUGIN_URL ?>plugins/gd-star-rating/ckeditor.css" type="text/css" media="screen" />
-	<base target="_self" />
+  <title>StarRating</title>
+  <meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php echo get_option('blog_charset'); ?>" />
+  <script type="text/javascript">
+    var tinyMCEPopup = window.parent.tinyMCEPopup;
+  </script>
+  <script language="javascript" type="text/javascript" src="<?php echo get_option('siteurl') ?>/wp-includes/js/tinymce/utils/mctabs.js"></script>
+  <script language="javascript" type="text/javascript" src="<?php echo CKEDITOR_PLUGIN_URL ?>plugins/gd-star-rating/tinymce.js"></script>
+  <link rel="stylesheet" href="<?php echo get_option('siteurl') ?>/wp-includes/js/tinymce/themes/advanced/skins/wp_theme/dialog.css?ver=327-1235100-vvq6.2.14line3" />
+  <link rel="stylesheet" href="<?php echo CKEDITOR_PLUGIN_URL ?>plugins/gd-star-rating/ckeditor.css" type="text/css" media="screen" />
+  <base target="_self" />
 </head>
 <body>
 <form name="StarRating" action="#">
