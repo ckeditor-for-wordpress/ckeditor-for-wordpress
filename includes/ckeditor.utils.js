@@ -153,6 +153,10 @@ jQuery(document).ready(function () {
             if ( jQuery('#'+ckeditorSettings.textarea_id).length && typeof CKEDITOR.instances[ckeditorSettings.textarea_id] == 'undefined' ) {
                 CKEDITOR.replace(ckeditorSettings.textarea_id, ckeditorSettings.configuration);
                 editorCKE = CKEDITOR.instances[ckeditorSettings.textarea_id];
+                //add afterCommandExec exect to last created CKEditor instance
+                editorCKE.on( 'afterCommandExec', function(ev) {
+                    afterCommandEvent(ev);
+                  });
             }
 
             window.tinyMCE = tinymce =  getTinyMCEObject();
@@ -170,20 +174,21 @@ jQuery(document).ready(function () {
 
 });
 function ckeditorOn(id) {
+    var instance;
     if (typeof(id) != 'undefined' && typeof(CKEDITOR.instances[id]) == 'undefined' )
     {
         setUserSetting( 'editor', 'tinymce' );
         jQuery('#quicktags').hide();
         jQuery('#edButtonPreview').addClass('active');
         jQuery('#edButtonHTML').removeClass('active');
-        CKEDITOR.replace(id, ckeditorSettings.configuration);
+        instance = CKEDITOR.replace(id, ckeditorSettings.configuration);
         if (typeof ckeditorSettings.configuration['extraCss'] != 'undefined')
         {
             CKEDITOR.instances[id].addCss(ckeditorSettings.configuration['extraCss']);
         }
     }
     if ( jQuery('textarea#'+ckeditorSettings.textarea_id).length && (typeof(CKEDITOR.instances) == 'undefined' || typeof(CKEDITOR.instances[ckeditorSettings.textarea_id]) == 'undefined' ) && jQuery("#"+ckeditorSettings.textarea_id).parent().parent().attr('id') != 'quick-press') {
-        CKEDITOR.replace(ckeditorSettings.textarea_id, ckeditorSettings.configuration);
+        instance =  CKEDITOR.replace(ckeditorSettings.textarea_id, ckeditorSettings.configuration);
         if (typeof ckeditorSettings.configuration['extraCss'] != 'undefined')
         {
             CKEDITOR.instances[ckeditorSettings.textarea_id].addCss(ckeditorSettings.configuration['extraCss']);
@@ -201,6 +206,10 @@ function ckeditorOn(id) {
             }
         }
     }
+    //add afterCommandExec exect to last created CKEditor instance
+    instance.on( 'afterCommandExec', function(ev) {
+      afterCommandEvent(ev);
+    });
 }
 
 function ckeditorOff(id) {
@@ -465,4 +474,10 @@ function updateCkeGallery()
     jQuery("#add_image").bind('click',function(){
         return true;
     });
+}
+function afterCommandEvent(ev)
+{
+  if (ev.data.name != 'maximize') { return; }
+    //if maximize button was clicked hide/show WP admin bar - prevention of hiding buttton under WP admin bar
+    if (ev.data.command.state == CKEDITOR.TRISTATE_ON) { jQuery("#wpadminbar").hide() } else { jQuery("#wpadminbar").show() }
 }
