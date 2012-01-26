@@ -200,6 +200,17 @@ class ckeditor_wordpress {
             #icon-wp-ckeditor {background: transparent url(<?php echo $this->plugin_path; ?>images/ckeditor_ico32.png) no-repeat;}
         </style>
         <?php
+        //if qTranslate plugin is enabled
+        if (is_plugin_active('qtranslate/qtranslate.php'))
+        {
+          $this->generate_js_options(false);
+          echo '<script type="text/javascript" src="'.$this->ckeditor_path . $this->options['advanced']['load_method'].'"></script>';
+          echo '<script type="text/javascript" src="'.$this->plugin_path . 'includes/ckeditor.utils.js"></script>';
+          global $q_config;
+          $q_config['js']['qtrans_tinyMCEOverload'] = '';
+          $q_config['js']['qtrans_disable_old_editor'] = '';
+          $q_config['js']['qtrans_hook_on_tinyMCE'] = 'qtrans_hook_on_tinyMCE = function(id) {};';
+        }
     }
 
     public function user_personalopts_update() {

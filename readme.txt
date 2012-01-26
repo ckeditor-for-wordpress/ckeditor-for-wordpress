@@ -57,8 +57,8 @@ Features:
 
 == Changelog ==
 
-= V3.6.2.5 DEV - 13.01.2012 =
-
+= V3.6.2.5 DEV - 26.01.2012 =
+ * Fix bug: CKEditor plugin doesn't work with latest qTranslate plugin (http://wordpress.org/support/topic/plugin-ckeditor-for-wordpress-qtranslate-not-working)
  * Fix bug: Try to load nextgen plugin button when user has no permission to do this
  * Fix bug: CKEditor plugin, Uploading where admin is restricted to https
  * Fix error: ckeditor_wordpress::can_upload() is private

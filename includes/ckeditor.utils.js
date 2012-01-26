@@ -62,7 +62,7 @@ jQuery(document).ready(function () {
 
         if(typeof(window.switchEditors) != 'undefined') {
             window.switchEditors.go = function(id, mode) {
-                if ('tinymce' == mode || 'tmce' == mode) {
+               if ('tinymce' == mode || 'tmce' == mode) {
                     jQuery('#'+id).closest('.html-active').removeClass('html-active').addClass('tmce-active');
                     ckeditorOn(id);
                 } else {
@@ -73,8 +73,72 @@ jQuery(document).ready(function () {
             };
         }
     }
+    //if qTranslate plugin enabled
     if ( ckeditorSettings.qtransEnabled ){
+      //custom version of switchEditors function when qTranslate plugin is enabled
+      if(typeof(window.switchEditors) != 'undefined') {
+        window.switchEditors.go = function(id, lang) {
 
+              id = id || 'content';
+              lang = lang || 'toggle';
+
+              if ( 'toggle' == lang ) {
+                if ( ed && !ed.isHidden() )
+                  lang = 'html';
+                else
+                  lang = 'tmce';
+              } else if( 'tinymce' == lang )
+                lang = 'tmce';
+
+              var inst = tinyMCE.get('qtrans_textarea_' + id);
+              var vta = document.getElementById('qtrans_textarea_' + id);
+              var ta = document.getElementById(id);
+              var wrap_id = 'wp-'+id+'-wrap';
+
+              // update merged content
+              if(inst && ! inst.isHidden()) {
+                tinyMCE.triggerSave();
+              } else {
+                qtrans_save(vta.value);
+              }
+              // check if language is already active
+              if(lang!='tmce' && lang!='html' && document.getElementById('qtrans_select_'+lang).className=='wp-switch-editor switch-tmce switch-html') {
+                return;
+              }
+
+              if(lang!='tmce' && lang!='html') {
+                document.getElementById('qtrans_select_'+qtrans_get_active_language()).className='wp-switch-editor';
+                document.getElementById('qtrans_select_'+lang).className='wp-switch-editor switch-tmce switch-html';
+              }
+              if(lang=='html') {
+                if ( inst && inst.isHidden() )
+                  return false;
+                if ( inst ) {
+                  vta.style.height = inst.getContentAreaContainer().offsetHeight + 20 + 'px';
+                  inst.hide();
+                }
+                jQuery("#"+wrap_id).removeClass('tmce-active');
+                jQuery("#"+wrap_id).addClass('html-active');
+                setUserSetting( 'editor', 'html' );
+              } else if(lang=='tmce') {
+                if(inst && ! inst.isHidden())
+                  return false;
+                if ( tinyMCEPreInit.mceInit[id] && tinyMCEPreInit.mceInit[id].wpautop )
+                  vta.value = this.wpautop(qtrans_use(qtrans_get_active_language(),ta.value));
+                if (inst) {
+                  inst.show();
+                } else {
+                  qtrans_hook_on_tinyMCE(id);
+                }
+                jQuery("#"+wrap_id).removeClass('html-active');
+                jQuery("#"+wrap_id).addClass('tmce-active');
+                setUserSetting('editor', 'tinymce');
+              } else {
+                // switch content
+                qtrans_assign('qtrans_textarea_'+id,qtrans_use(lang,ta.value));
+              }
+        }
+      }
         jQuery('#edButtonHTML').addClass('active');
         jQuery('#edButtonPreview').removeClass('active');
         if(ckeditorSettings.textarea_id != 'comment'){
@@ -365,6 +429,10 @@ function getTinyMCEObject()
                     }
                 }
             },
+            DOM :{
+                removeClass : function(id, className) {return;},
+                addClass : function(id, className) {return;}
+            },
             addI18n : function(language, param){
                 return ;
             }
@@ -377,8 +445,8 @@ var tinyMCEPreInit =  {
     mceInit : function(){
         language : 'en';
     }
-
 };
+
 //function to move cursor after fake gallery image. Turn on frame show
 function updateCkeGallery()
 {
