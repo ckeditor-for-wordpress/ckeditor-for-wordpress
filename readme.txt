@@ -58,6 +58,7 @@ Features:
 == Changelog ==
 
 = V3.6.2.5 DEV - 26.01.2012 =
+ * Fix bug: Fix notice error of auto detecting language when viewing website (http://wordpress.org/support/topic/throwing-notice-error-when-viewing-website)
  * Fix bug: Fix for hidden buttons below Wordpress admin bar when 'Maximize' button clicked
  * Fix bug: Fix support for NextGEN Gallery Plugin (http://wordpress.org/support/topic/plugin-ckeditor-for-wordpress-ckeditor-and-nextgen-button-problem)
  * Fix bug: Fix support for gd-star-rating plugin

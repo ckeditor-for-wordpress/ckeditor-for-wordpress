@@ -665,7 +665,7 @@ class ckeditor_wordpress {
                 break;
         }
 
-        if ($options['advanced']['detect_language_auto'] == 'f') {
+        if (isset($options['advanced']['detect_language_auto']) && $options['advanced']['detect_language_auto'] == 'f') {
             $settings['language'] = $options['advanced']['language'];
         }
 
