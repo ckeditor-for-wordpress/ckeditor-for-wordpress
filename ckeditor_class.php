@@ -963,6 +963,10 @@ class ckeditor_wordpress {
 
 final class _WP_Editors {
 
+    public static function editor_settings($editor_id, $set) {
+
+    }
+
     public static function parse_settings($editor_id, $settings) {
         $set = wp_parse_args($settings, array(
             'wpautop' => true, // use wpautop?
