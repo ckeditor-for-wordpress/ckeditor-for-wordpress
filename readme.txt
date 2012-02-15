@@ -58,6 +58,7 @@ Features:
 == Changelog ==
 
 = V3.6.2.5 DEV - 26.01.2012 =
+ * Fix bug: Fix JavaScript error: instance is undefined
  * Fix bug: Call to undefined method _WP_Editors::editor_settings() (http://wordpress.org/support/topic/plugin-ckeditor-for-wordpress-error-on-activation)
  * Fix bug: Fix notice error of auto detecting language when viewing website (http://wordpress.org/support/topic/throwing-notice-error-when-viewing-website)
  * Fix bug: Fix for hidden buttons below Wordpress admin bar when 'Maximize' button clicked

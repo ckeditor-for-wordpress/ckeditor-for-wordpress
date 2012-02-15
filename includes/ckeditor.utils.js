@@ -206,10 +206,12 @@ function ckeditorOn(id) {
             }
         }
     }
-    //add afterCommandExec exect to last created CKEditor instance
-    instance.on( 'afterCommandExec', function(ev) {
-      afterCommandEvent(ev);
-    });
+    if (typeof(instance) != 'undefined') {
+        //add afterCommandExec exect to last created CKEditor instance
+        instance.on( 'afterCommandExec', function(ev) {
+          afterCommandEvent(ev);
+        });
+    }
 }
 
 function ckeditorOff(id) {
