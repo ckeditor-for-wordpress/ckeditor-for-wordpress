@@ -2,7 +2,7 @@
 Contributors: wiktor, michal_cksource, dczepierga, Dean Lee
 Tags: post, wysiwyg, CKEditor, FCKeditor, editor, rich text, rte, rich text editor
 Requires at least: 3.2
-Tested up to: 3.3
+Tested up to: 3.3.1
 Stable tag: 3.6.2.5
 This plugin replaces the default WordPress editor with <a href="http://ckeditor.com/">CKEditor</a>.
 
@@ -57,7 +57,12 @@ Features:
 
 == Changelog ==
 
+= V3.6.2.6 DEV - 23.02.2012 =
+
+ * Fix look of plugin's overview page
+
 = V3.6.2.5 - 23.02.2012 =
+
  * Fix bug: Fix JavaScript error: instance is undefined
  * Fix bug: Call to undefined method _WP_Editors::editor_settings() (http://wordpress.org/support/topic/plugin-ckeditor-for-wordpress-error-on-activation)
  * Fix bug: Fix notice error of auto detecting language when viewing website (http://wordpress.org/support/topic/throwing-notice-error-when-viewing-website)
