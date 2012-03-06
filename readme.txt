@@ -57,8 +57,9 @@ Features:
 
 == Changelog ==
 
-= V3.6.2.6 DEV - 23.02.2012 =
+= V3.6.2.6 DEV - 06.03.2012 =
 
+ * Fix bug: Checking if SSL being used (http://wordpress.org/support/topic/plugin-ckeditor-for-wordpress-blank-white-edit-screen)
  * Fix look of plugin's overview page
 
 = V3.6.2.5 - 23.02.2012 =

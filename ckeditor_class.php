@@ -27,7 +27,7 @@ class ckeditor_wordpress {
         } else {
             $this->plugin_path = $siteurl . 'wp-content/plugins/' . basename(dirname(__FILE__)) . '/';
         }
-        if($_SERVER['HTTPS']) {
+        if(is_ssl()) {
             $siteurl = str_replace('http:', 'https:', $siteurl);
             $this->plugin_path = str_replace('http:', 'https:', $this->plugin_path);
         }
