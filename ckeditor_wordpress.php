@@ -14,6 +14,7 @@ add_action('init', 'ckeditor_init');
 function ckeditor_init(){
   global $ckeditor_wordpress;
   require_once 'ckeditor_class.php';
+  require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
   if(is_admin()){
       add_action('admin_menu', array(&$ckeditor_wordpress, 'add_option_page'));
@@ -45,6 +46,5 @@ function ckeditor_init(){
   /** temporary for gd-star-rating **/
   add_filter( 'ckeditor_external_plugins', array(&$ckeditor_wordpress, 'starrating_external_plugin') );
   add_filter( 'ckeditor_buttons', array(&$ckeditor_wordpress, 'starrating_buttons') );
-
 }
 ?>

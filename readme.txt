@@ -57,8 +57,9 @@ Features:
 
 == Changelog ==
 
-= V3.6.2.6 DEV - 06.03.2012 =
+= V3.6.2.6 DEV - 12.03.2012 =
 
+ * Fix bug: On page with comment form JavaScript errors occurs when W3 Total cache plugin is used. Turn off minfiy on page with comment form.
  * Fix bug: Checking if SSL being used (http://wordpress.org/support/topic/plugin-ckeditor-for-wordpress-blank-white-edit-screen)
  * Fix look of plugin's overview page
 

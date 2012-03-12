@@ -515,13 +515,20 @@ class ckeditor_wordpress {
         if ($this->options['appearance']['comment_editor'] != 't') {
             return;
         }
-
+        // if W3 Total Cache is enabled, turn off minify for page with CKEditor in comments
+        if ( is_plugin_active('w3-total-cache/w3-total-cache.php') ) {
+          define('DONOTMINIFY', true);
+        }
         wp_enqueue_script('ckeditor', $this->ckeditor_path . $this->options['advanced']['load_method']);
         wp_enqueue_script('ckeditor.utils', $this->plugin_path . 'includes/ckeditor.utils.js', array('ckeditor', 'jquery'));
         wp_deregister_script('comment-reply');
         wp_register_script('comment-reply', $this->plugin_path . 'includes/ckeditor.comment-reply.js', array('ckeditor', 'ckeditor.utils'), "20100901");
         $this->generate_js_options(true);
         $this->add_wpcompat_styles();
+        // if W3 Total Cache is enabled, turn on minify
+        if ( is_plugin_active('w3-total-cache/w3-total-cache.php') ) {
+          define('DONOTMINIFY', false);
+        }
     }
 
     public function add_wpcompat_styles() {
