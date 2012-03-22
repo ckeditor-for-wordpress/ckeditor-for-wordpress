@@ -120,17 +120,21 @@ function ckeditor_overview_server() {
         <tr>
           <td><?php _e('PHP Memory Limit', 'ckeditor_wordpress'); ?></td><td><?php echo $memory_limit; ?></td>
         </tr>
-        <?php foreach ($php_info['gd'] as $key => $val) {
-            if (!preg_match('/(WBMP|XBM|Freetype|T1Lib)/i', $key) && $key != 'Directive' && $key != 'gd.jpeg_ignore_warning') {
-              echo '<tr>';
-              echo '<td>'.$key.'</td>';
-              if (stripos($key, 'support') === false) {
-                echo '<td>'.$val.'</td>';
+        <?php
+          if (isset($php_info['gd']) && is_array($php_info['gd']))
+          {
+            foreach ($php_info['gd'] as $key => $val) {
+              if (!preg_match('/(WBMP|XBM|Freetype|T1Lib)/i', $key) && $key != 'Directive' && $key != 'gd.jpeg_ignore_warning') {
+                echo '<tr>';
+                echo '<td>'.$key.'</td>';
+                if (stripos($key, 'support') === false) {
+                  echo '<td>'.$val.'</td>';
+                }
+                else {
+                  echo '<td>'.ckeditor_colorify_value($val, 'enabled').'</td>';
+                }
+                echo '</tr>';
               }
-              else {
-                echo '<td>'.ckeditor_colorify_value($val, 'enabled').'</td>';
-              }
-              echo '</tr>';
             }
           }
         ?>
