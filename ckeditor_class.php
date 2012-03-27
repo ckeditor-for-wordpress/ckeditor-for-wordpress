@@ -4,10 +4,10 @@ class ckeditor_wordpress {
 
     private static $instance;
     public $version = '3.6.2.5';
-    public static $default_options = array();
+    public $default_options = array();
     public $options = array();
-    public static $ckeditor_path = "";
-    public static $plugin_path = "";
+    public $ckeditor_path = "";
+    public $plugin_path = "";
     public $editable_files = array(); //array with files which can be edited
 
     public static function getInstance() {
@@ -525,10 +525,6 @@ class ckeditor_wordpress {
         wp_register_script('comment-reply', $this->plugin_path . 'includes/ckeditor.comment-reply.js', array('ckeditor', 'ckeditor.utils'), "20100901");
         $this->generate_js_options(true);
         $this->add_wpcompat_styles();
-        // if W3 Total Cache is enabled, turn on minify
-        if ( is_plugin_active('w3-total-cache/w3-total-cache.php') ) {
-          define('DONOTMINIFY', false);
-        }
     }
 
     public function add_wpcompat_styles() {
