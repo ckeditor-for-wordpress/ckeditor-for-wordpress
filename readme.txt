@@ -57,8 +57,9 @@ Features:
 
 == Changelog ==
 
-= V3.6.2.6 DEV - 27.03.2012 =
+= V3.6.2.6 DEV - 28.03.2012 =
 
+ * Fix bug: Duplicate class attribute for image caption (http://wordpress.org/support/topic/image-attachment-class-problem)
  * Fix PHP E_STRICT warnings (http://wordpress.org/support/topic/php-strict-errors)
  * Fix PHP Notice: Invalid argument supplied for foreach() in overview.php file.
  * Fix bug: On page with comment form JavaScript errors occurs when W3 Total cache plugin is used. Turn off minfiy on page with comment form.
