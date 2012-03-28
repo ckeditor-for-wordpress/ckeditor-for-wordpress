@@ -59,6 +59,7 @@ Features:
 
 = V3.6.2.6 DEV - 28.03.2012 =
 
+ * Refactor code: changes leading spaces for tabs to according Wordpress code syntax sandard
  * Fix bug: Duplicate class attribute for image caption (http://wordpress.org/support/topic/image-attachment-class-problem)
  * Fix PHP E_STRICT warnings (http://wordpress.org/support/topic/php-strict-errors)
  * Fix PHP Notice: Invalid argument supplied for foreach() in overview.php file.

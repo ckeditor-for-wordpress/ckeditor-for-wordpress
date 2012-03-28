@@ -38,7 +38,7 @@ CKEDITOR.editorConfig = function(config) {
 			['Format','Font','FontSize'],
 			['TextColor','BGColor'],
 			['Maximize', 'ShowBlocks'],['MediaEmbed'],['Iframe']
-		 ];
+		];
 
 	// mediaembed plugin
 	// config.extraPlugins += (config.extraPlugins ? ',mediaembed' : 'mediaembed' );
