@@ -30,6 +30,11 @@ function CheckAuthentication()
 	return $ckeditor_wordpress->file_browser == 'ckfinder' && current_user_can('ckeditor_ckfinder_access');
 }
 
+//if $config is object , change it to empty array
+//some plugins like W3_Total_Cache creates config object and save it in $config variable
+if(is_object($config)) {
+	$config = array();
+}
 // LicenseKey : Paste your license key here. If left blank, CKFinder will be
 // fully functional, in demo mode.
 $config['LicenseName'] = !empty($ckeditor_wordpress->options['ckfinder']['license_name']) ? $ckeditor_wordpress->options['ckfinder']['license_name'] : '';
@@ -114,9 +119,9 @@ Many "AccessControl" entries can be added. All attributes are optional.
 Subfolders inherit their default settings from their parents' definitions.
 
 	- The "role" attribute accepts the special '*' value, which means
-	  "everybody".
+		"everybody".
 	- The "resourceType" attribute accepts the special value '*', which
-	  means "all resource types".
+		means "all resource types".
 */
 
 $config['AccessControl'][] = Array(
@@ -193,17 +198,17 @@ $config['ResourceType'][] = Array(
 		'deniedExtensions' => '');
 
 /*
- Due to security issues with Apache modules, it is recommended to leave the
- following setting enabled.
+Due to security issues with Apache modules, it is recommended to leave the
+following setting enabled.
 
- How does it work? Suppose the following:
+How does it work? Suppose the following:
 
 	- If "php" is on the denied extensions list, a file named foo.php cannot be
-	  uploaded.
+		uploaded.
 	- If "rar" (or any other) extension is allowed, one can upload a file named
-	  foo.rar.
+		foo.rar.
 	- The file foo.php.rar has "rar" extension so, in theory, it can be also
-	  uploaded.
+		uploaded.
 
 In some conditions Apache can treat the foo.php.rar file just like any PHP
 script and execute it.
