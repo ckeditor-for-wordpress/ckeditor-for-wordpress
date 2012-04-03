@@ -57,8 +57,9 @@ Features:
 
 == Changelog ==
 
-= V3.6.2.6 DEV - 28.03.2012 =
+= V3.6.2.6 DEV - 03.04.2012 =
 
+ * Change default settings for CKEditor Output Formatting. This should fix problems with inserting youtube videos to post.
  * Fix bug: CKFinder can not use it's config variable when this variable is object
  * Refactor code: changes leading spaces for tabs to according Wordpress code syntax sandard
  * Fix bug: Duplicate class attribute for image caption (http://wordpress.org/support/topic/image-attachment-class-problem)

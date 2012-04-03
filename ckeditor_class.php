@@ -87,8 +87,8 @@ class ckeditor_wordpress {
 				'entities' => 't',
 				'p_indent' => 't',
 				'p_break_before_open' => 't',
-				'p_break_after_open' => 'f',
-				'p_break_before_close' => 'f',
+				'p_break_after_open' => 't',
+				'p_break_before_close' => 't',
 				'p_break_after_close' => 't',
 			),
 			'plugins' => array(
