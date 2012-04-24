@@ -57,7 +57,7 @@ Features:
 
 == Changelog ==
 
-= V3.6.2.6 DEV - 03.04.2012 =
+= V3.6.3 DEV - 03.04.2012 =
 
  * Change default settings for CKEditor Output Formatting. This should fix problems with inserting youtube videos to post.
  * Fix bug: CKFinder can not use it's config variable when this variable is object
