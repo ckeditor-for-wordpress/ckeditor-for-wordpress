@@ -57,8 +57,9 @@ Features:
 
 == Changelog ==
 
-= V3.6.3 DEV - 03.04.2012 =
+= V3.6.3 DEV - 24.04.2012 =
 
+ * Update CKEditor to 3.6.3 version
  * Change default settings for CKEditor Output Formatting. This should fix problems with inserting youtube videos to post.
  * Fix bug: CKFinder can not use it's config variable when this variable is object
  * Refactor code: changes leading spaces for tabs to according Wordpress code syntax sandard
