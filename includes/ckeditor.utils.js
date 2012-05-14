@@ -437,7 +437,8 @@ function getTinyMCEObject()
 								return pattern.test(hasClass);
 							}
 					}
-			}
+			},
+			get : function(id) {return;}
 			},
 			DOM :{
 				removeClass : function(id, className) {return;},
