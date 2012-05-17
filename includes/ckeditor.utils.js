@@ -166,10 +166,13 @@ jQuery(document).ready(function () {
 			ckeditorOn();
 		}
 	}
-
 	jQuery("#update-gallery").click(function(){
 		updateCkeGallery();
 	});
+
+	if (ckeditorSettings.excerpt_state && jQuery("textarea#excerpt").length > 0) {
+		ckeditorOn('excerpt');
+	}
 
 });
 function ckeditorOn(id) {

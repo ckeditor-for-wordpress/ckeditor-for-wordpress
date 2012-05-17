@@ -57,9 +57,11 @@ Features:
 
 == Changelog ==
 
-= V3.6.3 DEV - 14.05.2012 =
+= V3.6.3 DEV - 16.05.2012 =
 
  * Update CKEditor to 3.6.3 version
+ * New feature: Add option to use CKEditor in excerpt field (http://wordpress.org/support/topic/plugin-ckeditor-for-wordpress-having-ckeditor-for-excerpt).
+ * Fix bug: remove calling for non-existent css file
  * Fix bug with File Gallery plugin compatibilty: http://wordpress.org/support/topic/plugin-ckeditor-for-wordpress-ckeditor-isnt-show-by-default-when-page-loads
  * Change default settings for CKEditor Output Formatting. This should fix problems with inserting youtube videos to post.
  * Fix bug: CKFinder can not use it's config variable when this variable is object

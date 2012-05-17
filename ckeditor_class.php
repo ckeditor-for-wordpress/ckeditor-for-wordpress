@@ -45,6 +45,7 @@ class ckeditor_wordpress {
 				'uicolor_user' => '',
 				/* basic post settings */
 				'default_state' => 't',
+				'excerpt_state' => 'f',
 				'post_toolbar' => 'WordpressFull',
 				'post_editor_height' => 300,
 				/* basic comment settings */
@@ -235,7 +236,6 @@ class ckeditor_wordpress {
 		// TODO: include postbox/dashboard only on overview page
 		if (isset($_GET['page']) && $_GET['page'] == 'ckeditor_settings') {
 			wp_enqueue_script('postbox');
-			wp_admin_css('css/dashboard');
 		}
 
 		$basic_page = add_submenu_page('ckeditor_settings', __('CKEditor Basic Settings'), __('Basic Settings'), 'administrator', 'ckeditor_basic_options', array(&$this, 'option_page'));
@@ -626,6 +626,7 @@ class ckeditor_wordpress {
 			'textarea_id' => ($is_comment ? 'comment' : 'content'),
 			'pluginPath' => $this->plugin_path,
 			'autostart' => ($options['appearance']['default_state'] == 't' || $is_comment ? true : false),
+			'excerpt_state' => ($options['appearance']['excerpt_state'] == 't' ? true : false),
 			'qtransEnabled' => ($this->is_plugin_active("qtrans") ? true : false),
 			'outputFormat' => array(
 				'indent' => ($options['advanced']['p_indent'] == 't' ? true : false),

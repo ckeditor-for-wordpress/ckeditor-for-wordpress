@@ -45,6 +45,16 @@
 				</td>
 			</tr>
 			<tr valign="top">
+				<th scope="row"><?php _e('Excerpt state', 'ckeditor_wordpress') ?></th>
+				<td>
+					<select name="options[appearance][excerpt_state]">
+						<option value="t"<?php echo ($this->options['appearance']['excerpt_state']=='t'?' selected="selected"':'') ?>>Enabled</option>
+						<option value="f"<?php echo ($this->options['appearance']['excerpt_state']=='f'?' selected="selected"':'') ?>>Disabled</option>
+					</select>
+					<div class="description"><?php _e('When enabled , CKEditor will be used in excerpt field.', 'ckeditor_wordpress') ?></div>
+				</td>
+			</tr>
+			<tr valign="top">
 				<th scope="row"><?php _e('Editor toolbar', 'ckeditor_wordpress') ?></th>
 				<td>
 					<select name="options[appearance][post_toolbar]">
