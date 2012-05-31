@@ -39,7 +39,10 @@ CKEDITOR.editorConfig = function(config) {
 			['TextColor','BGColor'],
 			['Maximize', 'ShowBlocks'],['MediaEmbed'],['Iframe']
 		];
-
+	
+	//IE: remove border of image when is as a link
+	config.extraCss = "a img { border: 0px\\9; }";
+		
 	// mediaembed plugin
 	// config.extraPlugins += (config.extraPlugins ? ',mediaembed' : 'mediaembed' );
 	// CKEDITOR.plugins.addExternal('mediaembed', ckeditorSettings.pluginPath + 'plugins/mediaembed/');

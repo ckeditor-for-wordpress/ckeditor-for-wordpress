@@ -19,6 +19,7 @@ jQuery(document).ready(function () {
 					evt.editor.config['toolbar_' + evt.editor.config.toolbar].push(ckeditorSettings.additionalButtons[x]);
 				}
 			}
+			evt.editor.addCss(evt.editor.config.extraCss);
 		}
 	};
 	CKEDITOR.on( 'instanceReady', function( ev )
