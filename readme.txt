@@ -57,8 +57,9 @@ Features:
 
 == Changelog ==
 
-= V3.6.3 DEV - 16.05.2012 =
+= V3.6.3 DEV - 06.06.2012 =
 
+ * Fix bug: CKEditor breaks ajax comment reply function on dasboard (http://wordpress.org/support/topic/ckeditor-breaks-wordpress-built-in-ajax-reply-function?replies=2)
  * Fix bug: IE - remove border of image when is as a link
  * Update CKEditor to 3.6.3 version
  * New feature: Add option to use CKEditor in excerpt field (http://wordpress.org/support/topic/plugin-ckeditor-for-wordpress-having-ckeditor-for-excerpt).

@@ -171,10 +171,40 @@ jQuery(document).ready(function () {
 		updateCkeGallery();
 	});
 
-	if (ckeditorSettings.excerpt_state && jQuery("textarea#excerpt").length > 0) {
-		ckeditorOn('excerpt');
+	if (ckeditorSettings.excerpt_state && jQuery("textarea#excerpt").length > 0 && jQuery("#postexcerpt-hide").attr('checked') == 'checked') {
+		//ckeditorOn('excerpt');
+		CKEDITOR.replace('excerpt', ckeditorSettings.configuration);
 	}
-
+	if (typeof window.tinyMCE != 'undefined') {
+		if (typeof QTags != 'undefined') {
+			jQuery(".row-actions span.reply a").live('click', function(){
+				if (typeof CKEDITOR.instances['replycontent'] != 'undefined') {
+					ckeditorOff('replycontent');
+				}
+				CKEDITOR.replace('replycontent', {'basicEntities' : false, 'entities': false,'toolbar_Comments' : [{ name: 'basicstyles', items : [ 'Bold','Italic','Underline'] }, { name: 'links', items : [ 'Link','Unlink' ] },{ name: 'paragraph', items : [ 'NumberedList','BulletedList'] }, { name: 'insert', items : [ 'Image' ] } ],  'toolbar' : 'Comments'});
+			});
+			jQuery("#replyrow a.save").unbind('click').live('click', function(){
+				var data = null;
+				if (typeof CKEDITOR.instances['replycontent'] != 'undefined') {
+					data = CKEDITOR.instances['replycontent'].getData();
+				}
+				if (data.length > 0 ) {
+					jQuery('textarea#replycontent').html(data);
+					ckeditorOff('replycontent');
+				}
+				commentReply.send();
+				return;
+			});
+			jQuery("#replyrow a.cancel").unbind('click').live('click', function(){
+				commentReply.revert()
+				ckeditorOff('replycontent');
+				return;
+			});
+			QTags.getInstance = function (editor_id) {
+				return window.tinyMCE;
+			}
+		}
+	}
 });
 function ckeditorOn(id) {
 	var instance;
@@ -472,8 +502,9 @@ var tinyMCEPopup = {
 		}
 	}
 };
-
-//function to move cursor after fake gallery image. Turn on frame show
+/*
+ * Function to move cursor after fake gallery image. Turn on frame show
+ */
 function updateCkeGallery()
 {
 	jQuery("#add_image").unbind('click');
