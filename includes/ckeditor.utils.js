@@ -188,7 +188,7 @@ jQuery(document).ready(function () {
 				if (typeof CKEDITOR.instances['replycontent'] != 'undefined') {
 					data = CKEDITOR.instances['replycontent'].getData();
 				}
-				if (data.length > 0 ) {
+				if (data != null && data.length > 0 ) {
 					jQuery('textarea#replycontent').html(data);
 					ckeditorOff('replycontent');
 				}

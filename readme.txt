@@ -59,9 +59,9 @@ Features:
 
 = V3.6.3 DEV - 06.06.2012 =
 
+ * Update CKEditor to 3.6.3 version
  * Fix bug: CKEditor breaks ajax comment reply function on dasboard (http://wordpress.org/support/topic/ckeditor-breaks-wordpress-built-in-ajax-reply-function?replies=2)
  * Fix bug: IE - remove border of image when is as a link
- * Update CKEditor to 3.6.3 version
  * New feature: Add option to use CKEditor in excerpt field (http://wordpress.org/support/topic/plugin-ckeditor-for-wordpress-having-ckeditor-for-excerpt).
  * Fix bug: remove calling for non-existent css file
  * Fix bug with File Gallery plugin compatibilty: http://wordpress.org/support/topic/plugin-ckeditor-for-wordpress-ckeditor-isnt-show-by-default-when-page-loads
