@@ -57,9 +57,10 @@ Features:
 
 == Changelog ==
 
-= 3.6.4 DEV - 19.07.2012 =
+= 3.6.4 DEV - 19.09.2012 =
 
  * Update CKEditor to 3.6.4 version
+ * Fix bug: Caption to image doesn't work with Wordpress 3.4 (http://wordpress.org/support/topic/incompatible-with-wordpress-34)
  * New feature: Link to existing content (http://wordpress.org/support/topic/plugin-ckeditor-for-wordpress-link-to-existing-content)
 
 = V3.6.3 - 21.06.2012 =

@@ -239,15 +239,16 @@ wpImage = {
 		t.getImageData();
 		c = el.getAttribute('class');
 
-		pattern = /caption=("|'|&quot;)(.*)("|'|&quot;)/i;
-		match = pattern.exec(el.getAttribute('data-cke-caption'));
-		if (match  && match[2])
+/*		pattern = /caption=("|'|&quot;)(.*)("|'|&quot;)/i;
+		match = pattern.exec(el.getAttribute('data-cke-caption'));*/
+
+		if (/*match  && match[2]*/ el.getAttribute('data-cke-caption-text'))
 		{
-			tmp = match[2].replace(/&amp;/g,'&');
+			/*tmp = match[2].replace(/&amp;/g,'&');
 			tmp = tmp.replace(/&lt;/g,'<');
 			tmp = tmp.replace(/&gt;/g,'>');
-			f.img_cap.value = tmp;
-
+			f.img_cap.value = tmp;*/
+			f.img_cap.value = el.getAttribute('data-cke-caption-text');
 		}else
 		{
 			f.img_cap.value = '';
@@ -356,6 +357,7 @@ wpImage = {
 			//img_class = img_class.replace( /wp-caption/gi, '' );
 			el.removeClass('wp-caption');
 			el.removeAttribute('data-cke-caption');
+			el.removeAttribute('data-cke-caption-text');
 			window.parent.caption = '';
 		}
 		img_class = img_class.replace( /wp-caption/gi, '' );
@@ -438,7 +440,8 @@ wpImage = {
 			});
 			captionText = captionText.replace(/<br\/>|<br>|<br \>|<br \/ >|<br\/ >/i,'');
 			captionText = captionText.replace(/"/i,'&quot;');
-			el.setAttribute('data-cke-caption',' id="'+cap_id+'" align="'+t.align+'" width="'+f.width.value+'" caption="'+window.parent.CKEDITOR.tools.htmlEncode(captionText)+'"');
+			el.setAttribute('data-cke-caption',' id="'+cap_id+'" align="'+t.align+'" width="'+f.width.value+'"');
+			el.setAttribute('data-cke-caption-text',window.parent.CKEDITOR.tools.htmlEncode(captionText));
 			el.addClass('wp-caption');
 			el.addClass(t.align);
 		} else {
@@ -446,6 +449,7 @@ wpImage = {
 			f.img_cap.value = '';
 			f.width.value = '';
 			el.removeAttribute('data-cke-caption');
+			el.removeAttribute('data-cke-caption-text');
 			el.removeClass('wp-caption');
 
 			if ( DIV) {

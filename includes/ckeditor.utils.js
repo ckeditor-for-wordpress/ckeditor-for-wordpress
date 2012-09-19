@@ -353,23 +353,20 @@ function getTinyMCEObject()
 				{
 					if (command == "mceInsertContent")
 					{
-						pattern = /(\[caption.+\])/ig;
-						if (pattern.test(text))
-						{
-							text = text.replace(/&gt;/g, '>');
-							text = text.replace(/&lt;/g, '<');
-							pattern = /(<[\w'"=\s]+>([\S\s]+)<\/\S+>)/ig;
-							text= text.replace(pattern, function(match, cont)
+						//test if image has capiton and make necessary text format
+						pattern = /\[caption(.*)\]<.*>(.*)\[\/caption\]/i;
+						if (pattern.test(text)) {
+							replace_match = pattern.exec(text);
+							text = text.replace(/<img (.*) \/>/g, function( match, cont )
 							{
-								cont =  cont.replace(/<[\w'"=\s]+>([\S\s]+)<\/\S+>/ig, function(match, cont){
-									return cont;
+								cont = cont.replace(/class="(.*)"/g, function( match, cont ){
+									tmp = 'class="' + cont + ' wp-caption"';
+									return tmp;
 								});
-								return cont;
+								tmp = '<img ' + cont + ' data-cke-caption=\'' + replace_match[1] + '\' data-cke-caption-text=\'' + replace_match[2] + '\' />' ;
+								return tmp;
 							});
-							text = text.replace(/<br\/>|<br>|<br \>|<br \/ >|<br\/ >/i,'');
-							text = text.replace(/"/i,'&quot;');
 						}
-
 						//setTimeout is required in IE8 when inserting Image gallery from an external modal dialog
 						if (typeof editorCKE == 'undefined') editorCKE = CKEDITOR.instances[ckeditorSettings.textarea_id];
 						setTimeout(function(){
