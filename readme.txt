@@ -2,8 +2,8 @@
 Contributors: wiktor, michal_cksource, dczepierga, Dean Lee
 Tags: post, wysiwyg, CKEditor, FCKeditor, editor, rich text, rte, rich text editor
 Requires at least: 3.2
-Tested up to: 3.4
-Stable tag: 3.6.3
+Tested up to: 3.5
+Stable tag: 4.0
 This plugin replaces the default WordPress editor with <a href="http://ckeditor.com/">CKEditor</a>.
 
 == Description ==
@@ -16,7 +16,7 @@ It brings to the web common editing features found on desktop editing applicatio
 
 <strong>CKEditor</strong> is compatible with most internet browsers and operating systems, including:
 <ul>
-<li>Internet Explorer 6+</li>
+<li>Internet Explorer 7+</li>
 <li>Firefox 3.0+</li>
 <li>Safari</li>
 <li>Google Chrome</li>
@@ -25,14 +25,18 @@ It brings to the web common editing features found on desktop editing applicatio
 
 Live demo is available at <a href="http://wordpress.ckeditor.com/">http://wordpress.ckeditor.com/</a>.
 
-Features:
+= Upgrading =
+
+When upgrading from CKEditor For WordPress 3.6.3 to **CKEditor For WordPress 4.0**, make sure to **clear browser cache** (*Ctrl+Shift+Delete*).
+
+= Features =
 
 * Replace the default WordPress editor with CKEditor
 * Post comment with CKEditor to provide styled and colorful comments (Optional)
-* Build-in file manager and upload manager, also supports <a href="http://ckfinder.com">CKFinder</a> – an AJAX file browser
-* Build-in WordPress "read more" Button
+* Built-in file manager and upload manager, also supports <a href="http://ckfinder.com">CKFinder</a> – an AJAX file browser
+* Built-in WordPress "read more" Button
 * Integration plugin for <a href="http://wordpress.org/extend/plugins/vipers-video-quicktags/">Viper's Video Quicktags</a>
-* Intergation plugin for <a href="http://wordpress.org/extend/plugins/wp-polls/">Wp-Polls</a>
+* Integration plugin for <a href="http://wordpress.org/extend/plugins/wp-polls/">Wp-Polls</a>
 * Integration plugin for <a href="http://wordpress.org/extend/plugins/gd-star-rating/">GD Star Rating</a>
 * Integration plugin for <a href="http://wordpress.org/extend/plugins/nextgen-gallery/">NextGEN Gallery</a>
 * Integrated with WordPress media buttons
@@ -53,16 +57,21 @@ Features:
 
 1. Add/Edit post
 2. Leave comment through CKEditor
-3. Built-in file manager
 
 == Changelog ==
 
-= 3.6.4 DEV - 19.09.2012 =
+= V4.0 - 19.12.2012 =
 
- * Update CKEditor to 3.6.4 version
- * Fix bug: Caption to image doesn't work with Wordpress 3.4 (http://wordpress.org/support/topic/incompatible-with-wordpress-34)
- * New feature: Link to existing content (http://wordpress.org/support/topic/plugin-ckeditor-for-wordpress-link-to-existing-content)
-
+* Updated CKEditor to 4.0 version
+* Set the default skin to Moono
+* Modified the default toolbars
+* Increased the default height of editor for comments
+* Fixed image captions
+* Added protection against caching JavaScript files by the browser, by appending CKEditor timestamp to js files
+* Fixed: CKEditor does not load when "external" plugin is enabled, but the required extension is not installed
+* Minor fixes in the old built-in file browser
+* Spellchecker plugins are now enabled in "Advanced Options"
+ 
 = V3.6.3 - 21.06.2012 =
 
  * Update CKEditor to 3.6.3 version

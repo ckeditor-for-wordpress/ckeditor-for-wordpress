@@ -47,7 +47,8 @@ CKEDITOR.plugins.add( 'starrating',
 			{
 				label : 'Star Rating',
 				icon : this.path + 'starr.gif',
-				command : 'starr'
+				command : 'starr',
+				toolbar: 'wordpress,100'
 			});
 
 		// Register the commands.

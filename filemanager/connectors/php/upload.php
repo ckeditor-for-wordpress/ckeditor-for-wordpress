@@ -1,7 +1,7 @@
 <?php
 /*
  * FCKeditor - The text editor for Internet - http://www.fckeditor.net
- * Copyright (C) 2003-2009 Frederico Caldeira Knabben
+ * Copyright (C) 2003-2010 Frederico Caldeira Knabben
  *
  * == BEGIN LICENSE ==
  *
@@ -47,7 +47,7 @@ $sCurrentFolder	= "/" ;
 
 // Is enabled the upload?
 if ( ! IsAllowedCommand( $sCommand ) )
-	SendUploadResults( '1', '', '', 'The ""' . $sCommand . '"" command isn\'t allowed' ) ;
+	SendUploadResults( '1', '', '', 'The requested command isn\'t allowed' ) ;
 
 // Check if it is an allowed type.
 if ( !IsAllowedType( $sType ) )

@@ -46,7 +46,7 @@ global $wpdb, $nggdb;
                 <option value="0"><?php _e("No gallery", 'nggallery'); ?></option>
         <?php
           $gallerylist = $nggdb->find_all_galleries('gid', 'DESC');
-          if(is_array($gallerylist)) {
+          if (is_array($gallerylist)) {
             foreach($gallerylist as $gallery) {
               $name = ( empty($gallery->title) ) ? $gallery->name : $gallery->title;
               echo '<option value="' . $gallery->gid . '" >' . $gallery->gid . ' - ' . $name . '</option>' . "\n";
@@ -75,7 +75,7 @@ global $wpdb, $nggdb;
                 <option value="0"><?php _e("No album", 'nggallery'); ?></option>
         <?php
           $albumlist = $wpdb->get_results("SELECT * FROM $wpdb->nggalbum ORDER BY id DESC");
-          if(is_array($albumlist)) {
+          if (is_array($albumlist)) {
             foreach($albumlist as $album) {
               echo '<option value="' . $album->id . '" >' . $album->id . ' - ' . $album->name . '</option>'."\n";
             }
@@ -102,7 +102,7 @@ global $wpdb, $nggdb;
                 <option value="0"><?php _e("No picture", 'nggallery'); ?></option>
         <?php
           $picturelist = $wpdb->get_results("SELECT * FROM $wpdb->nggpictures ORDER BY pid DESC");
-          if(is_array($picturelist)) {
+          if (is_array($picturelist)) {
             foreach($picturelist as $picture) {
               echo '<option value="' . $picture->pid . '" >'. $picture->pid . ' - ' . $picture->filename.'</option>'."\n";
             }

@@ -12,7 +12,8 @@ CKEDITOR.plugins.add( 'wppolls',
 			{
 				label : 'Insert Poll',
 				icon : this.path + 'images/poll.gif',
-				command : 'wppolls'
+				command : 'wppolls',
+				toolbar: 'wordpress,100'
 			});
 
 		// Register the commands.

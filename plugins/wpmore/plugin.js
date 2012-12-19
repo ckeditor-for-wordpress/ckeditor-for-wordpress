@@ -8,14 +8,14 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
  */
 CKEDITOR.plugins.add( 'wpmore',
 {
-	requires  : [ 'fakeobjects', 'htmldataprocessor' ],
+	requires  : [ 'fakeobjects' ],
 
-	init : function( editor )
+	onLoad : function()
 	{
 		// Add the styles that renders our fake objects.
-		editor.addCss(
+		CKEDITOR.addCss(
 			'img.cke_wordpress_more' +
-			'{' +
+				'{' +
 				'background-image: url(' + CKEDITOR.getUrl( this.path + 'images/more_bug.gif' ) + ');' +
 				'background-position: right center;' +
 				'background-repeat: no-repeat;' +
@@ -25,14 +25,17 @@ CKEDITOR.plugins.add( 'wpmore',
 				'width: 100%;' +
 				'border-top: #999999 1px dotted;' +
 				'height: 10px;' +
-			'}'
+				'}'
 		);
-
+	},
+	init : function( editor )
+	{
 		// Register the toolbar buttons.
 		editor.ui.addButton( 'WPMore',
 			{
 				label : 'Insert More Break',
 				icon : this.path + 'images/more.gif',
+				toolbar: 'links,100',
 				command : 'wpmore'
 			});
 

@@ -8,18 +8,15 @@ jQuery(document).ready(function () {
 		configLoaded : function ( evt ) {
 			if (typeof(ckeditorSettings.externalPlugins) != 'undefined') {
 				var externals=new Array();
-				for(var x in ckeditorSettings.externalPlugins) {
+				for (var x in ckeditorSettings.externalPlugins) {
 					CKEDITOR.plugins.addExternal(x, ckeditorSettings.externalPlugins[x]);
 					externals.push(x);
 				}
 			}
 			evt.editor.config.extraPlugins += (evt.editor.config.extraPlugins ? ','+externals.join(',') : externals.join(','));
-			if (typeof(ckeditorSettings.additionalButtons) != 'undefined') {
-				for (var x in ckeditorSettings.additionalButtons) {
-					evt.editor.config['toolbar_' + evt.editor.config.toolbar].push(ckeditorSettings.additionalButtons[x]);
-				}
-			}
-			evt.editor.addCss(evt.editor.config.extraCss);
+			if (evt.editor.config[evt.editor.config.toolbar +'_removeButtons']);
+				evt.editor.config.removeButtons = evt.editor.config[evt.editor.config.toolbar +'_removeButtons'];
+			CKEDITOR.addCss(evt.editor.config.extraCss);
 		}
 	};
 	CKEDITOR.on( 'instanceReady', function( ev )
@@ -40,7 +37,7 @@ jQuery(document).ready(function () {
 		editorCKE = CKEDITOR.instances['content'];
 	});
 
-	if(ckeditorSettings.textarea_id != 'comment'){
+	if (ckeditorSettings.textarea_id != 'comment'){
 		edInsertContentOld = function () {
 			return ;
 		};
@@ -215,17 +212,9 @@ function ckeditorOn(id) {
 		jQuery('#edButtonPreview').addClass('active');
 		jQuery('#edButtonHTML').removeClass('active');
 		instance = CKEDITOR.replace(id, ckeditorSettings.configuration);
-		if (typeof ckeditorSettings.configuration['extraCss'] != 'undefined')
-		{
-			CKEDITOR.instances[id].addCss(ckeditorSettings.configuration['extraCss']);
-		}
 	}
 	if ( jQuery('textarea#'+ckeditorSettings.textarea_id).length && (typeof(CKEDITOR.instances) == 'undefined' || typeof(CKEDITOR.instances[ckeditorSettings.textarea_id]) == 'undefined' ) && jQuery("#"+ckeditorSettings.textarea_id).parent().parent().attr('id') != 'quick-press') {
 		instance =  CKEDITOR.replace(ckeditorSettings.textarea_id, ckeditorSettings.configuration);
-		if (typeof ckeditorSettings.configuration['extraCss'] != 'undefined')
-		{
-			CKEDITOR.instances[ckeditorSettings.textarea_id].addCss(ckeditorSettings.configuration['extraCss']);
-		}
 		if(ckeditorSettings.textarea_id == 'content') {
 			setUserSetting( 'editor', 'tinymce' );
 			jQuery('#quicktags').hide();
@@ -273,6 +262,12 @@ function getTinyMCEObject()
 {
 	var tinymce = window.tinyMCE = (function () {
 		var tinyMCE = {
+			isOpera : function() {
+				return CKEDITOR.env.opera;
+			},
+			onAddEditor : { add : function() {
+				// this function did nothing else apart from resizing TinyMCE
+			} },
 			get : function (id) {
 				var instant = {
 					isHidden : function (){
@@ -353,7 +348,7 @@ function getTinyMCEObject()
 				{
 					if (command == "mceInsertContent")
 					{
-						//test if image has capiton and make necessary text format
+						//test if image has caption and make necessary text format
 						pattern = /\[caption(.*)\]<.*>(.*)\[\/caption\]/i;
 						if (pattern.test(text)) {
 							replace_match = pattern.exec(text);

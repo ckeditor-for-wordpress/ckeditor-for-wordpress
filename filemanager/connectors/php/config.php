@@ -51,6 +51,17 @@ $Config['ForceSingleExtension'] = true ;
 // if set to true, validate image size (using getimagesize)
 $Config['SecureImageUploads'] = true;
 
+// After file is uploaded, sometimes it is required to change its permissions
+// so that it was possible to access it at the later time.
+// If possible, it is recommended to set more restrictive permissions, like 0755.
+// Set to 0 to disable this feature.
+// Note: not needed on Windows-based servers.
+$Config['ChmodOnUpload'] = 0644 ;
+
+// See comments above.
+// Used when creating folders that does not exist.
+$Config['ChmodOnFolderCreate'] = 0755 ;
+
 // What the user can do with this connector
 $Config['ConfigAllowedCommands'] = array('QuickUpload', 'FileUpload', 'GetFolders', 'GetFoldersAndFiles', 'CreateFolder') ;
 

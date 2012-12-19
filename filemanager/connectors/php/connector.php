@@ -1,7 +1,7 @@
 <?php
 /*
  * FCKeditor - The text editor for Internet - http://www.fckeditor.net
- * Copyright (C) 2003-2009 Frederico Caldeira Knabben
+ * Copyright (C) 2003-2010 Frederico Caldeira Knabben
  *
  * == BEGIN LICENSE ==
  *
@@ -59,7 +59,7 @@ function DoResponse()
 
 	// Check if it is an allowed command
 	if ( ! IsAllowedCommand( $sCommand ) )
-		SendError( 1, 'The "' . $sCommand . '" command isn\'t allowed' ) ;
+		SendError( 1, 'The requested command isn\'t allowed' ) ;
 
 	// Check if it is an allowed type.
 	if ( !IsAllowedType( $sResourceType ) )

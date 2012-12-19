@@ -47,7 +47,8 @@ CKEDITOR.plugins.add( 'nextgen',
 			{
 				label : 'Nextgen Gallery',
 				icon : this.path + 'nextgen.gif',
-				command : 'nextgen'
+				command : 'nextgen',
+				toolbar: 'wordpress,100'
 			});
 
 		// Register the commands.

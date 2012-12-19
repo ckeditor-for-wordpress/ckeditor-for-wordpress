@@ -10,8 +10,7 @@
 				<td>
 					<select name="options[appearance][skin]">
 						<option value="kama"<?php echo ($this->options['appearance']['skin'] == 'kama'?' selected="selected"':'') ?>>Kama</option>
-						<option value="office2003"<?php echo ($this->options['appearance']['skin'] == 'office2003'?' selected="selected"':'') ?>>Office 2003</option>
-						<option value="v2"<?php echo ($this->options['appearance']['skin'] == 'v2'?' selected="selected"':'') ?>>V2</option>
+						<option value="moono"<?php echo ($this->options['appearance']['skin'] == 'moono'?' selected="selected"':'') ?>>Moono</option>
 					</select>
 				</td>
 			</tr>
@@ -22,7 +21,6 @@
 						<option value="default"<?php echo ($this->options['appearance']['uicolor'] == 'default'?' selected="selected"':'') ?>>Default</option>
 						<option value="custom"<?php echo ($this->options['appearance']['uicolor'] == 'custom'?' selected="selected"':'') ?>>Custom</option>
 					</select>
-					<div class="description" style="margin-bottom:10px"><?php _e('Works only with Kama skin.', 'ckeditor_wordpress');?></div>
 					<textarea style="display:none;" class="ckeditor_ui_demo" id="edit-uicolor-textarea">
 					Click on the &lt;strong&gt;UI Color Picker&lt;/strong&gt; button to set your color preferences.
 					</textarea>

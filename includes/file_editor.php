@@ -1,7 +1,7 @@
 <div class="wrap">
 	<div id="icon-wp-ckeditor" class="icon32"><br /></div>
 	<h2><?php _e('CKEditor - configuration files', 'ckeditor_wordpress') ?></h2>
-	<?php if(count($files) > 1): ?>
+	<?php if (count($files) > 1): ?>
 	<form method="post">
 		<table class="form-table">
 			<tr valign="top">

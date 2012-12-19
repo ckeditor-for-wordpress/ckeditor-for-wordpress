@@ -13,7 +13,7 @@
 						<option value="builtin"<?php echo ($this->options['upload']['browser'] == 'builtin'?' selected="selected"':'') ?>><?php _e('Built-in (old)', 'ckeditor_wordpress'); ?></option>
 						<option value="ckfinder"<?php echo ($this->options['upload']['browser'] == 'ckfinder'?' selected="selected"':'') ?>>CKFinder</option>
 					</select>
-					<?php if(isset($message['upload_browser'])): ?><br/><span class="error"><?php echo $message['upload_browser'] ?></span><?php endif; ?>
+					<?php if (isset($message['upload_browser'])): ?><br/><span class="error"><?php echo $message['upload_browser'] ?></span><?php endif; ?>
 				</td>
 			</tr>
 			<tr valign="top">
@@ -26,21 +26,21 @@
 			<tr valign="top">
 				<th scope="row"><?php _e('Allowed file extensions', 'ckeditor_wordpress') ?></th>
 				<td><input type="text" class="regular-text" name="options[upload][files_allowed_ext]" value="<?php echo htmlspecialchars($this->options['upload']['files_allowed_ext']);?>"/>
-				<?php if(isset($message['upload_files_allowed_ext'])): ?><span class="error"><?php echo $message['upload_files_allowed_ext'] ?></span><?php endif; ?>
+				<?php if (isset($message['upload_files_allowed_ext'])): ?><span class="error"><?php echo $message['upload_files_allowed_ext'] ?></span><?php endif; ?>
 				<div class="description"><?php _e('Allowed extensions separated by comma.', 'ckeditor_wordpress');?></div>
 				</td>
 			</tr>
 			<tr valign="top">
 				<th scope="row"><?php _e('Allowed image extensions', 'ckeditor_wordpress') ?></th>
 				<td><input type="text" class="regular-text" name="options[upload][images_allowed_ext]" value="<?php echo htmlspecialchars($this->options['upload']['images_allowed_ext']);?>"/>
-				<?php if(isset($message['upload_images_allowed_ext'])): ?><span class="error"><?php echo $message['upload_images_allowed_ext'] ?></span><?php endif; ?>
+				<?php if (isset($message['upload_images_allowed_ext'])): ?><span class="error"><?php echo $message['upload_images_allowed_ext'] ?></span><?php endif; ?>
 				<div class="description"><?php _e('Allowed extensions separated by comma.', 'ckeditor_wordpress');?></div>
 				</td>
 			</tr>
 			<tr valign="top">
 				<th scope="row"><?php _e('Allowed flash extensions', 'ckeditor_wordpress') ?></th>
 				<td><input type="text" class="regular-text" name="options[upload][flash_allowed_ext]" value="<?php echo htmlspecialchars($this->options['upload']['flash_allowed_ext']);?>"/>
-				<?php if(isset($message['upload_flash_allowed_ext'])): ?><span class="error"><?php echo $message['upload_flash_allowed_ext'] ?></span><?php endif; ?>
+				<?php if (isset($message['upload_flash_allowed_ext'])): ?><span class="error"><?php echo $message['upload_flash_allowed_ext'] ?></span><?php endif; ?>
 				<div class="description"><?php _e('Allowed extensions separated by comma.', 'ckeditor_wordpress');?></div>
 				</td>
 			</tr>
@@ -72,7 +72,7 @@
 				<th scope="row"><?php _e('Maximum size of uploaded file', 'ckeditor_wordpress') ?></th>
 				<td>
 				<input type="text" name="options[ckfinder][file_max_size]" value="<?php echo htmlspecialchars($this->options['ckfinder']['file_max_size']);?>" />
-				<?php if(isset($message['ckfinder_file_max_size'])): ?><span class="error"><?php echo $message['ckfinder_file_max_size'] ?></span><?php endif; ?>
+				<?php if (isset($message['ckfinder_file_max_size'])): ?><span class="error"><?php echo $message['ckfinder_file_max_size'] ?></span><?php endif; ?>
 				<div class="description"><?php _e('Maximum size is defined in bytes, but shorthand notation may be also used. Available options are: G, M, K (case insensitive). 1M equals 1048576 bytes (one Megabyte), 1K equals 1024 bytes (one Kilobyte), 1G equals one Gigabyte.', 'ckeditor_wordpress') ?></div>
 				</td>
 			</tr>
@@ -112,16 +112,16 @@
 		</thead>
 		<tr>
 		<tr valign="top">
-			<th scope="row"><?php _e('Max Width');?></th><td><input type="text" name="options[ckfinder][images_width]" value="<?php echo htmlspecialchars($this->options['ckfinder']['images_width']);?>"/> px <?php if(isset($message['ckfinder_images_width'])): ?><br /><span class="error"><?php echo $message['ckfinder_images_width'] ?></span><?php endif; ?></td>
-			<th scope="row"><?php _e('Max Width');?></th><td><input type="text" name="options[ckfinder][thumbnails_width]" value="<?php echo htmlspecialchars($this->options['ckfinder']['thumbnails_width']);?>"/> px <?php if(isset($message['ckfinder_thumbnails_width'])): ?><br /><span class="error"><?php echo $message['ckfinder_thumbnails_width'] ?></span><?php endif; ?></td>
+			<th scope="row"><?php _e('Max Width');?></th><td><input type="text" name="options[ckfinder][images_width]" value="<?php echo htmlspecialchars($this->options['ckfinder']['images_width']);?>"/> px <?php if (isset($message['ckfinder_images_width'])): ?><br /><span class="error"><?php echo $message['ckfinder_images_width'] ?></span><?php endif; ?></td>
+			<th scope="row"><?php _e('Max Width');?></th><td><input type="text" name="options[ckfinder][thumbnails_width]" value="<?php echo htmlspecialchars($this->options['ckfinder']['thumbnails_width']);?>"/> px <?php if (isset($message['ckfinder_thumbnails_width'])): ?><br /><span class="error"><?php echo $message['ckfinder_thumbnails_width'] ?></span><?php endif; ?></td>
 		</tr>
 		<tr valign="top">
-			<th scope="row"><?php _e('Max Height');?></th><td><input type="text" name="options[ckfinder][images_height]" value="<?php echo htmlspecialchars($this->options['ckfinder']['images_height']);?>"/> px <?php if(isset($message['ckfinder_images_height'])): ?><br /><span class="error"><?php echo $message['ckfinder_images_height'] ?></span><?php endif; ?></td>
-			<th scope="row"><?php _e('Max Height');?></th><td><input type="text" name="options[ckfinder][thumbnails_height]" value="<?php echo htmlspecialchars($this->options['ckfinder']['thumbnails_height']);?>"/> px <?php if(isset($message['ckfinder_thumbnails_height'])): ?><br /><span class="error"><?php echo $message['ckfinder_thumbnails_height'] ?></span><?php endif; ?></td>
+			<th scope="row"><?php _e('Max Height');?></th><td><input type="text" name="options[ckfinder][images_height]" value="<?php echo htmlspecialchars($this->options['ckfinder']['images_height']);?>"/> px <?php if (isset($message['ckfinder_images_height'])): ?><br /><span class="error"><?php echo $message['ckfinder_images_height'] ?></span><?php endif; ?></td>
+			<th scope="row"><?php _e('Max Height');?></th><td><input type="text" name="options[ckfinder][thumbnails_height]" value="<?php echo htmlspecialchars($this->options['ckfinder']['thumbnails_height']);?>"/> px <?php if (isset($message['ckfinder_thumbnails_height'])): ?><br /><span class="error"><?php echo $message['ckfinder_thumbnails_height'] ?></span><?php endif; ?></td>
 		</tr>
 		<tr valign="top">
-			<th scope="row"><?php _e('Quality'); ?></th><td><input type="text" name="options[ckfinder][images_quality]" value="<?php echo htmlspecialchars($this->options['ckfinder']['images_quality']);?>"/><?php if(isset($message['ckfinder_images_quality'])): ?><br /><span class="error"><?php echo $message['ckfinder_images_quality'] ?></span><?php endif; ?></td>
-			<th scope="row"><?php _e('Quality'); ?></th><td><input type="text" name="options[ckfinder][thumbnails_quality]" value="<?php echo htmlspecialchars($this->options['ckfinder']['thumbnails_quality']);?>"/><?php if(isset($message['ckfinder_thumbnails_quality'])): ?><br /><span class="error"><?php echo $message['ckfinder_thumbnails_quality'] ?></span><?php endif; ?></td>
+			<th scope="row"><?php _e('Quality'); ?></th><td><input type="text" name="options[ckfinder][images_quality]" value="<?php echo htmlspecialchars($this->options['ckfinder']['images_quality']);?>"/><?php if (isset($message['ckfinder_images_quality'])): ?><br /><span class="error"><?php echo $message['ckfinder_images_quality'] ?></span><?php endif; ?></td>
+			<th scope="row"><?php _e('Quality'); ?></th><td><input type="text" name="options[ckfinder][thumbnails_quality]" value="<?php echo htmlspecialchars($this->options['ckfinder']['thumbnails_quality']);?>"/><?php if (isset($message['ckfinder_thumbnails_quality'])): ?><br /><span class="error"><?php echo $message['ckfinder_thumbnails_quality'] ?></span><?php endif; ?></td>
 		</tr>
 		<tr valign="top">
 			<td colspan="2" rowspan="2"><div class="description" style="width:260px">Set the maximum size of uploaded images. Larger images are scaled down proportionally.</div></td>
