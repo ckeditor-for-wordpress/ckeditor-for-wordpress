@@ -60,6 +60,10 @@ When upgrading from CKEditor For WordPress 3.6.3 to **CKEditor For WordPress 4.0
 
 == Changelog ==
 
+= V4.0 dev - 20.12.2012 =
+
+* Enabled bidi buttons
+
 = V4.0 - 19.12.2012 =
 
 * Updated CKEditor to 4.0 version

@@ -34,7 +34,7 @@ CKEDITOR.editorConfig = function(config) {
 		{ name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
 		// { name: 'forms' },
 		'/',
-		{ name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align' ] },
+		{ name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
 		{ name: 'links' },
 		{ name: 'insert' },
 		{ name: 'wordpress' },
