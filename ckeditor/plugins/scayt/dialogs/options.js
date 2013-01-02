@@ -1,5 +1,5 @@
 ﻿/*
- Copyright (c) 2003-2012, CKSource - Frederico Knabben. All rights reserved.
+ Copyright (c) 2003-2013, CKSource - Frederico Knabben. All rights reserved.
  For licensing, see LICENSE.html or http://ckeditor.com/license
 */
 CKEDITOR.dialog.add("scaytcheck",function(j){function w(){return"undefined"!=typeof document.forms["optionsbar_"+a]?document.forms["optionsbar_"+a].options:[]}function x(b,a){if(b){var e=b.length;if(void 0==e)b.checked=b.value==a.toString();else for(var d=0;d<e;d++)b[d].checked=!1,b[d].value==a.toString()&&(b[d].checked=!0)}}function n(b){f.getById("dic_message_"+a).setHtml('<span style="color:red;">'+b+"</span>")}function o(b){f.getById("dic_message_"+a).setHtml('<span style="color:blue;">'+b+"</span>")}

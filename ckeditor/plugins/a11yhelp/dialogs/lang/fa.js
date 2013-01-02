@@ -1,5 +1,5 @@
 ﻿/*
- Copyright (c) 2003-2012, CKSource - Frederico Knabben. All rights reserved.
+ Copyright (c) 2003-2013, CKSource - Frederico Knabben. All rights reserved.
  For licensing, see LICENSE.html or http://ckeditor.com/license
 */
 CKEDITOR.plugins.setLang("a11yhelp","fa",{title:"دستورالعملهای دسترسی",contents:"راهنمای فهرست مطالب. برای بستن این کادر محاورهای ESC را فشار دهید.",legend:[{name:"عمومی",items:[{name:"نوار ابزار ویرایشگر",legend:"${toolbarFocus} را برای باز کردن نوار ابزار بفشارید. با کلید Tab و Shif-Tab در مجموعه نوار ابزار بعدی و قبلی حرکت کنید. برای حرکت در کلید نوار ابزار قبلی و بعدی با کلید جهتنمای راست و چپ جابجا شوید. کلید Space یا Enter را برای فعال کردن کلید نوار ابزار بفشارید."},{name:"پنجره محاورهای ویرایشگر",

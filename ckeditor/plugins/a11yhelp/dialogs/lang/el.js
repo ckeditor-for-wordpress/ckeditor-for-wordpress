@@ -1,5 +1,5 @@
 ﻿/*
- Copyright (c) 2003-2012, CKSource - Frederico Knabben. All rights reserved.
+ Copyright (c) 2003-2013, CKSource - Frederico Knabben. All rights reserved.
  For licensing, see LICENSE.html or http://ckeditor.com/license
 */
 CKEDITOR.plugins.setLang("a11yhelp","el",{title:"Οδηγίες Προσβασιμότητας",contents:"Περιεχόμενα Βοήθειας. Πατήστε ESC για κλείσιμο.",legend:[{name:"Γενικά",items:[{name:"Εργαλειοθήκη Επεξεργαστή",legend:"Πατήστε ${toolbarFocus} για να περιηγηθείτε στην γραμμή εργαλείων. Μετακινηθείτε ανάμεσα στις ομάδες της γραμμής εργαλείων με TAB και Shift-TAB. Μετακινηθείτε ανάμεσα στα κουμπία εργαλείων με ΔΕΞΙ και ΑΡΙΣΤΕΡΟ ΒΕΛΑΚΙ. Πατήστε ΚΕΝΟ ή ENTER για να ενεργοποιήσετε το ενεργό κουμπί εργαλείου."},{name:"Παράθυρο Διαλόγου Επεξεργαστή",
