@@ -16,14 +16,18 @@ It brings to the web common editing features found on desktop editing applicatio
 
 <strong>CKEditor</strong> is compatible with most internet browsers and operating systems, including:
 <ul>
-<li>Internet Explorer 7+</li>
-<li>Firefox 3.0+</li>
+<li>Internet Explorer 8+</li>
+<li>Firefox</li>
 <li>Safari</li>
 <li>Google Chrome</li>
 <li>Opera</li>
 </ul>
 
 Live demo is available at <a href="http://wordpress.ckeditor.com/">http://wordpress.ckeditor.com/</a>.
+
+= Maintainance status =
+
+<strong>Looking for maintainers.</strong> If you would like to take over the development of this extension or just help in developing a component used by thousands of users, then please contact me: w.walc /at/ cksource.com.
 
 = Upgrading =
 
