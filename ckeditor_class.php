@@ -3,7 +3,7 @@
 class ckeditor_wordpress {
 
 	private static $instance;
-	public $version = '4.0';
+	public $version = '4.0.0.1';
 	public $timestamp = 'CBDD';
 	public $default_options = array();
 	public $options = array();
