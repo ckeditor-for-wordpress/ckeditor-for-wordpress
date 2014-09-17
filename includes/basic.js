@@ -1,4 +1,9 @@
-﻿jQuery(document).ready(function() {
+﻿/*
+ Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
+ For licensing, see LICENSE.md or http://ckeditor.com/license
+ */
+
+jQuery(document).ready(function() {
 	CKEDITOR.on( 'dialogDefinition', function( ev )
 			{
 				var dialogName = ev.data.name;

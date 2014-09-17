@@ -1,10 +1,10 @@
 ﻿/*
-Copyright (c) 2003-2010, CKSource - Frederico Knabben. All rights reserved.
-For licensing, see LICENSE.html or http://ckeditor.com/license
-*/
+ Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
+ For licensing, see LICENSE.md or http://ckeditor.com/license
+ */
 
 /**
- * @file Plugin for inserting Drupal teaser and page breaks.
+ * @file Plugin for inserting WordPress more button.
  */
 CKEDITOR.plugins.add( 'wpmore',
 {
@@ -45,8 +45,7 @@ CKEDITOR.plugins.add( 'wpmore',
 		{
 			exec : function()
 			{
-				// There should be only one <!--break--> in document. So, look
-				// for an image with class "cke_drupal_break" (the fake element).
+				// There should be only one "more" element.
 				var images = editor.document.getElementsByTag( 'img' );
 				for ( var i = 0, len = images.count() ; i < len ; i++ )
 				{

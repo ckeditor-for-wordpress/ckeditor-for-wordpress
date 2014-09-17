@@ -10,6 +10,16 @@ This plugin replaces the default WordPress editor with <a href="http://ckeditor.
 
 This plugin replaces the default WordPress editor with <a href="http://ckeditor.com/">CKEditor</a>.
 
+= Maintenance status =
+
+<strong>Looking for maintainers.</strong> If you would like to take over the development of this extension or just help in developing a component used by thousands of users, then please contact me: w.walc /at/ cksource.com.
+The extension is currently not maintained, use it at your own risk.
+
+For anyone willing to contribute: the extension is now [available on GitHub](github.com/ckeditor-for-wordpress/ckeditor-for-wordpress).
+Anyone is welcome to contribute. Without your help the extension will not get any further updates,
+
+= What is CKEditor? =
+
 <strong>CKEditor</strong> is a text editor to be used inside web pages. It's a WYSIWYG editor, which means that the
 text being edited on it looks as similar as possible to the results users have when publishing it.
 It brings to the web common editing features found on desktop editing applications like Microsoft Word and OpenOffice.
@@ -24,15 +34,6 @@ It brings to the web common editing features found on desktop editing applicatio
 </ul>
 
 Live demo is available at <a href="http://wordpress.ckeditor.com/">http://wordpress.ckeditor.com/</a>.
-
-= Maintenance status =
-
-<strong>Looking for maintainers.</strong> If you would like to take over the development of this extension or just help in developing a component used by thousands of users, then please contact me: w.walc /at/ cksource.com.
-The extension is currently not maintained, use it at your own risk.
-
-= Upgrading =
-
-When upgrading from CKEditor For WordPress 3.6.3 to **CKEditor For WordPress 4.0**, make sure to **clear browser cache** (*Ctrl+Shift+Delete*).
 
 = Features =
 
@@ -57,6 +58,10 @@ When upgrading from CKEditor For WordPress 3.6.3 to **CKEditor For WordPress 4.0
 2. Activate the plugin through the 'Plugins' menu in WordPress.
 3. Check your account profile settings and uncheck option "Disable the visual editor when writing" if checked.
 4. To install CKFinder, please read ckfinder/readme.txt.
+
+= Upgrading =
+
+When upgrading from CKEditor For WordPress 3.6.3 to **CKEditor For WordPress 4.0**, make sure to **clear browser cache** (*Ctrl+Shift+Delete*).
 
 == Screenshots ==
 

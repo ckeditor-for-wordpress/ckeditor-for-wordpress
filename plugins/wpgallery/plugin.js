@@ -1,14 +1,12 @@
 /*
-Copyright (c) 2003-2013, CKSource - Frederico Knabben. All rights reserved.
-For licensing, see LICENSE.html or http://ckeditor.com/license
+ Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
+ For licensing, see LICENSE.md or http://ckeditor.com/license
+ */
 
+/*
 This file is for support WordPress default/core gallery settings and image edit
 Here are defined settings for context menu, css classes , html and text dataProcessor.
 */
-
-// TODO:
-// 2) Unable to type below an image in IE8 (CKEditor bug: http://dev.ckeditor.com/ticket/3899)
-
 
 //indexOf function prototype for Array if not defined
 if (!Array.prototype.indexOf)

@@ -1,3 +1,9 @@
+<?php
+/*
+Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.md or http://ckeditor.com/license
+*/
+?>
 <div class="wrap">
 	<div id="icon-wp-ckeditor" class="icon32"><br /></div>
 	<h2><?php _e('CKEditor - configuration files', 'ckeditor_wordpress') ?></h2>
