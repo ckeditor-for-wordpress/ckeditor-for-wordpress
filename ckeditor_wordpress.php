@@ -22,6 +22,7 @@ function ckeditor_init(){
 		add_action('personal_options_update', array(&$ckeditor_wordpress, 'user_personalopts_update'));
 		add_action('admin_print_scripts', array(&$ckeditor_wordpress, 'add_post_js'));
 		add_action('admin_print_footer_scripts', array(&$ckeditor_wordpress, 'remove_tinymce'));
+		add_action('admin_init', array(&$ckeditor_wordpress, 'deregister_editor_expand' ));
 		// TODO: fix support for V4
 		// add_filter('ckeditor_external_plugins', array(&$ckeditor_wordpress, 'ckeditor_linkbrowser_plugin'));
 		// add_action('wp_ajax_linkbrowser_loader', array(&$ckeditor_wordpress, 'ckeditor_linkbrowser_loader'));

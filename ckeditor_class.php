@@ -1032,6 +1032,12 @@ class ckeditor_wordpress {
 		return $arr;
 		}
 
+  /**
+   * Remove editor-expand script as it only for default WYSIWYG editor
+   */
+  public function deregister_editor_expand(){
+    wp_deregister_script('editor-expand');
+  }
 }
 
 final class _WP_Editors {
