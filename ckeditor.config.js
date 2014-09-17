@@ -47,7 +47,7 @@ CKEDITOR.editorConfig = function(config) {
 	];
 
 	// Remove buttons in "WordpressFull" toolbar
-	config.WordpressFull_removeButtons = 'Save,NewPage,Preview,Print,Templates,CreateDiv,PageBreak,Subscript,Superscript,Styles';
+	config.WordpressFull_removeButtons = 'Save,NewPage,Preview,Print,Templates,CreateDiv,PageBreak,Styles';
 
 	//IE: remove border of image when is as a link
 	config.extraCss = "a img { border: 0px\\9; }";

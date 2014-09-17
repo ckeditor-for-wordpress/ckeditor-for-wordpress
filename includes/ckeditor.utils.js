@@ -14,7 +14,7 @@ jQuery(document).ready(function () {
 				}
 			}
 			evt.editor.config.extraPlugins += (evt.editor.config.extraPlugins ? ','+externals.join(',') : externals.join(','));
-			if (evt.editor.config[evt.editor.config.toolbar +'_removeButtons']);
+			if (evt.editor.config.toolbar && evt.editor.config[evt.editor.config.toolbar +'_removeButtons']);
 				evt.editor.config.removeButtons = evt.editor.config[evt.editor.config.toolbar +'_removeButtons'];
 			CKEDITOR.addCss(evt.editor.config.extraCss);
 		}

@@ -168,16 +168,14 @@ function ckeditor_overview_compatibility() {
 	<div>
 	<table class="form-table compat_logos">
 		<tr valign="top">
-			<td class="logos ie"> </td><td>Internet Explorer 7.0+</td>
-			<td class="logos firefox"> </td><td>Firefox 3.0+</td>
-		</tr>
-		<tr valign="top">
-			<td class="logos safari"> </td><td>Safari 3.0+</td>
-			<td class="logos opera"> </td><td>Opera 9.50+</td>
-		</tr>
-		<tr valign="top">
+		  <td class="logos ie"> </td><td>IE 8+</td>
+			<td class="logos firefox"> </td><td>Firefox</td>
 			<td class="logos chrome"> </td><td>Google Chrome</td>
-			<td class="logos camino"> </td><td>Camino 1.0+</td>
+		</tr>
+		<tr valign="top">
+			<td class="logos safari"> </td><td>Safari</td>
+			<td class="logos opera"> </td><td>Opera</td>
+			<td></td><td></td>
 		</tr>
 	</table>
 	</div>

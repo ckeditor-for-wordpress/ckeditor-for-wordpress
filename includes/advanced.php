@@ -19,7 +19,8 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 						<option value="theme"<?php echo ($this->options['css']['mode']=='theme'?' selected="selected"':'') ?>><?php _e('Use theme css', 'ckeditor_wordpress');?></option>
 						<option value="self"<?php echo ($this->options['css']['mode']=='self'?' selected="selected"':'') ?>><?php _e('Define css', 'ckeditor_wordpress');?></option>
 					</select>
-					<div class="description"><?php _e("Defines the CSS to be used in the editor area.<br />Use theme css - load style.css from current site theme.<br />Define css - enter path for css file below.<br />CKEditor default - uses default CSS from editor.", 'ckeditor_wordpress') ?></div>
+					<br />
+					<span class="description"><?php _e("Defines the CSS to be used in the editor area.<br />Use theme css - load style.css from current site theme.<br />Define css - enter path for css file below.<br />CKEditor default - uses default CSS from editor.", 'ckeditor_wordpress') ?></span>
 				</td>
 			</tr>
 			<tr valign="top">
@@ -27,7 +28,8 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 				<td>
 					<input type="text" name="options[css][path]" value="<?php echo htmlspecialchars($this->options['css']['path']) ?>" />
 					<?php if (isset($message['css_path'])): ?><span class="error"><?php echo $message['css_path'] ?></span><?php endif; ?>
-					<div class="description"><?php _e('Enter path to CSS file (Example: "css/editor.css") or a list of css files separated by a comma (Example: "/wp-content/themes/default/style.css,http://example.com/style.css"). Make sure to select "Define css" above.<br />Available placeholders:<br />%h - host name (/).<br />%t - path to theme.', 'ckeditor_wordpress') ?></div>
+					<br />
+					<span class="description"><?php _e('Enter path to CSS file (Example: "css/editor.css") or a list of css files separated by a comma (Example: "/wp-content/themes/default/style.css,http://example.com/style.css"). Make sure to select "Define css" above.<br />Available placeholders:<br />%h - host name (/).<br />%t - path to theme.', 'ckeditor_wordpress') ?></span>
 				</td>
 			</tr>
 			<tr valign="top">
@@ -38,7 +40,8 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 						<option value="self"<?php echo ($this->options['css']['styles']=='self'?' selected="selected"':'') ?>><?php _e('Define path to ckeditor.styles.js', 'ckeditor_wordpress');?></option>
 						<option value="default"<?php echo ($this->options['css']['styles']=='default'?' selected="selected"':'') ?>><?php _e('CKEditor default', 'ckeditor_wordpress');?></option>
 					</select>
-					<div class="description"><?php _e('Define the location of "ckeditor.styles.js" file. It is used by the "Style" dropdown list available in the default toolbar.', 'ckeditor_wordpress') ?></div>
+					<br />
+					<span class="description"><?php _e('Define the location of "ckeditor.styles.js" file. It is used by the "Style" dropdown list available in the default toolbar.', 'ckeditor_wordpress') ?></span>
 				</td>
 			</tr>
 			<tr valign="top">
@@ -46,7 +49,8 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 				<td>
 					<input type="text" name="options[css][style_path]" value="<?php echo htmlspecialchars($this->options['css']['style_path']) ?>" />
 					<?php if (isset($message['css_style_path'])): ?><span class="error"><?php echo $message['css_style_path'] ?></span><?php endif; ?>
-					<div class="description"><?php _e('Enter path to file with predefined styles (Example: "/ckeditor.styles.js"). Be sure to select "define path to ckeditor.styles.js" above.<br />Available placeholders:<br />%h - host name (/).<br />%t - path to theme .', 'ckeditor_wordpress') ?></div>
+					<br />
+					<span class="description"><?php _e('Enter path to file with predefined styles (Example: "/ckeditor.styles.js"). Be sure to select "define path to ckeditor.styles.js" above.<br />Available placeholders:<br />%h - host name (/).<br />%t - path to theme .', 'ckeditor_wordpress') ?></span>
 				</td>
 			</tr>
 		</table>
@@ -65,22 +69,38 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 		</table>
 		<h3><?php _e('Advanced Options', 'ckeditor_wordpress') ?></h3>
 		<table class="form-table">
+		  <?php
+			if (isset($this->options['advanced']['acf']))
+			{
+				$acf = $this->options['advanced']['acf'];
+			} else {
+				$acf = 'f';
+			}
+			?>
+			<tr valign="top">
+				<th scope="row"><?php _e('Advanced Content Filter', 'ckeditor_wordpress')?></th>
+				<td>
+				<input id="acf_enabled" name="options[advanced][acf]" type="radio" value="t" <?php if ($acf == 't'):?>checked="checked"<?php endif; ?>><label for="acf_enabled"> Enabled</label> <br/>
+				<input id="acf_disabled" name="options[advanced][acf]" type="radio" value="f" <?php if ($acf == 'f'):?>checked="checked"<?php endif; ?>><label for="acf_disabled"> Disabled</label>
+				<br />
+				<span class="description"><?php _e('If enabled, CKEditor will strip all HTML tags that are not allowed by CKEditor plugins.', 'ckeditor_wordpress');?></span></td></tr>
+			</tr>
 			<tr valign="top">
 				<th scope="row"><?php _e('Spell checker', 'ckeditor_wordpress')?><br /></th>
 				<td>
 					<?php echo $this->checkbox('advanced', 'scayt_autoStartup', 'SCAYT auto startup.');?><br />
-					<div class="description"><?php _e('If enabled, turns on SCAYT (Spell Check As You Type) automatically after loading the editor.', 'ckeditor_wordpress'); ?></div>
+					<span class="description"><?php _e('If enabled, turns on SCAYT (Spell Check As You Type) automatically after loading the editor.', 'ckeditor_wordpress'); ?></span>
 				</td>
 			</tr>
 			<tr valign="top">
 				<th scope="row"><?php _e('Built-in spell checker', 'ckeditor_wordpress')?></th>
 				<td><?php echo $this->checkbox('advanced', 'native_spell_checker', 'Enable the built-in spell checker while typing natively available in the browser.');?>
-				<div class="description">(<?php _e('currently Firefox and Safari only', 'ckeditor_wordpress');?>)</div></td></tr>
+				<span class="description">(<?php _e('currently Firefox and Safari only', 'ckeditor_wordpress');?>)</span></td></tr>
 			</tr>
 			<tr valign="top">
 				<th scope="row"><?php _e('HTML entities', 'ckeditor_wordpress')?></th>
 				<td><?php echo $this->checkbox('advanced', 'entities', 'Using HTML entities in the output.');?>
-				<div class="description">(<?php _e('Convert all applicable characters to HTML entities', 'ckeditor_wordpress');?>)</div></td></tr>
+				<span class="description">(<?php _e('Convert all applicable characters to HTML entities', 'ckeditor_wordpress');?>)</span></td></tr>
 			</tr>
 			<tr valign="top">
 				<th scope="row"><?php _e('Plugins', 'ckeditor_wordpress')?></th>
@@ -103,7 +123,7 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 							echo $this->checkbox('plugins', $plugin, !empty($pluginNames[$plugin]) ? $pluginNames[$plugin] : ucfirst($plugin) . ' plugin') . '<br />';
 						}
 					?>
-				<div class="description">(<?php _e('Choose additional plugins which should be loaded into CKEditor', 'ckeditor_wordpress');?>)</div>
+				<span class="description">(<?php _e('Choose additional plugins which should be loaded into CKEditor', 'ckeditor_wordpress');?>)</span>
 			</td>
 			</tr>
 			<?php

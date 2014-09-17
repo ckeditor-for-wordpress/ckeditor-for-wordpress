@@ -45,7 +45,8 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 						<option value="t"<?php echo ($this->options['appearance']['default_state']=='t'?' selected="selected"':'') ?>>Enabled</option>
 						<option value="f"<?php echo ($this->options['appearance']['default_state']=='f'?' selected="selected"':'') ?>>Disabled</option>
 					</select>
-					<div class="description"><?php _e('Default editor state. If disabled, rich text editor may still be enabled by pressing the "Visual" tab.', 'ckeditor_wordpress') ?></div>
+					<br />
+					<span class="description"><?php _e('Default editor state. If disabled, rich text editor may still be enabled by pressing the "Visual" tab.', 'ckeditor_wordpress') ?></span>
 				</td>
 			</tr>
 			<tr valign="top">
@@ -55,7 +56,8 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 						<option value="t"<?php echo ($this->options['appearance']['excerpt_state']=='t'?' selected="selected"':'') ?>>Enabled</option>
 						<option value="f"<?php echo ($this->options['appearance']['excerpt_state']=='f'?' selected="selected"':'') ?>>Disabled</option>
 					</select>
-					<div class="description"><?php _e('When enabled , CKEditor will be used in excerpt field.', 'ckeditor_wordpress') ?></div>
+					<br />
+					<span class="description"><?php _e('When enabled , CKEditor will be used in excerpt field.', 'ckeditor_wordpress') ?></span>
 				</td>
 			</tr>
 			<tr valign="top">
@@ -66,7 +68,8 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 						<option value="WordpressFull"<?php echo ($this->options['appearance']['post_toolbar']=='WordpressFull'?' selected="selected"':'') ?>>WordpressFull</option>
 						<option value="Full"<?php echo ($this->options['appearance']['post_toolbar']=='Full'?' selected="selected"':'') ?>>Full</option>
 					</select>
-					<div class="description"><?php _e('Choose a default toolbar set. To change the toolbar, edit', 'ckeditor_wordpress') ?> "ckeditor.config.js".</div>
+					<br />
+					<span class="description"><?php _e('Choose a default toolbar set. To change the toolbar, edit', 'ckeditor_wordpress') ?> "ckeditor.config.js".</span>
 				</td>
 			</tr>
 			<tr valign="top">
@@ -90,7 +93,8 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 						<option value="WordpressFull"<?php echo ($this->options['appearance']['comment_toolbar']=='WordpressFull'?' selected="selected"':'') ?>>WordpressFull</option>
 						<option value="Full"<?php echo ($this->options['appearance']['comment_toolbar']=='Full'?' selected="selected"':'') ?>>Full</option>
 					</select>
-					<div class="description"><?php _e('Choose a default toolbar set. To change the toolbar, edit', 'ckeditor_wordpress') ?> "ckeditor.config.js"</div>
+					<br />
+					<span class="description"><?php _e('Choose a default toolbar set. To change the toolbar, edit', 'ckeditor_wordpress') ?> "ckeditor.config.js"</span>
 				</td>
 			</tr>
 

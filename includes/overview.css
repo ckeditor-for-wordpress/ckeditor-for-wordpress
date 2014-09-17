@@ -1,5 +1,6 @@
 .ckeditor_error{color:red}
 .ckeditor_ok{color:green}
+table.compat_logos td {padding-top:10px}
 table.compat_logos td.logos
 {
 	width: 32px;
@@ -12,7 +13,7 @@ table.compat_logos td.logos
 	overflow: hidden;
 	padding:0;
 }
-.ckeditor_links td{height:30px;background-repeat:no-repeat;padding-left: 20px;}
+.ckeditor_links td{height:30px;background-repeat:no-repeat;padding-left: 20px;padding-top:0}
 .ckeditor_links td.help{background: url(../images/help.png) 0 7px no-repeat;}
 .ckeditor_links td.conf{background: url(../images/configuration.png) 0 7px no-repeat;}
 .ckeditor_links td.plug{background: url(../images/plugin.png) 0 7px  no-repeat;}

@@ -454,6 +454,10 @@ class ckeditor_wordpress {
 					$massage['advanced_detect_language_auto'] = __('Enter a valid auto detect language value.', 'ckeditor_wordpress');
 				}
 
+				if (trim($new_options['advanced']['acf']) != 't' && trim($new_options['advanced']['acf'] != 'f')) {
+					$massage['acf'] = __('Enter a valid ACF value.', 'ckeditor_wordpress');
+				}
+
 				if (trim($new_options['advanced']['language_direction']) != 'default' && trim($new_options['advanced']['language_direction']) != 'ltr' && trim($new_options['advanced']['language_direction']) != 'rtl') {
 					$massage['advanced_language_direction'] = __('Enter a valid language direction value.', 'ckeditor_wordpress');
 				}
@@ -681,6 +685,10 @@ class ckeditor_wordpress {
 
 		if (isset($options['advanced']['detect_language_auto']) && $options['advanced']['detect_language_auto'] == 'f') {
 			$settings['language'] = $options['advanced']['language'];
+		}
+
+		if (!isset($options['advanced']['acf']) || $options['advanced']['acf'] == 'f') {
+			$settings['allowedContent'] = true;
 		}
 
 		if (isset($options['advanced']['language_direction'])) {

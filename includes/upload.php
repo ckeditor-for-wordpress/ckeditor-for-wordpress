@@ -26,28 +26,32 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 				<th scope="row"><?php _e('Store uploads in this folder', 'ckeditor_wordpress')?></th>
 				<td>
 					<input type="text" class="regular-text" name="options[upload][user_file_path]" value="<?php echo htmlspecialchars($this->options['upload']['user_file_path']);?>"/>
-					<div class="description"><?php _e('Default value:')?> wp-content/uploads</div>
+					<br />
+					<span class="description"><?php _e('Default value:')?> wp-content/uploads</span>
 				</td>
 			</tr>
 			<tr valign="top">
 				<th scope="row"><?php _e('Allowed file extensions', 'ckeditor_wordpress') ?></th>
 				<td><input type="text" class="regular-text" name="options[upload][files_allowed_ext]" value="<?php echo htmlspecialchars($this->options['upload']['files_allowed_ext']);?>"/>
 				<?php if (isset($message['upload_files_allowed_ext'])): ?><span class="error"><?php echo $message['upload_files_allowed_ext'] ?></span><?php endif; ?>
-				<div class="description"><?php _e('Allowed extensions separated by comma.', 'ckeditor_wordpress');?></div>
+				<br />
+				<span class="description"><?php _e('Allowed extensions separated by comma.', 'ckeditor_wordpress');?></span>
 				</td>
 			</tr>
 			<tr valign="top">
 				<th scope="row"><?php _e('Allowed image extensions', 'ckeditor_wordpress') ?></th>
 				<td><input type="text" class="regular-text" name="options[upload][images_allowed_ext]" value="<?php echo htmlspecialchars($this->options['upload']['images_allowed_ext']);?>"/>
 				<?php if (isset($message['upload_images_allowed_ext'])): ?><span class="error"><?php echo $message['upload_images_allowed_ext'] ?></span><?php endif; ?>
-				<div class="description"><?php _e('Allowed extensions separated by comma.', 'ckeditor_wordpress');?></div>
+				<br />
+				<span class="description"><?php _e('Allowed extensions separated by comma.', 'ckeditor_wordpress');?></span>
 				</td>
 			</tr>
 			<tr valign="top">
 				<th scope="row"><?php _e('Allowed flash extensions', 'ckeditor_wordpress') ?></th>
 				<td><input type="text" class="regular-text" name="options[upload][flash_allowed_ext]" value="<?php echo htmlspecialchars($this->options['upload']['flash_allowed_ext']);?>"/>
 				<?php if (isset($message['upload_flash_allowed_ext'])): ?><span class="error"><?php echo $message['upload_flash_allowed_ext'] ?></span><?php endif; ?>
-				<div class="description"><?php _e('Allowed extensions separated by comma.', 'ckeditor_wordpress');?></div>
+				<br />
+				<span class="description"><?php _e('Allowed extensions separated by comma.', 'ckeditor_wordpress');?></span>
 				</td>
 			</tr>
 		</table>
@@ -71,7 +75,8 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 				<th scope="row"><?php _e('CKFinder access', 'ckeditor_wordpress') ?></th>
 				<td>
 				<select name="options[ckfinder][permissions][access]"><?php wp_dropdown_roles( $this->get_role('ckeditor_ckfinder_access') ); ?></select>
-				<div class="description"><?php _e('The lowest role which should be able to access CKFinder', 'ckeditor_wordpress');?></div>
+				<br />
+				<span class="description"><?php _e('The lowest role which should be able to access CKFinder', 'ckeditor_wordpress');?></span>
 				</td>
 			</tr>
 			<tr valign="top">
@@ -79,7 +84,8 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 				<td>
 				<input type="text" name="options[ckfinder][file_max_size]" value="<?php echo htmlspecialchars($this->options['ckfinder']['file_max_size']);?>" />
 				<?php if (isset($message['ckfinder_file_max_size'])): ?><span class="error"><?php echo $message['ckfinder_file_max_size'] ?></span><?php endif; ?>
-				<div class="description"><?php _e('Maximum size is defined in bytes, but shorthand notation may be also used. Available options are: G, M, K (case insensitive). 1M equals 1048576 bytes (one Megabyte), 1K equals 1024 bytes (one Kilobyte), 1G equals one Gigabyte.', 'ckeditor_wordpress') ?></div>
+				<br />
+				<span class="description"><?php _e('Maximum size is defined in bytes, but shorthand notation may be also used. Available options are: G, M, K (case insensitive). 1M equals 1048576 bytes (one Megabyte), 1K equals 1024 bytes (one Kilobyte), 1G equals one Gigabyte.', 'ckeditor_wordpress') ?></span>
 				</td>
 			</tr>
 		</table>
@@ -150,7 +156,7 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 			<th scope="row"><?php _e('License Key'); ?></th><td><input type="text" name="options[ckfinder][license_key]" value="<?php echo htmlspecialchars($this->options['ckfinder']['license_key']);?>"/></td>
 		</tr>
 		<tr valign="top">
-			<td colspan="4"><div class="description"><?php _e('Paste your CKFinder license key here. See <a href="http://ckfinder.com/license">CKFinder license</a>.', 'ckeditor_wordpress'); ?></div></td>
+			<td colspan="4"><span class="description"><?php _e('Paste your CKFinder license key here. See <a href="http://ckfinder.com/license">CKFinder license</a>.', 'ckeditor_wordpress'); ?></div></td>
 		</tr>
 		</table>
 
