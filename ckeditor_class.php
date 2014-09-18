@@ -7,8 +7,8 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 class ckeditor_wordpress {
 
 	private static $instance;
-	public $version = '4.0.0.1';
-	public $timestamp = 'CBDD';
+	public $version = '4.4.4';
+	public $timestamp = 'E7KC';
 	public $default_options = array();
 	public $options = array();
 	public $ckeditor_path = "";
