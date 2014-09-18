@@ -17,7 +17,7 @@ This plugin replaces the default WordPress editor with <a href="http://ckeditor.
 <strong>Looking for maintainers.</strong> If you would like to take over the development of this extension or just help in developing a component used by thousands of users, then please contact me: w.walc /at/ cksource.com.
 The extension is currently not maintained. Use it at your own risk.
 
-For anyone willing to contribute: the extension is now [available on GitHub](github.com/ckeditor-for-wordpress/ckeditor-for-wordpress).
+For anyone willing to contribute: the extension is now <a href="http://github.com/ckeditor-for-wordpress/ckeditor-for-wordpress">available on GitHub</a>.
 Anyone is welcome to contribute. Without your help the extension will not get any further updates.
 
 = What is CKEditor? =
