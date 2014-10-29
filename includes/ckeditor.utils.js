@@ -297,6 +297,9 @@ function getTinyMCEObject()
 							window.tinymceosc = func;
 						}
 					},
+					on : function(action, callback){
+						return callback();
+					},
 					getContentAreaContainer : function () {
 						return {
 							offsetHeight : editorCKE.config.height
