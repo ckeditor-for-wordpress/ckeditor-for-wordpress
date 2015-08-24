@@ -336,9 +336,11 @@ class ckeditor_wordpress {
 				while (false !== ($fileName = readdir($dhandle))) {
 					if ($fileName != '.' && $fileName != '..' && is_dir($skins_directory . $fileName) && is_readable($skins_directory . $fileName) ) {
 						$skin = $fileName;
-						if ( file_exists($skins_directory . $fileName . '/skin.js')
+						if ( (file_exists($skins_directory . $fileName) && $fileName == 'moono') ||
+							( file_exists($skins_directory . $fileName . '/skin.js')
 							&& file_exists($skins_directory . $fileName . '/editor.css')
 							&& file_exists($skins_directory . $fileName . '/dialog.css')
+							)
 						){
 							$skins[] = $skin;
 						}

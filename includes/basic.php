@@ -15,7 +15,7 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 				<th scope="row"><?php _e('Select the skin to load', 'ckeditor_wordpress')?></th>
 				<td>
 					<select name="options[appearance][skin]">
-						<?php foreach($skins as $skin): ?>
+						<?php foreach($this->skins as $skin): ?>
 							<option value="<?php echo $skin; ?>"<?php echo ($this->options['appearance']['skin'] == $skin ? ' selected="selected"':'') ?>><?php echo ucfirst($skin);?></option>
 						<?php endforeach; ?>
 					</select>
