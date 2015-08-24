@@ -72,6 +72,11 @@ When upgrading from CKEditor For WordPress 3.6.3 to **CKEditor For WordPress 4.0
 
 == Changelog ==
 
+= V4.4.5 - 30.10.2014 =
+
+* Fixed preview/publish JavaScript errors in WordPress 4.x. Fixed by @vokiel.
+* Updated CKEditor to 4.4.5.
+
 = V4.4.4 - 18.09.2014 =
 
 * Fixed compatibility with WordPress 4.0.
