@@ -2,7 +2,7 @@ Software License Agreement
 ==========================
 
 CKEditor for WordPress
-Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
+Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
 
 This program is free software; you can redistribute it and/or modify it
 under the terms of the GNU General Public License, version 2 or later (the "GPL"),

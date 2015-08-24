@@ -1,6 +1,6 @@
 <?php
 /*
-Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
+Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
 For licensing, see LICENSE.md or http://ckeditor.com/license
 */
 ?>
@@ -15,8 +15,9 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 				<th scope="row"><?php _e('Select the skin to load', 'ckeditor_wordpress')?></th>
 				<td>
 					<select name="options[appearance][skin]">
-						<option value="kama"<?php echo ($this->options['appearance']['skin'] == 'kama'?' selected="selected"':'') ?>>Kama</option>
-						<option value="moono"<?php echo ($this->options['appearance']['skin'] == 'moono'?' selected="selected"':'') ?>>Moono</option>
+						<?php foreach($this->skins as $skin): ?>
+							<option value="<?php echo $skin; ?>"<?php echo ($this->options['appearance']['skin'] == $skin ? ' selected="selected"':'') ?>><?php echo ucfirst($skin);?></option>
+						<?php endforeach; ?>
 					</select>
 				</td>
 			</tr>

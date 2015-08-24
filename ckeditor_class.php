@@ -1,19 +1,20 @@
 <?php
 /*
-Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
+Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
 For licensing, see LICENSE.md or http://ckeditor.com/license
 */
 
 class ckeditor_wordpress {
 
 	private static $instance;
-	public $version = '4.4.4';
-	public $timestamp = 'E7KC';
+	public $version = '4.5.3';
+	public $timestamp = 'F7J8';
 	public $default_options = array();
 	public $options = array();
 	public $ckeditor_path = "";
 	public $plugin_path = "";
 	public $editable_files = array(); //array with files which can be edited
+	public $skins = array();
 
 	public static function getInstance() {
 			if (!isset(self::$instance)) {
@@ -123,6 +124,7 @@ class ckeditor_wordpress {
 		$this->user_files_absolute_path = $dir;
 		$this->user_files_url = $siteurl . $path;
 		$this->file_browser = $this->options['upload']['browser'];
+		$this->skins = $this->get_skins();
 	}
 
 		private function get_sorted_roles() {
@@ -323,6 +325,31 @@ class ckeditor_wordpress {
 			$this->options = $this->update_options($new_options, (empty($message) ? false : true));
 		}
 		include('includes/basic.php');
+	}
+
+	protected function get_skins(){
+		$skins_directory = dirname(__FILE__). '/ckeditor/skins/';
+		if ( file_exists($skins_directory) && is_readable($skins_directory) ){
+			$dhandle = opendir($skins_directory);
+			if ( !empty($dhandle) ) {
+				$skins = array();
+				while (false !== ($fileName = readdir($dhandle))) {
+					if ($fileName != '.' && $fileName != '..' && is_dir($skins_directory . $fileName) && is_readable($skins_directory . $fileName) ) {
+						$skin = $fileName;
+						if ( (file_exists($skins_directory . $fileName) && $fileName == 'moono') ||
+							( file_exists($skins_directory . $fileName . '/skin.js')
+							&& file_exists($skins_directory . $fileName . '/editor.css')
+							&& file_exists($skins_directory . $fileName . '/dialog.css')
+							)
+						){
+							$skins[] = $skin;
+						}
+					}
+				}
+				closedir($dhandle);
+			}
+		}
+		return !empty($skins) ? $skins : array('moono','kama');
 	}
 
 	public function upload_options() {
@@ -626,7 +653,7 @@ class ckeditor_wordpress {
 			$settings['uiColor'] = $options['appearance']['uicolor_user'];
 		}
 		$settings['height'] = ($is_comment ? $options['appearance']['comment_editor_height'] : $options['appearance']['post_editor_height']) . 'px';
-		if (in_array($options['appearance']['skin'], array('moono', 'kama'))) {
+		if (in_array($options['appearance']['skin'], $this->skins)) {
 			$settings['skin'] = $options['appearance']['skin'];
 		}
 		$settings['scayt_autoStartup'] = $options['advanced']['scayt_autoStartup'] == 't' ? true : false;
@@ -1081,7 +1108,7 @@ final class _WP_Editors {
 		$tabindex = $set['tabindex'] ? ' tabindex="' . (int) $set['tabindex'] . '"' : '';
 		$rows = ' rows="' . (int) $set['textarea_rows'] . '"';
 		$switch_class = 'html-active';
-		$toolbar = $buttons = '';
+		$buttons = '';
 
 		if (!current_user_can('upload_files'))
 			$set['media_buttons'] = false;
@@ -1109,7 +1136,6 @@ final class _WP_Editors {
 
 		if (!empty($buttons) || $set['media_buttons']) {
 			echo '<div id="wp-' . $editor_id . '-editor-tools" class="wp-editor-tools">';
-			echo $buttons;
 
 			if ($set['media_buttons']) {
 				//self::$has_medialib = true;
@@ -1119,6 +1145,10 @@ final class _WP_Editors {
 
 				echo '<div id="wp-' . $editor_id . '-media-buttons" class="hide-if-no-js wp-media-buttons">';
 				do_action('media_buttons', $editor_id);
+				echo "</div>\n";
+
+				echo '<div class="wp-editor-tabs">';
+					echo $buttons;
 				echo "</div>\n";
 			}
 				echo "</div>\n";

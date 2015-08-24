@@ -1,5 +1,5 @@
 /*
- Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
+ Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
  For licensing, see LICENSE.md or http://ckeditor.com/license
  */
 var	editorCKE;
@@ -69,6 +69,10 @@ jQuery(document).ready(function () {
 					jQuery('.js .theEditor').attr('style', 'color: black;');
 				}
 			};
+			window.switchEditors.switchto = function(elm) {
+				var id = jQuery('#'+elm.id).closest('.wp-editor-wrap').find('textarea').attr('id');
+				return window.switchEditors.go(id, elm.id.replace('content-', ''));
+			}
 		}
 	}
 	//if qTranslate plugin enabled
@@ -136,6 +140,10 @@ jQuery(document).ready(function () {
 					qtrans_assign('qtrans_textarea_'+id,qtrans_use(lang,ta.value));
 				}
 			}
+			window.switchEditors.switchto = function(elm) {
+				var id = jQuery('#'+elm.id).closest('.wp-editor-wrap').find('textarea').attr('id');
+				return window.switchEditors.go(id, elm.id.replace('content-', ''));
+			}
 		}
 		jQuery('#edButtonHTML').addClass('active');
 		jQuery('#edButtonPreview').removeClass('active');
@@ -174,13 +182,13 @@ jQuery(document).ready(function () {
 	}
 	if (typeof window.tinyMCE != 'undefined') {
 		if (typeof QTags != 'undefined') {
-			jQuery(".row-actions span.reply a").live('click', function(){
+			jQuery(".row-actions span.reply a").on('click', function(){
 				if (typeof CKEDITOR.instances['replycontent'] != 'undefined') {
 					ckeditorOff('replycontent');
 				}
 				CKEDITOR.replace('replycontent', {'basicEntities' : false, 'entities': false,'toolbar_Comments' : [{ name: 'basicstyles', items : [ 'Bold','Italic','Underline'] }, { name: 'links', items : [ 'Link','Unlink' ] },{ name: 'paragraph', items : [ 'NumberedList','BulletedList'] }, { name: 'insert', items : [ 'Image' ] } ],  'toolbar' : 'Comments'});
 			});
-			jQuery("#replyrow a.save").unbind('click').live('click', function(){
+			jQuery("#replyrow a.save").unbind('click').on('click', function(){
 				var data = null;
 				if (typeof CKEDITOR.instances['replycontent'] != 'undefined') {
 					data = CKEDITOR.instances['replycontent'].getData();
@@ -192,7 +200,7 @@ jQuery(document).ready(function () {
 				commentReply.send();
 				return;
 			});
-			jQuery("#replyrow a.cancel").unbind('click').live('click', function(){
+			jQuery("#replyrow a.cancel").unbind('click').on('click', function(){
 				commentReply.revert()
 				ckeditorOff('replycontent');
 				return;
@@ -237,7 +245,7 @@ function ckeditorOn(id) {
 }
 
 function ckeditorOff(id) {
-	if (typeof(id) != 'undefined')
+	if (typeof(id) != 'undefined' && typeof(CKEDITOR.instances[id]) != 'undefined')
 	{
 		editorCKE = CKEDITOR.instances[id];
 	}else
@@ -475,6 +483,13 @@ function getTinyMCEObject()
 			},
 			addI18n : function(language, param){
 				return ;
+			},
+			$ : function () {
+				return {
+					on: function (name, callback) {
+						return;
+					}
+				}
 			}
 		};
 	return tinyMCE;
