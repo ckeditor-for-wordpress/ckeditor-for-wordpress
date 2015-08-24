@@ -1106,7 +1106,7 @@ final class _WP_Editors {
 		$tabindex = $set['tabindex'] ? ' tabindex="' . (int) $set['tabindex'] . '"' : '';
 		$rows = ' rows="' . (int) $set['textarea_rows'] . '"';
 		$switch_class = 'html-active';
-		$toolbar = $buttons = '';
+		$buttons = '';
 
 		if (!current_user_can('upload_files'))
 			$set['media_buttons'] = false;
@@ -1134,7 +1134,6 @@ final class _WP_Editors {
 
 		if (!empty($buttons) || $set['media_buttons']) {
 			echo '<div id="wp-' . $editor_id . '-editor-tools" class="wp-editor-tools">';
-			echo $buttons;
 
 			if ($set['media_buttons']) {
 				//self::$has_medialib = true;
@@ -1144,6 +1143,10 @@ final class _WP_Editors {
 
 				echo '<div id="wp-' . $editor_id . '-media-buttons" class="hide-if-no-js wp-media-buttons">';
 				do_action('media_buttons', $editor_id);
+				echo "</div>\n";
+
+				echo '<div class="wp-editor-tabs">';
+					echo $buttons;
 				echo "</div>\n";
 			}
 				echo "</div>\n";
