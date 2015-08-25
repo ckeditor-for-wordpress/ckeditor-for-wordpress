@@ -743,8 +743,7 @@ class ckeditor_wordpress {
 			$available_plugins = array_keys($output['externalPlugins']);
 			$available_plugins[] = "autogrow";
 			$available_plugins[] = "tableresize";
-			$available_plugins[] = "scayt";
-			$available_plugins[] = "wsc";
+			$plugins_to_remove = array("scayt", "wsc");
 
 			foreach ((array) $options['plugins'] as $name => $val) {
 				if ($val == 't' && !isset($output['externalPlugins'][$name])) {
@@ -755,8 +754,17 @@ class ckeditor_wordpress {
 						$output['externalPlugins'][$name] = $this->plugin_path . 'ckeditor/plugins/' . $name . '/';
 				}
 				else if ($val == 'f' && isset($output['externalPlugins'][$name])) {
-					unset($output['externalPlugins'][$name]);
+					unset( $output['externalPlugins'][ $name ] );
 				}
+				else if ($val == 'f' && in_array($name, $plugins_to_remove)){
+					if (!isset($output['configuration']['removePlugins'])){
+						$output['configuration']['removePlugins'] = array();
+					}
+					$output['configuration']['removePlugins'][] = $name;
+				}
+			}
+			if ( !empty($output['configuration']['removePlugins'])){
+				$output['configuration']['removePlugins'] = implode(", ", $output['configuration']['removePlugins']);
 			}
 		} else {
 			$output['externalPlugins'] = array();
