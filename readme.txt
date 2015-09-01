@@ -1,5 +1,5 @@
 ﻿=== CKEditor for WordPress ===
-Contributors: wiktor, michal_cksource, dczepierga, Dean Lee
+Contributors: wiktor, vokiel, michal_cksource, dczepierga, Dean Lee
 Tags: post, wysiwyg, CKEditor, FCKeditor, editor, rich text, rte, rich text editor
 Requires at least: 3.2
 Tested up to: 4.3
