@@ -3,7 +3,7 @@ Contributors: wiktor, vokiel, michal_cksource, dczepierga, Dean Lee
 Tags: post, wysiwyg, CKEditor, FCKeditor, editor, rich text, rte, rich text editor
 Requires at least: 3.2
 Tested up to: 4.3
-Stable tag: 4.5.3
+Stable tag: 4.5.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl.html
 This plugin replaces the default WordPress editor with <a href="http://ckeditor.com/">CKEditor</a>.
@@ -71,6 +71,10 @@ When upgrading from CKEditor For WordPress 3.6.3 to **CKEditor For WordPress 4.0
 2. Leave comment through CKEditor
 
 == Changelog ==
+
+= V4.5.3.1 - 01.09.2015 =
+
+* Security update: fixed reflected XSS caused by improper sanitization in the "built-in (old)" file browser.
 
 = V4.5.3 - 24.08.2015 =
 

@@ -295,7 +295,7 @@ function SendUploadResults( $errorNumber, $fileUrl = '', $fileName = '', $custom
 	if ( 'QuickUpload' == $sCommand )
 	{
 		// Required: anonymous function number as explained above.
-		$funcNum = $_GET['CKEditorFuncNum'] ;
+		$funcNum = preg_replace("/[^0-9]/", "", $_GET['CKEditorFuncNum']);
 
 		if ($errorNumber && $errorNumber != 201) {
 			echo "<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction($funcNum, '', 'Error $errorNumber');</script>";
