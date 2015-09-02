@@ -202,15 +202,16 @@ class ckeditor_wordpress {
 	}
 
 	public function add_admin_head() {
-		$style = '.form-table td .cke_editor td { padding:0; }
-		#icon-wp-ckeditor {background: transparent url("'.$this->plugin_path.'images/ckeditor_ico32.png") no-repeat;}';
-		wp_add_inline_style('ckeditor-admin-head',$style);
+		echo '<style type="text/css">
+			.form-table td .cke_editor td { padding:0; }
+			#icon-wp-ckeditor {background: transparent url("'.$this->plugin_path.'images/ckeditor_ico32.png") no-repeat;}
+		</style>';
 
 		//if qTranslate plugin is enabled
 		if (is_plugin_active('qtranslate/qtranslate.php'))
 		{
 			$this->generate_js_options(false);
-			wp_enqueue_script( 'ckeditor', $this->ckeditor_path .'ckeditor.js?t='.$this->timestamp, array(), $this->version, false);
+			wp_enqueue_script( 'ckeditor', $this->ckeditor_path .'ckeditor.js?t='.$this->timestamp, array(), $this->version);
 			wp_enqueue_script( 'ckeditor.utils', $this->plugin_path . 'includes/ckeditor.utils.js?t='.$this->timestamp, array('ckeditor', 'jquery'), $this->version);
 			global $q_config;
 			$q_config['js']['qtrans_tinyMCEOverload'] = '';
@@ -496,8 +497,8 @@ class ckeditor_wordpress {
 	}
 
 	public function basic_settings_js() {
-		wp_enqueue_script('ckeditor', $this->ckeditor_path . 'ckeditor.js');
-		wp_enqueue_script('ckeditor_admin', $this->plugin_path . 'includes/basic.js');
+		wp_enqueue_script( 'ckeditor', $this->ckeditor_path .'ckeditor.js?t='.$this->timestamp, array(), $this->version);
+		wp_enqueue_script( 'ckeditor_admin', $this->plugin_path . 'includes/basic.js');
 	}
 
 	public function file_editor_js() {
@@ -537,7 +538,7 @@ class ckeditor_wordpress {
 			return;
 		}
 		wp_enqueue_script('editor');
-		wp_enqueue_script('ckeditor', $this->ckeditor_path . "ckeditor.js?t=".$this->timestamp);
+		wp_enqueue_script( 'ckeditor', $this->ckeditor_path .'ckeditor.js?t='.$this->timestamp, array(), $this->version);
 		wp_enqueue_script('ckeditor.utils', $this->plugin_path . 'includes/ckeditor.utils.js?t='.$this->timestamp, array('ckeditor', 'jquery'), $this->version);
 
 		$this->generate_js_options(false);
@@ -555,8 +556,8 @@ class ckeditor_wordpress {
 		if ( is_plugin_active('w3-total-cache/w3-total-cache.php') ) {
 			define('DONOTMINIFY', true);
 		}
-		wp_enqueue_script('ckeditor', $this->ckeditor_path . "ckeditor.js?t=".$this->timestamp);
-		wp_enqueue_script( 'ckeditor.utils', $this->plugin_path . 'includes/ckeditor.utils.js?t='.$this->timestamp, array('ckeditor', 'jquery'), $this->version);
+		wp_enqueue_script( 'ckeditor', $this->ckeditor_path .'ckeditor.js?t='.$this->timestamp, array(), $this->version);
+		wp_enqueue_script('ckeditor.utils', $this->plugin_path . 'includes/ckeditor.utils.js?t='.$this->timestamp, array('ckeditor', 'jquery'), $this->version);
 		wp_deregister_script('comment-reply');
 		wp_register_script('comment-reply', $this->plugin_path . 'includes/ckeditor.comment-reply.js', array('ckeditor', 'ckeditor.utils'), "20100901");
 		$this->generate_js_options(true);
@@ -564,8 +565,10 @@ class ckeditor_wordpress {
 	}
 
 	public function add_wpcompat_styles() {
-		$style = '#content table.cke_editor { margin:0; }#content table.cke_editor tr td { padding:0;border:0; }';
-		wp_add_inline_style('wpcompat_styles',$style);
+		echo '<style type="text/css">
+			#content table.cke_editor { margin:0; }
+			#content table.cke_editor tr td { padding:0;border:0; }
+		</style>';
 	}
 
 	private function update_options($new_options, $error) {
