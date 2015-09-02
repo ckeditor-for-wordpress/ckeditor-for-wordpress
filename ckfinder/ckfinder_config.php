@@ -15,7 +15,27 @@
 $error_reporting = error_reporting();
 error_reporting($error_reporting & ~E_STRICT);
 
-require_once(dirname(__FILE__). '/../../../../wp-config.php');
+function findWpConfigRecursively($dir){
+	do {
+		if( file_exists($dir."/wp-config.php") ) {
+			return $dir;
+		}
+	} while( $dir = realpath("$dir/..") );
+	return null;
+}
+
+if ( !defined('ABSPATH')) {
+	// Go out from ckfinder/core/connector/php/ into plugins directory
+	$pluginsRoot = dirname(dirname(dirname(dirname(dirname(dirname($_SERVER['SCRIPT_FILENAME']))))));
+	$wpRoot = dirname(dirname($pluginsRoot));
+	if ( file_exists( $wpRoot. '/wp-config.php' ) ) {
+		require_once $wpRoot . '/wp-config.php';
+	}
+	else {
+		$wpRoot = findWpConfigRecursively($pluginsRoot);
+		require_once $wpRoot . '/wp-config.php';
+	}
+}
 require_once(dirname(__FILE__). '/../ckeditor_class.php');
 
 /**

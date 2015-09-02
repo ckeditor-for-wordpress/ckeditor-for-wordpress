@@ -227,7 +227,7 @@ wpImage = {
 			d = t.I('img_demo'), dom = tinyMCEPopup.dom, DL, caption = '', dlc, pa, tmp, url, pattern, match;
 		if (el.getName() != 'img')
 			return;
-		if(el.getAttribute('src').indexOf('../wp-content') != -1 )
+		if(el.getAttribute('src').indexOf('../') != -1 )
 		{
 			tmp = window.parent.document.location.pathname.split('/');
 			url = window.parent.document.location.protocol + '//' + window.parent.document.location.host + '/' +  tmp[1] + '/' + el.getAttribute('src').replace(/\.\.\//, '');
@@ -278,7 +278,7 @@ wpImage = {
 			t.updateStyle('vspace');
 		pa = el.getParent() ;
 		if ( pa.getName()== 'a'  ) {
-			if(pa.getAttribute('href').indexOf('../wp-content') != -1 )
+			if(pa.getAttribute('href').indexOf('../') != -1 )
 			{
 				tmp = window.parent.document.location.pathname.split('/');
 				url = window.parent.document.location.protocol + '//' + window.parent.document.location.host + '/' +  tmp[1] + '/' + pa.getAttribute('href').replace(/\.\.\//, '');

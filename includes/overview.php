@@ -1,4 +1,4 @@
-<?php
+<?php if ( !defined('ABSPATH')){ exit; } // Exit if accessed directly
 /*
 Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
 For licensing, see LICENSE.md or http://ckeditor.com/license
@@ -204,6 +204,7 @@ function ckeditor_overview_configuration() {
 	</div>
 <?php
 }
+
 function ckeditor_reset_settings() {
 	?>
 	<div>
@@ -252,4 +253,3 @@ add_meta_box('dashboard_overview_server', __('Server Information', 'ckeditor_wor
 add_meta_box('dashboard_reset_settings', __('Reset Plugin Settings', 'ckeditor_wordpress'), 'ckeditor_reset_settings', 'ckeditor_overview', 'left', 'core');
 
 ckeditor_admin_overview();
-?>
