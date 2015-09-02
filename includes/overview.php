@@ -232,14 +232,12 @@ function ckeditor_overview_help() {
 	<div>
 	<table class="form-table ckeditor_links">
 		<tr valign="top">
-			<td class="cke"><a href="http://ckeditor.com"><?php _e('CKEditor Site', 'ckeditor_wordpress');?></a></td>
 			<td class="help"><a href="http://docs.cksource.com/CKEditor_3.x/Users_Guide"><?php _e('User Guide', 'ckeditor_wordpress');?></a></td>
 			<td class="plug"><a href="http://wordpress.org/extend/plugins/ckeditor-for-wordpress/"><?php _e('Plugin Site', 'ckeditor_wordpress');?></a></td>
 		</tr>
 		<tr valign="top">
-			<td class="excl"><a href="http://wordpress.ckeditor.com/troubleshooting"><?php _e('Troubleshooting', 'ckeditor_wordpress');?></a></td>
-			<td class="docs"><a href="http://docs.cksource.com/CKEditor_3.x/Developers_Guide"><?php _e('CKEditor Documentation', 'ckeditor_wordpress');?></a></td>
-			<td class="conf"><a href="http://docs.cksource.com/ckeditor_api/symbols/CKEDITOR.config.html"><?php _e('Configuration Options', 'ckeditor_wordpress');?></a></td>
+			<td class="docs"><a href="http://docs.ckeditor.com/"><?php _e('CKEditor Documentation', 'ckeditor_wordpress');?></a></td>
+			<td class="conf"><a href="http://docs.ckeditor.com/#!/api/CKEDITOR.config"><?php _e('Configuration Options', 'ckeditor_wordpress');?></a></td>
 		</tr>
 	</table>
 	</div>
