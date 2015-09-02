@@ -1,4 +1,4 @@
-<?php
+<?php if ( !defined('ABSPATH')){ exit; } // Exit if accessed directly
 /*
 Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
 For licensing, see LICENSE.md or http://ckeditor.com/license
@@ -69,14 +69,7 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 		</table>
 		<h3><?php _e('Advanced Options', 'ckeditor_wordpress') ?></h3>
 		<table class="form-table">
-		  <?php
-			if (isset($this->options['advanced']['acf']))
-			{
-				$acf = $this->options['advanced']['acf'];
-			} else {
-				$acf = 'f';
-			}
-			?>
+		  <?php $acf = isset($this->options['advanced']['acf']) ? $this->options['advanced']['acf'] : 'f'; ?>
 			<tr valign="top">
 				<th scope="row"><?php _e('Advanced Content Filter', 'ckeditor_wordpress')?></th>
 				<td>
@@ -116,7 +109,9 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 						$pluginNames = array('scayt' => 'Spell Check As You Type (SCAYT)', 'wsc' => 'WebSpellChecker (WSC)');
 
 						foreach ($plugins as $plugin){
-							if ($plugin == "wpgallery" || $plugin == "wpeditimage") continue;
+							if ($plugin == "wpgallery" || $plugin == "wpeditimage") {
+								continue;
+							}
 							if (!isset($this->options['plugins'][$plugin])){
 								$this->options['plugins'][$plugin] = 't';
 							}
@@ -132,14 +127,7 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 			<tr valign="top">
 				<th scope="row"><?php _e('Language', 'ckeditor_wordpress')?></th>
 				<td>
-			<?php
-				if (isset($this->options['advanced']['language']))
-				{
-					$selected = $this->options['advanced']['language'];
-				}else{
-					$selected = (get_locale())? get_locale() : 'en';
-				}
-			?>
+				<?php $selected =  isset($this->options['advanced']['language']) ? $this->options['advanced']['language'] : (get_locale()? get_locale() : 'en'); ?>
 				<select name="options[advanced][language]">
 					<?php foreach ($langs AS $key => $lang): ?>
 						<option value="<?php echo $key?>" <?php if ($key == $selected):?>selected="selected"<?php endif;?>><?php echo $lang ?></option>
@@ -149,14 +137,7 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 				<?php if (isset($message['advanced_language'])): ?><span class="error"><?php echo $message['advanced_language'] ?></span><?php endif; ?>
 				</td>
 			</tr>
-			<?php
-				if (isset($this->options['advanced']['detect_language_auto']))
-				{
-					$auto = $this->options['advanced']['detect_language_auto'];
-				} else {
-					$auto = 't';
-				}
-			?>
+			<?php $auto = isset($this->options['advanced']['detect_language_auto']) ? $this->options['advanced']['detect_language_auto'] : 't'; ?>
 			<tr valign="top">
 				<th scope="row"><?php _e('Auto-detect language', 'ckeditor_wordpress')?></th>
 				<td>
@@ -169,14 +150,7 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 			<tr valign="top">
 				<th scope="row"><?php _e('Language direction ', 'ckeditor_wordpress')?></th>
 				<td>
-			<?php
-				if (isset($this->options['advanced']['language_direction']))
-				{
-					$selected = $this->options['advanced']['language_direction'];
-				}else{
-					$selected = 'default';
-				}
-			?>
+				<?php $selected = isset($this->options['advanced']['language_direction']) ? $this->options['advanced']['language_direction']: 'default'; ?>
 				<select name="options[advanced][language_direction]">
 					<option value="default" <?php if ($selected == 'default'):?>selected="selected"<?php endif;?>>Get from current locale (default)</option>
 					<option value="ltr" <?php if ($selected == 'ltr'):?>selected="selected"<?php endif;?>>Left-To-Right</option>
