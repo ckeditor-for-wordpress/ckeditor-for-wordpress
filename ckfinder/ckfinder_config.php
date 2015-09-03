@@ -37,9 +37,8 @@ if ( !defined('ABSPATH')) {
 			// If you've seen this message below auto-discovery for wp-config.php file failed
 			// Please set the path manually like
 			// require_once dirname(__FILE__). '/../../../../wp-config.php';
-			// then comment those two lines below
-			require_once dirname(__FILE__).'/../filemanager/connectors/php/basexml.php';
-			SendError(1, "Searching for configuration file 'wp-config.php' failed. <br><br>Please set the path manually in: <br>".__FILE__);
+			// then comment/remove the line below
+			die("Searching for configuration file 'wp-config.php' failed. <br><br>Please set the path manually in: <br>".__FILE__);
 		}
 		require_once $wpRoot . '/wp-config.php';
 	}
