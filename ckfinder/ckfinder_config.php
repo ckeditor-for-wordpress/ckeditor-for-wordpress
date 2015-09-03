@@ -33,10 +33,17 @@ if ( !defined('ABSPATH')) {
 	}
 	else {
 		$wpRoot = findWpConfigRecursively($pluginsRoot);
+		if ( is_null($wpRoot) ){
+			// If you've seen this message below auto-discovery for wp-config.php file failed
+			// Please set the path manually like
+			// require_once dirname(__FILE__). '/../../../../wp-config.php';
+			// then comment/remove the line below
+			die("Searching for configuration file 'wp-config.php' failed. <br><br>Please set the path manually in: <br>".__FILE__);
+		}
 		require_once $wpRoot . '/wp-config.php';
 	}
 }
-require_once(dirname(__FILE__). '/../ckeditor_class.php');
+require_once dirname(__FILE__). '/../ckeditor_class.php';
 
 /**
  * This function must check the user session to be sure that he/she is

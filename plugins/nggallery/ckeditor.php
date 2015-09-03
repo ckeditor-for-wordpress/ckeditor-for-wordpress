@@ -71,5 +71,3 @@ class add_ckeditor_button {
 
 // Call it now
 $ckeditor_button = new add_ckeditor_button ();
-
-?>

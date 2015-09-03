@@ -129,7 +129,7 @@ oConnector.CheckError = function( responseXml )
 			case 0 :
 				break ;
 			case 1 :	// Custom error. Message placed in the "text" attribute.
-				alert( oErrorNode.attributes.getNamedItem('text').value ) ;
+				alert( oErrorNode.attributes.getNamedItem('text').value.replace(/<br>/g, "\n") ) ;
 				break ;
 			case 101 :
 				alert( 'Folder already exists' ) ;

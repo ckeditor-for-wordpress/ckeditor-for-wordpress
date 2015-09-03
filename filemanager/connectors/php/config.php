@@ -25,8 +25,36 @@
 $error_reporting = error_reporting();
 error_reporting($error_reporting & ~E_STRICT);
 
-require_once(dirname(__FILE__). '/../../../../../../wp-config.php');
-require_once(dirname(__FILE__). '/../../../ckeditor_class.php');
+function findWpConfigRecursively($dir){
+  do {
+    if( file_exists($dir."/wp-config.php") ) {
+      return $dir;
+    }
+  } while( $dir = realpath("$dir/..") );
+  return null;
+}
+
+if ( !defined('ABSPATH')) {
+  // Go out from filemanager/connectors/php into plugins directory
+  $pluginsRoot = dirname(dirname(dirname(dirname($_SERVER['SCRIPT_FILENAME']))));
+  $wpRoot = dirname(dirname($pluginsRoot));
+  if ( file_exists( $wpRoot. '/wp-config.php' ) ) {
+    require_once $wpRoot . '/wp-config.php';
+  }
+  else {
+    $wpRoot = findWpConfigRecursively($pluginsRoot);
+    if ( is_null($wpRoot) ){
+      // If you've seen this message below auto-discovery for wp-config.php file failed
+      // Please set the path manually like
+      // require_once dirname(__FILE__). '/../../../../../../wp-config.php';
+      // then comment/remove the line below
+      die("Searching for configuration file 'wp-config.php' failed. Please set the path manually in: ".__FILE__);
+    }
+    require_once $wpRoot . '/wp-config.php';
+  }
+}
+
+require_once dirname(__FILE__). '/../../../ckeditor_class.php';
 
 $Config = array();
 // SECURITY: You must explicitly enable this "connector". (Set it to "true").
@@ -144,5 +172,3 @@ $Config['FileTypesPath']['Flash']		= $Config['UserFilesPath'] . 'flash/' ;
 $Config['FileTypesAbsolutePath']['Flash']= ($Config['UserFilesAbsolutePath'] == '') ? '' : $Config['UserFilesAbsolutePath'].'flash/' ;
 $Config['QuickUploadPath']['Flash']		= $Config['FileTypesPath']['Flash'] ;
 $Config['QuickUploadAbsolutePath']['Flash']= $Config['FileTypesAbsolutePath']['Flash'] ;
-
-?>
