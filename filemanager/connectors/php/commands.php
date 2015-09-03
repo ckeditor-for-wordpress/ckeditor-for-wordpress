@@ -281,4 +281,3 @@ function FileUpload( $resourceType, $currentFolder, $sCommand )
 
 	exit ;
 }
-?>

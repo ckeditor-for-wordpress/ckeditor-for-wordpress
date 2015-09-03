@@ -315,5 +315,3 @@ function SendUploadResults( $errorNumber, $fileUrl = '', $fileName = '', $custom
 	}
 	exit ;
 }
-
-?>
