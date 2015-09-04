@@ -507,16 +507,6 @@ class ckeditor_wordpress {
 		//wp_enqueue_script('codepress');
 	}
 
-	private function is_plugin_active($plugin_name) {
-		$options = get_option('active_plugins');
-		foreach ($options AS $option) {
-			if (strpos($option, $plugin_name) !== FALSE) {
-				return true;
-			}
-		}
-		return false;
-	}
-
 	public function remove_tinymce() {
 		if (has_action('admin_print_footer_scripts', 'wp_tiny_mce')) {
 			remove_action('admin_print_footer_scripts', 'wp_tiny_mce', 25);
