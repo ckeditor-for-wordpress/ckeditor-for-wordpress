@@ -552,6 +552,9 @@ class ckeditor_wordpress {
 		if ($this->options['appearance']['comment_editor'] != 't') {
 			return;
 		}
+		if ( !function_exists('is_plugin_active') ) {
+			include_once ABSPATH . 'wp-admin/includes/plugin.php';
+		}
 		// if W3 Total Cache is enabled, turn off minify for page with CKEditor in comments
 		if ( is_plugin_active('w3-total-cache/w3-total-cache.php') ) {
 			define('DONOTMINIFY', true);
@@ -624,6 +627,10 @@ class ckeditor_wordpress {
 	}
 
 	private function generate_js_options($is_comment) {
+		if ( !function_exists('is_plugin_active') ) {
+			include_once ABSPATH . 'wp-admin/includes/plugin.php';
+		}
+
 		$options = $this->options;
 		$settings = array();
 		if ($options['upload']['browser'] == 'builtin') {
@@ -667,7 +674,7 @@ class ckeditor_wordpress {
 			'pluginPath' => $this->plugin_path,
 			'autostart' => ($options['appearance']['default_state'] == 't' || $is_comment ? true : false),
 			'excerpt_state' => ($options['appearance']['excerpt_state'] == 't' ? true : false),
-			'qtransEnabled' => ($this->is_plugin_active("qtrans") ? true : false),
+			'qtransEnabled' => is_plugin_active('qtranslate/qtranslate.php'),
 			'outputFormat' => array(
 				'indent' => ($options['advanced']['p_indent'] == 't' ? true : false),
 				'breakBeforeOpen' => ($options['advanced']['p_break_before_open'] == 't' ? true : false),
