@@ -327,7 +327,7 @@ class ckeditor_wordpress {
 	}
 
 	protected function get_skins(){
-		$skins_directory = $this->ckeditor_path . 'skins/';
+		$skins_directory = dirname(__FILE__). '/ckeditor/skins/';
 		if ( file_exists($skins_directory) && is_readable($skins_directory) ){
 			$dhandle = opendir($skins_directory);
 			if ( !empty($dhandle) ) {
